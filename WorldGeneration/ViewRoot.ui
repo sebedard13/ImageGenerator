@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>ViewRootClass</class>
  <widget class="QMainWindow" name="ViewRootClass">
@@ -327,7 +327,7 @@
                </sizepolicy>
               </property>
               <property name="text">
-               <string>Générate</string>
+               <string>G茅n茅rate</string>
               </property>
              </widget>
             </item>
@@ -507,5 +507,25 @@
  <resources>
   <include location="ViewRoot.qrc"/>
  </resources>
- <connections/>
+ <connections>
+  <connection>
+   <sender>pushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>ViewRootClass</receiver>
+   <slot>slot1()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>188</x>
+     <y>776</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>220</x>
+     <y>677</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>slot1()</slot>
+ </slots>
 </ui>
