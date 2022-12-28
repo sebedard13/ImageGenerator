@@ -14,6 +14,9 @@ void MapScreen::setupUi(QMainWindow* ViewRootClass)
 	verticalLayout_2->setContentsMargins(0, 0, 0, 0);
 	graphicsView = new QGraphicsView(this);
 	graphicsView->setObjectName("graphicsView");
+	graphicsView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+	graphicsView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+	graphicsView->setDragMode(QGraphicsView::ScrollHandDrag);
 
 	verticalLayout_2->addWidget(graphicsView);
 
@@ -59,32 +62,12 @@ void MapScreen::setupUi(QMainWindow* ViewRootClass)
 
 void MapScreen::setupMap()
 {
-	const int squareSize = 5;
-	const int tileSize = 100;
 
-	QGraphicsScene* scene = new QGraphicsScene(this);
-	scene->setItemIndexMethod(QGraphicsScene::NoIndex);
-	QPen pen = QPen(QColor(Qt::black));
-	QBrush brush = QBrush(QColor(Qt::blue));
-	scene->setBackgroundBrush(QBrush(QColor(Qt::black)));
-	for (int i = 0; i < tileSize; ++i)
-	{
-		std::cout << i * tileSize << "/" << tileSize * tileSize << "\r";
-		for (int j = 0; j < tileSize; ++j)
-		{
-			scene->addRect(i * squareSize, j * squareSize, squareSize, squareSize, pen, brush);
-		}
-	}
-	std::cout << tileSize * tileSize << "/" << tileSize * tileSize << std::endl;
-
-
-	graphicsView->setScene(scene);
-	graphicsView->show();
 }
 
 void MapScreen::retranslateUi(QMainWindow* ViewRootClass)
 {
-	label->setText(ViewsUtils::local("tipNothing"));
+	label->setText(ViewsUtils::local(messageId));
 }
 
 void MapScreen::mousePressEvent(QMouseEvent* event)
@@ -111,4 +94,15 @@ void MapScreen::wheelEvent(QWheelEvent* event)
 	{
 		graphicsView->scale(0.5, 0.5);
 	}
+}
+
+void MapScreen::changeMessage(const std::string& key)
+{
+	messageId = key;
+	label->setText(ViewsUtils::local(messageId));
+}
+
+void MapScreen::changePercent(const int& value)
+{
+	progressBar->setValue(value);
 }

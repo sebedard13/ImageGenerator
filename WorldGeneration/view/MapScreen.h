@@ -24,6 +24,7 @@ public:
 	QVBoxLayout* verticalLayout_5;
 	QProgressBar* progressBar;
 	QLabel* label;
+	std::string messageId{ "tipNothing" };
 
 	MapScreen(QWidget* parent) : QFrame(parent) {}
 
@@ -36,5 +37,9 @@ public:
 	void mousePressEvent(QMouseEvent* event) override;
 
 	void wheelEvent(QWheelEvent* event) override;
+
+	void changeMessage(const std::string& key);
+
+	void changePercent(const int& value); //0 to 100
 };
 

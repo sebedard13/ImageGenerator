@@ -97,13 +97,14 @@ void ViewRootClass::setupUi(QMainWindow* ViewRootClass)
 
 	horizontalLayout->addWidget(frame);
 
-	frame2 = new MapScreen(centralWidget);
-	frame2->setupUi(ViewRootClass);
+	mainMapScreen = new MapScreen(centralWidget);
+	mainMapScreen->setupUi(ViewRootClass);
+
+	mapView = std::make_shared<MapView>(mainMapScreen);
 
 
 
-
-	horizontalLayout->addWidget(frame2);
+	horizontalLayout->addWidget(mainMapScreen);
 
 
 	horizontalLayout_2->addLayout(horizontalLayout);
@@ -161,7 +162,7 @@ void ViewRootClass::retranslateUi(QMainWindow* ViewRootClass)
 	menuA_propos->setTitle(ViewsUtils::local("btnAbout"));
 
 	tab->retranslateUi(ViewRootClass);
-	frame2->retranslateUi(ViewRootClass);
+	mainMapScreen->retranslateUi(ViewRootClass);
 } // retranslateUi
 void ViewRoot::clickGenerate()
 {

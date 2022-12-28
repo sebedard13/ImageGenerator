@@ -12,6 +12,12 @@ int main(int argc, char* argv[])
 	ViewRoot w;
 	w.show();
 
+	auto map = w.getMainMapView();
+	map->setMessageId("tipLoadArray");
+	const int* array[100 * 100] = {};
+
+	map->loadMap(array);
+
 
 	return a.exec();
 }

@@ -96,6 +96,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="view\MapScreen.cpp" />
+    <ClCompile Include="view\MapView.cpp" />
     <ClCompile Include="view\tab\GeneratePerlinNoise.cpp" />
     <ClCompile Include="view\tab\TabPerlinNoise.cpp" />
     <ClCompile Include="view\ViewRoot.cpp" />
@@ -105,6 +106,7 @@
   <ItemGroup>
     <ClInclude Include="Localization.h" />
     <ClInclude Include="view\MapScreen.h" />
+    <ClInclude Include="view\MapView.h" />
     <ClInclude Include="view\tab\GeneratePerlinNoise.h" />
     <ClInclude Include="view\tab\TabAlgo.h" />
     <ClInclude Include="view\tab\TabPerlinNoise.h" />

@@ -9,6 +9,7 @@
 #include <QPushButton>
 
 #include "MapScreen.h"
+#include "MapView.h"
 #include "tab/TabAlgo.h"
 #include "tab/TabPerlinNoise.h"
 
@@ -32,7 +33,9 @@ public:
 	QFrame* frame1;
 	QVBoxLayout* verticalLayout_4;
 	QPushButton* btnGenerate;
-	MapScreen* frame2;
+	MapScreen* mainMapScreen;
+	std::shared_ptr<MapView> mapView;
+
 	QMenuBar* menuBar;
 	QMenu* menusfas;
 	QMenu* menuA_propos;
@@ -56,6 +59,10 @@ public:
 	ViewRoot(QWidget* parent = nullptr);
 	~ViewRoot();
 	void clickGenerate();
+	std::shared_ptr<MapView> getMainMapView()
+	{
+		return ui.mapView;
+	}
 
 private:
 	ViewRootClass ui;

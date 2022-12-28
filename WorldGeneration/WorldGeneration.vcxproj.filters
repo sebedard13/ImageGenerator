@@ -41,6 +41,9 @@
     <ClCompile Include="view\tab\GeneratePerlinNoise.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="view\MapView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Localization.h">
@@ -59,6 +62,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="view\tab\GeneratePerlinNoise.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="view\MapView.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
