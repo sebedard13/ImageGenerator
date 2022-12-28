@@ -95,21 +95,22 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="view\MapScreen.cpp" />
+    <ClCompile Include="view\tab\GeneratePerlinNoise.cpp" />
+    <ClCompile Include="view\tab\TabPerlinNoise.cpp" />
+    <ClCompile Include="view\ViewRoot.cpp" />
     <QtRcc Include="ViewRoot.qrc" />
-    <QtUic Include="ViewRoot.ui" />
-    <QtMoc Include="ViewRoot.h" />
     <ClCompile Include="Localization.cpp" />
-    <ClCompile Include="MapScreen.cpp" />
-    <ClCompile Include="TabPerlinNoise.cpp" />
-    <ClCompile Include="ViewRoot.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Localization.h" />
-    <ClInclude Include="MapScreen.h" />
-    <ClInclude Include="TabAlgo.h" />
-    <ClInclude Include="TabPerlinNoise.h" />
-    <ClInclude Include="ViewUtils.h" />
+    <ClInclude Include="view\MapScreen.h" />
+    <ClInclude Include="view\tab\GeneratePerlinNoise.h" />
+    <ClInclude Include="view\tab\TabAlgo.h" />
+    <ClInclude Include="view\tab\TabPerlinNoise.h" />
+    <ClInclude Include="view\ViewUtils.h" />
+    <QtMoc Include="view\ViewRoot.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

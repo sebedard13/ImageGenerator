@@ -10,6 +10,13 @@
 class MapScreen : public QFrame
 {
 public:
+	MapScreen() = delete;
+	MapScreen(const MapScreen& other) = delete;
+	MapScreen(MapScreen&& other) noexcept = delete;
+	MapScreen& operator=(const MapScreen& other) = delete;
+	MapScreen& operator=(MapScreen&& other) noexcept = delete;
+	~MapScreen() = default;
+
 	QVBoxLayout* verticalLayout_2;
 	QGraphicsView* graphicsView;
 	QFrame* frame_2;

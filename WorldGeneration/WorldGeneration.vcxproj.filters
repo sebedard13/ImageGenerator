@@ -26,15 +26,6 @@
     <QtRcc Include="ViewRoot.qrc">
       <Filter>Resource Files</Filter>
     </QtRcc>
-    <QtUic Include="ViewRoot.ui">
-      <Filter>Form Files</Filter>
-    </QtUic>
-    <QtMoc Include="ViewRoot.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <ClCompile Include="ViewRoot.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -43,10 +34,16 @@
     <ClCompile Include="Localization.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="TabPerlinNoise.cpp">
+    <ClCompile Include="view\MapScreen.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MapScreen.cpp">
+    <ClCompile Include="view\ViewRoot.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="view\tab\TabPerlinNoise.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="view\tab\GeneratePerlinNoise.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -54,17 +51,25 @@
     <ClInclude Include="Localization.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="TabPerlinNoise.h">
+    <ClInclude Include="view\MapScreen.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MapScreen.h">
+    <ClInclude Include="view\tab\TabAlgo.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ViewUtils.h">
+    <ClInclude Include="view\tab\TabPerlinNoise.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="TabAlgo.h">
+    <ClInclude Include="view\ViewUtils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="view\tab\GeneratePerlinNoise.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="view\ViewRoot.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
   </ItemGroup>
 </Project>

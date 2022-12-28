@@ -3,6 +3,7 @@
 #include <iostream>
 
 #include "ViewUtils.h"
+#include "tab/GeneratePerlinNoise.h"
 
 void ViewRootClass::setupUi(QMainWindow* ViewRootClass)
 {
@@ -60,7 +61,7 @@ void ViewRootClass::setupUi(QMainWindow* ViewRootClass)
 	//Tab 1
 	tab = new TabPerlinNoise();
 	tab->setupUi(ViewRootClass);
-	tabs.push_back(tab);
+	tabs.push_back(std::make_unique<GeneratePerlinNoise>(tab));
 	tabWidget->addTab(tab, QString());
 	//Tab 2
 

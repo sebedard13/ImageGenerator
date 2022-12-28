@@ -1,7 +1,4 @@
-﻿#include <codecvt>
-#include <iostream>
-
-#include "ViewRoot.h"
+﻿#include "view/ViewRoot.h"
 #include <QtWidgets/QApplication>
 
 #include "Localization.h"

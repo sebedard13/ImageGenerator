@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-#include "ViewUtils.h"
+#include "../ViewUtils.h"
 
 void TabPerlinNoise::setupUi(QMainWindow* ViewRootClass)
 {
@@ -152,14 +152,4 @@ void TabPerlinNoise::retranslateUi(QMainWindow* ViewRootClass)
 	label_15->setText(ViewsUtils::local("emptytext"));
 	label_16->setText(ViewsUtils::local("emptytext"));
 	label_17->setText(ViewsUtils::local("emptytext"));
-}
-
-void TabPerlinNoise::handleGenerate()
-{
-	std::cout << "yes";
-}
-
-TabPerlinNoise::~TabPerlinNoise()
-{
-
 }

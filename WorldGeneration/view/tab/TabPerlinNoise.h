@@ -6,13 +6,14 @@
 #include <QVBoxLayout>
 #include <QWidget>
 
-#include "TabAlgo.h"
-
-class TabPerlinNoise : public QWidget, public TabAlgo
+class TabPerlinNoise : public QWidget
 {
-
 public:
 	TabPerlinNoise() = default;
+	TabPerlinNoise(const TabPerlinNoise& other) = delete;
+	TabPerlinNoise(TabPerlinNoise&& other) noexcept = delete;
+	TabPerlinNoise& operator=(const TabPerlinNoise& other) = delete;
+	TabPerlinNoise& operator=(TabPerlinNoise&& other) noexcept = delete;
 
 	QVBoxLayout* verticalLayout_6;
 	QScrollArea* scrollArea;
@@ -41,9 +42,5 @@ public:
 	void setupUi(QMainWindow* ViewRootClass);
 
 	void retranslateUi(QMainWindow* ViewRootClass);
-
-	void handleGenerate() final;
-
-	virtual ~TabPerlinNoise();
 };
 

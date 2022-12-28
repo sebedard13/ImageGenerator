@@ -1,26 +1,21 @@
 ﻿#pragma once
+#include <QAction>
+#include <qboxlayout.h>
+#include <QFrame>
+#include <QTabWidget>
+#include <QStatusBar>
+#include <QToolBar>
+#include <QMenuBar>
+#include <QPushButton>
 
-#include <QtCore/QVariant>
-#include <QtWidgets/QApplication>
-#include <QtWidgets/QGraphicsView>
-#include <QtWidgets/QLabel>
-#include <QtWidgets/QMainWindow>
-#include <QtWidgets/QMenuBar>
-#include <QtWidgets/QProgressBar>
-#include <QtWidgets/QPushButton>
-#include <QtWidgets/QStatusBar>
-#include <QtWidgets/QTabWidget>
-#include <QtWidgets/QToolBar>
-#include <QtWidgets/QVBoxLayout>
-#include <QtWidgets/QWidget>
-
-#include "Localization.h"
 #include "MapScreen.h"
-#include "TabPerlinNoise.h"
+#include "tab/TabAlgo.h"
+#include "tab/TabPerlinNoise.h"
 
 
 class ViewRootClass
 {
+
 public:
 	QAction* actionSauvegarder;
 	QAction* actionCharger;
@@ -44,7 +39,7 @@ public:
 	QToolBar* mainToolBar;
 	QStatusBar* statusBar;
 
-	std::vector<TabAlgo*> tabs{};
+	std::vector<std::unique_ptr<TabAlgo>> tabs{};
 
 	void setupUi(QMainWindow* ViewRootClass);
 

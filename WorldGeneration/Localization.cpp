@@ -1,7 +1,5 @@
 ﻿#include "Localization.h"
 
-#include <codecvt>
-
 Localization* Localization::instance = nullptr;
 
 Localization::Localization(const std::string& language) :language(language)
