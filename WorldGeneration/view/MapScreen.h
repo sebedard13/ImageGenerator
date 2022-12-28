@@ -5,6 +5,7 @@
 #include <QMainWindow>
 #include <QProgressBar>
 #include <QVBoxLayout>
+#include <QWheelEvent>
 
 
 class MapScreen : public QFrame
@@ -28,6 +29,12 @@ public:
 
 	void setupUi(QMainWindow* ViewRootClass);
 
+	void setupMap();
+
 	void retranslateUi(QMainWindow* ViewRootClass);
+
+	void mousePressEvent(QMouseEvent* event) override;
+
+	void wheelEvent(QWheelEvent* event) override;
 };
 

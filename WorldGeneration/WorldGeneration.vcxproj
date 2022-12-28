@@ -99,7 +99,6 @@
     <ClCompile Include="view\tab\GeneratePerlinNoise.cpp" />
     <ClCompile Include="view\tab\TabPerlinNoise.cpp" />
     <ClCompile Include="view\ViewRoot.cpp" />
-    <QtRcc Include="ViewRoot.qrc" />
     <ClCompile Include="Localization.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>

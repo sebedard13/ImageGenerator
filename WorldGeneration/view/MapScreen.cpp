@@ -1,5 +1,7 @@
 #include "MapScreen.h"
 
+#include <iostream>
+
 #include "ViewUtils.h"
 
 void MapScreen::setupUi(QMainWindow* ViewRootClass)
@@ -51,9 +53,62 @@ void MapScreen::setupUi(QMainWindow* ViewRootClass)
 	verticalLayout_2->addWidget(frame_2);
 
 	retranslateUi(ViewRootClass);
+
+	setupMap();
+}
+
+void MapScreen::setupMap()
+{
+	const int squareSize = 5;
+	const int tileSize = 100;
+
+	QGraphicsScene* scene = new QGraphicsScene(this);
+	scene->setItemIndexMethod(QGraphicsScene::NoIndex);
+	QPen pen = QPen(QColor(Qt::black));
+	QBrush brush = QBrush(QColor(Qt::blue));
+	scene->setBackgroundBrush(QBrush(QColor(Qt::black)));
+	for (int i = 0; i < tileSize; ++i)
+	{
+		std::cout << i * tileSize << "/" << tileSize * tileSize << "\r";
+		for (int j = 0; j < tileSize; ++j)
+		{
+			scene->addRect(i * squareSize, j * squareSize, squareSize, squareSize, pen, brush);
+		}
+	}
+	std::cout << tileSize * tileSize << "/" << tileSize * tileSize << std::endl;
+
+
+	graphicsView->setScene(scene);
+	graphicsView->show();
 }
 
 void MapScreen::retranslateUi(QMainWindow* ViewRootClass)
 {
 	label->setText(ViewsUtils::local("tipNothing"));
+}
+
+void MapScreen::mousePressEvent(QMouseEvent* event)
+{
+	QFrame::mousePressEvent(event);
+	graphicsView->rotate(15);
+}
+
+void MapScreen::wheelEvent(QWheelEvent* event)
+{
+	//QFrame::wheelEvent(event);
+	auto delta = event->angleDelta();
+
+	std::cout << delta.rx() << std::endl;
+	std::cout << delta.ry() << std::endl;
+	std::cout << delta.x() << std::endl;
+	std::cout << delta.y() << std::endl;
+
+	if (delta.ry() > 0)
+	{
+		graphicsView->scale(2, 2);
+	}
+	else
+	{
+		graphicsView->scale(0.5, 0.5);
+	}
 }
