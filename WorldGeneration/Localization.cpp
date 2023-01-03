@@ -19,6 +19,7 @@ Localization::Localization(const std::string& language) :language(language)
 		textTable.insert(std::pair("fr-btnAbout", "À propos"));
 		textTable.insert(std::pair("fr-tipNothing", "En attente de l'utilisateur"));
 		textTable.insert(std::pair("fr-tipLoading", "Chargement..."));
+		textTable.insert(std::pair("fr-tipLoadView", "Génération de l'image"));
 	}
 
 }

@@ -13,16 +13,7 @@ void MapScreen::setupUi(QMainWindow* ViewRootClass)
 	verticalLayout_2->setContentsMargins(11, 11, 11, 11);
 	verticalLayout_2->setObjectName("verticalLayout_2");
 	verticalLayout_2->setContentsMargins(0, 0, 0, 0);
-	graphicsView = new QGraphicsView(this);
-	graphicsView->setObjectName("graphicsView");
-	graphicsView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-	graphicsView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-	graphicsView->setDragMode(QGraphicsView::ScrollHandDrag);
-
-	graphicsView->verticalScrollBar()->blockSignals(true);
-	graphicsView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-	graphicsView->horizontalScrollBar()->blockSignals(true);
-	graphicsView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+	graphicsView = new GraphicView(this);
 
 
 	verticalLayout_2->addWidget(graphicsView);
@@ -75,32 +66,6 @@ void MapScreen::setupMap()
 void MapScreen::retranslateUi(QMainWindow* ViewRootClass)
 {
 	label->setText(ViewsUtils::local(messageId));
-}
-
-void MapScreen::mousePressEvent(QMouseEvent* event)
-{
-	QFrame::mousePressEvent(event);
-	graphicsView->rotate(15);
-}
-
-void MapScreen::wheelEvent(QWheelEvent* event)
-{
-	//QFrame::wheelEvent(event);
-	auto delta = event->angleDelta();
-
-	std::cout << delta.rx() << std::endl;
-	std::cout << delta.ry() << std::endl;
-	std::cout << delta.x() << std::endl;
-	std::cout << delta.y() << std::endl;
-
-	if (delta.ry() > 0)
-	{
-		graphicsView->scale(2, 2);
-	}
-	else
-	{
-		graphicsView->scale(0.5, 0.5);
-	}
 }
 
 void MapScreen::changeMessage(const std::string& key)

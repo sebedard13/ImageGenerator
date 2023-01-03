@@ -2,6 +2,7 @@
 #include "ViewUtils.h"
 
 #include <iostream>
+#include <QGraphicsPixmapItem>
 
 #include "ColorInterpolate.h"
 
@@ -17,8 +18,6 @@ void MapView::loadMap(const Map& map)
 
 	setMessageId("tipLoadView");
 	
-	auto start = std::chrono::high_resolution_clock::now();
-	
 	uchar* buffer = new uchar[map.height * map.width * 4];
 	
 	if (squareSize > 10) {
@@ -29,15 +28,15 @@ void MapView::loadMap(const Map& map)
 	ColorInterpolate<int> colorInterpolate{map.min, map.max};
 
 	const int m = (map.size / 128);
-	for (int i = 0; i < map.size; i++)
+	for (unsigned int i = 0; i < map.size; i++)
 	{
 		auto color = colorInterpolate.uniformColor(map.array[i]);
 
 
 		buffer[i * 4] = qBlue(color);
 		buffer[i * 4 + 1] = qGreen(color);
-		buffer[i*4 + 2] = qRed(color);
-		buffer[i*4 + 3] = qAlpha(color);
+		buffer[i * 4 + 2] = qRed(color);
+		buffer[i * 4 + 3] = qAlpha(color);
 		
 		if (i % m == 0) {
 			setPercent((i * 100) / map.size);
@@ -45,18 +44,20 @@ void MapView::loadMap(const Map& map)
 		
 
 	}
+
+	const int borderScene = 64;
+	scene->setSceneRect(0, 0, map.width + borderScene*2, map.height + borderScene*2);
 	
-	
-	scene->addPixmap(QPixmap::fromImage(QImage(buffer, map.width, map.height, QImage::Format_ARGB32), 
+	auto pixmapItem = scene->addPixmap(QPixmap::fromImage(QImage(buffer, map.width, map.height, QImage::Format_ARGB32), 
 		Qt::ColorOnly | Qt::ThresholdDither| Qt::OrderedAlphaDither|Qt::NoFormatConversion
 	));
+	pixmapItem->setOffset(borderScene, borderScene);
+
+	
 	
 	mapScreen->graphicsView->setScene(scene);
 	mapScreen->graphicsView->show();
-	
-	auto finish = std::chrono::high_resolution_clock::now();
-	std::cout << std::chrono::duration_cast<std::chrono::milliseconds>(finish - start).count() << "ms\n";
-	
+	mapScreen->graphicsView->fitInView(0, 0, map.width + borderScene * 2, map.height + borderScene * 2, Qt::KeepAspectRatio);
 	setPercent(0);
 	setMessageId("tipNothing");
 }
@@ -66,7 +67,7 @@ void MapView::setMessageId(std::string key)
 	mapScreen->changeMessage(key);
 }
 
-void MapView::setPercent(int percent)
+void MapView::setPercent(unsigned int percent)
 {
 	if (percent < 0 || percent>100)
 	{

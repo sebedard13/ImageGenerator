@@ -6,7 +6,7 @@
 #include <QProgressBar>
 #include <QVBoxLayout>
 #include <QWheelEvent>
-
+#include "GraphicView.h"
 
 class MapScreen : public QFrame
 {
@@ -19,7 +19,7 @@ public:
 	~MapScreen() = default;
 
 	QVBoxLayout* verticalLayout_2;
-	QGraphicsView* graphicsView;
+	GraphicView* graphicsView;
 	QFrame* frame_2;
 	QVBoxLayout* verticalLayout_5;
 	QProgressBar* progressBar;
@@ -33,10 +33,6 @@ public:
 	void setupMap();
 
 	void retranslateUi(QMainWindow* ViewRootClass);
-
-	void mousePressEvent(QMouseEvent* event) override;
-
-	void wheelEvent(QWheelEvent* event) override;
 
 	void changeMessage(const std::string& key);
 
