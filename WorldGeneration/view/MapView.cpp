@@ -1,35 +1,47 @@
 #include "MapView.h"
+#include "ViewUtils.h"
 
 #include <iostream>
 
-void MapView::loadMap(const int* array[])
+#include "ColorInterpolate.h"
+
+void MapView::loadMap(const Map& map)
 {
 	const int squareSize = 5;
-	const int tileSize = 500;
 
 	QGraphicsScene* scene = new QGraphicsScene(mapScreen);
 	scene->setItemIndexMethod(QGraphicsScene::NoIndex);
-	QPen pen = QPen(QColor(Qt::black));
-	QBrush brush = QBrush(QColor(Qt::blue));
-	scene->setBackgroundBrush(QBrush(QColor(Qt::black)));
+
+
+	scene->setBackgroundBrush(QBrush(QColor(Qt::lightGray)));
 
 	setMessageId("tipLoadView");
 
-	for (int i = 0; i < tileSize; ++i)
-	{
-		for (int j = 0; j < tileSize; ++j)
-		{
-			scene->addRect(i * squareSize, j * squareSize, squareSize, squareSize, pen, brush);
-		}
-		double percent = (i / static_cast<double>(tileSize)) * 100;
-		setPercent(percent);
+	QPixmap* pixmap = new QPixmap(map.width * squareSize, map.height* squareSize);
+	QPainter* painter = new QPainter(pixmap);
+	painter->setPen(Qt::NoPen);
+	if (squareSize > 10) {
+		QPen pen = QPen(QColor(Qt::black));
+		pen.setWidth(0);
+		painter->setPen(pen);
 	}
+
+	ColorInterpolate<int> colorInterpolate{map.min, map.max};
+
+	map.forEach([&painter, &map, &colorInterpolate](int x, int y, int v)-> void{
+
+		painter->setBrush(colorInterpolate.uniformColor(v));
+		painter->drawRect(x* squareSize, y* squareSize, squareSize, squareSize);
+	});
+	
+	
 	std::cout << "yes" << std::endl;
-
-	setPercent(100);
-
+	scene->addPixmap(*pixmap);
 	mapScreen->graphicsView->setScene(scene);
 	mapScreen->graphicsView->show();
+
+	delete painter;
+	delete pixmap;
 	setPercent(0);
 	setMessageId("tipNothing");
 

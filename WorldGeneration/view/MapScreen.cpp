@@ -1,6 +1,7 @@
 #include "MapScreen.h"
 
 #include <iostream>
+#include <QScrollBar>
 
 #include "ViewUtils.h"
 
@@ -17,6 +18,12 @@ void MapScreen::setupUi(QMainWindow* ViewRootClass)
 	graphicsView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 	graphicsView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 	graphicsView->setDragMode(QGraphicsView::ScrollHandDrag);
+
+	graphicsView->verticalScrollBar()->blockSignals(true);
+	graphicsView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+	graphicsView->horizontalScrollBar()->blockSignals(true);
+	graphicsView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+
 
 	verticalLayout_2->addWidget(graphicsView);
 

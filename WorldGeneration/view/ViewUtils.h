@@ -17,4 +17,5 @@ public:
 	{
 		return QString::fromStdString(Localization::get(key));
 	}
+
 };

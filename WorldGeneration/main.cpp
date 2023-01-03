@@ -2,6 +2,7 @@
 #include <QtWidgets/QApplication>
 
 #include "Localization.h"
+#include "Map.h"
 #include "Windows.h"
 
 int main(int argc, char* argv[])
@@ -13,10 +14,25 @@ int main(int argc, char* argv[])
 	w.show();
 
 	auto map = w.getMainMapView();
-	map->setMessageId("tipLoadArray");
-	const int* array[100 * 100] = {};
+	Map mapArray = Map(500, 500);
 
-	map->loadMap(array);
+	mapArray.forAll([&mapArray](int x, int y, int v)-> int {
+
+
+		//Assign
+
+		int halfH = mapArray.height / 2;
+		int halfW = mapArray.width / 2;
+
+		int diffx = std::abs(halfW - x);
+		int diffy = std::abs(halfH - y);
+
+		return diffx + diffy;
+
+	});
+
+	map->loadMap(mapArray);
+
 
 
 	return a.exec();
