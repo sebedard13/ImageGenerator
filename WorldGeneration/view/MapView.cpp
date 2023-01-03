@@ -7,7 +7,7 @@
 
 void MapView::loadMap(const Map& map)
 {
-	const int squareSize = 5;
+	const int squareSize = 1;
 
 	QGraphicsScene* scene = new QGraphicsScene(mapScreen);
 	scene->setItemIndexMethod(QGraphicsScene::NoIndex);
@@ -16,35 +16,49 @@ void MapView::loadMap(const Map& map)
 	scene->setBackgroundBrush(QBrush(QColor(Qt::lightGray)));
 
 	setMessageId("tipLoadView");
-
-	QPixmap* pixmap = new QPixmap(map.width * squareSize, map.height* squareSize);
-	QPainter* painter = new QPainter(pixmap);
-	painter->setPen(Qt::NoPen);
+	
+	auto start = std::chrono::high_resolution_clock::now();
+	
+	uchar* buffer = new uchar[map.height * map.width * 4];
+	
 	if (squareSize > 10) {
 		QPen pen = QPen(QColor(Qt::black));
 		pen.setWidth(0);
-		painter->setPen(pen);
 	}
 
 	ColorInterpolate<int> colorInterpolate{map.min, map.max};
 
-	map.forEach([&painter, &map, &colorInterpolate](int x, int y, int v)-> void{
+	const int m = (map.size / 128);
+	for (int i = 0; i < map.size; i++)
+	{
+		auto color = colorInterpolate.uniformColor(map.array[i]);
 
-		painter->setBrush(colorInterpolate.uniformColor(v));
-		painter->drawRect(x* squareSize, y* squareSize, squareSize, squareSize);
-	});
+
+		buffer[i * 4] = qBlue(color);
+		buffer[i * 4 + 1] = qGreen(color);
+		buffer[i*4 + 2] = qRed(color);
+		buffer[i*4 + 3] = qAlpha(color);
+		
+		if (i % m == 0) {
+			setPercent((i * 100) / map.size);
+		}
+		
+
+	}
 	
 	
-	std::cout << "yes" << std::endl;
-	scene->addPixmap(*pixmap);
+	scene->addPixmap(QPixmap::fromImage(QImage(buffer, map.width, map.height, QImage::Format_ARGB32), 
+		Qt::ColorOnly | Qt::ThresholdDither| Qt::OrderedAlphaDither|Qt::NoFormatConversion
+	));
+	
 	mapScreen->graphicsView->setScene(scene);
 	mapScreen->graphicsView->show();
-
-	delete painter;
-	delete pixmap;
+	
+	auto finish = std::chrono::high_resolution_clock::now();
+	std::cout << std::chrono::duration_cast<std::chrono::milliseconds>(finish - start).count() << "ms\n";
+	
 	setPercent(0);
 	setMessageId("tipNothing");
-
 }
 
 void MapView::setMessageId(std::string key)
@@ -60,6 +74,10 @@ void MapView::setPercent(int percent)
 	}
 	else
 	{
-		mapScreen->changePercent(percent);
+		auto now = std::chrono::system_clock::now();
+		if (percent == 100 || percent == 0 || std::chrono::duration_cast<std::chrono::milliseconds>(now - percentLastChange).count() > timeElapsedPercent) {
+			percentLastChange = now;
+			mapScreen->changePercent(percent);
+		}
 	}
 }

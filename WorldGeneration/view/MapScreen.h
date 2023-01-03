@@ -41,5 +41,7 @@ public:
 	void changeMessage(const std::string& key);
 
 	void changePercent(const int& value); //0 to 100
+
+	int getPercent();
 };
 

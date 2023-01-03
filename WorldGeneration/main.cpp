@@ -14,7 +14,7 @@ int main(int argc, char* argv[])
 	w.show();
 
 	auto map = w.getMainMapView();
-	Map mapArray = Map(500, 500);
+	Map mapArray = Map(2000, 2000);
 
 	mapArray.forAll([&mapArray](int x, int y, int v)-> int {
 

@@ -6,6 +6,7 @@ class Map
 public:
 	const int width;
 	const int height;
+	const int size;
 	int min = INT32_MAX;
 	int max = INT32_MIN;
 
@@ -14,7 +15,7 @@ public:
 	Map(Map&& other) noexcept
 		: width(other.width),
 		  height(other.height),
-		  array(other.array)
+		  array(other.array),size(other.size)
 	{
 	}
 
@@ -22,7 +23,7 @@ public:
 
 	Map& operator=(Map&& other) = delete;
 
-	Map(int w, int h) :width(w), height(h)
+	Map(int w, int h) :width(w), height(h), size(h* w)
 	{
 		array = new int[w * h];
 	}
@@ -33,8 +34,7 @@ public:
 
 	~Map();
 
-private:
 	int* array;
-
+private:
 };
 

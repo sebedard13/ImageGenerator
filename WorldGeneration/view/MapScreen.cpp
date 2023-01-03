@@ -113,3 +113,8 @@ void MapScreen::changePercent(const int& value)
 {
 	progressBar->setValue(value);
 }
+
+int MapScreen::getPercent()
+{
+	return progressBar->value();
+}
