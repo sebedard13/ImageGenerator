@@ -97,7 +97,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="controller\commands\DoAlgo.cpp" />
+    <ClCompile Include="controller\Controller.cpp" />
     <ClCompile Include="Map.cpp" />
+    <ClCompile Include="model\algos\DistanceFromCenter.cpp" />
     <ClCompile Include="view\GraphicView.cpp" />
     <ClCompile Include="view\MapScreen.cpp" />
     <ClCompile Include="view\MapView.cpp" />
@@ -108,8 +111,13 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="controller\commands\Command.h" />
+    <ClInclude Include="controller\commands\DoAlgo.h" />
+    <ClInclude Include="controller\Controller.h" />
     <ClInclude Include="Localization.h" />
     <ClInclude Include="Map.h" />
+    <ClInclude Include="model\algos\Algo.h" />
+    <ClInclude Include="model\algos\DistanceFromCenter.h" />
     <ClInclude Include="view\ColorInterpolate.h" />
     <ClInclude Include="view\GraphicView.h" />
     <ClInclude Include="view\MapScreen.h" />

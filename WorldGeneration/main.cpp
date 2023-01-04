@@ -4,6 +4,9 @@
 #include "Localization.h"
 #include "Map.h"
 #include "Windows.h"
+#include "controller/Controller.h"
+#include "controller/commands/DoAlgo.h"
+#include "model/algos/DistanceFromCenter.h"
 
 int main(int argc, char* argv[])
 {
@@ -13,27 +16,9 @@ int main(int argc, char* argv[])
 	ViewRoot w;
 	w.show();
 
-	auto map = w.getMainMapView();
-	Map mapArray = Map(2000, 2000);
+	const auto map = w.getMainMapView();
 
-	mapArray.forAll([&mapArray](int x, int y, int v)-> int {
-
-
-		//Assign
-
-		int halfH = mapArray.height / 2;
-		int halfW = mapArray.width / 2;
-
-		int diffx = std::abs(halfW - x);
-		int diffy = std::abs(halfH - y);
-
-		return diffx + diffy;
-
-	});
-
-	map->loadMap(mapArray);
-
-
+	Controller::setUp(map);
 
 	return a.exec();
 }

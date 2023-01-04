@@ -1,8 +1,10 @@
 #include "GeneratePerlinNoise.h"
 
-#include <iostream>
+#include "../../controller/Controller.h"
+#include "../../controller/commands/DoAlgo.h"
+#include "../../model/algos/DistanceFromCenter.h"
 
 void GeneratePerlinNoise::handleGenerate()
 {
-	std::cout << "yes" << std::endl;
+	Controller::execute(std::make_unique<DoAlgo>(std::make_unique<DistanceFromCenter>()));
 }

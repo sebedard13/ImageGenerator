@@ -4,9 +4,9 @@
 class Map
 {
 public:
-	const int width;
-	const int height;
-	const int size;
+	const unsigned int width;
+	const unsigned int height;
+	const unsigned int size;
 	int min = INT32_MAX;
 	int max = INT32_MIN;
 
@@ -14,8 +14,9 @@ public:
 
 	Map(Map&& other) noexcept
 		: width(other.width),
-		  height(other.height),
-		  array(other.array),size(other.size)
+		height(other.height),
+		size(other.size),
+		array(other.array)
 	{
 	}
 
@@ -23,14 +24,14 @@ public:
 
 	Map& operator=(Map&& other) = delete;
 
-	Map(int w, int h) :width(w), height(h), size(h* w)
+	Map(unsigned int w, unsigned int h) :width(w), height(h), size(h* w)
 	{
 		array = new int[w * h];
 	}
 
-	void forAll(std::function<int(int, int, int)> func);
+	void forAll(std::function<int(const unsigned int& v, const unsigned int& x, const unsigned int& y, const unsigned int& i)> func);
 
-	void forEach(std::function<void(int, int, int)> func) const;
+	void forEach(std::function<int(const unsigned int& v, const unsigned int& x, const unsigned int& y, const unsigned int& i)> func) const;
 
 	~Map();
 
