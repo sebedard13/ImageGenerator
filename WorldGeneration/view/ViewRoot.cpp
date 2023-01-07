@@ -153,7 +153,7 @@ void ViewRootClass::retranslateUi(QMainWindow* ViewRootClass)
 	actionQuiter->setText(ViewsUtils::local("btnQuit"));
 	actionVoir->setText(ViewsUtils::local("btnSeeAbout"));
 
-	tabWidget->setTabText(tabWidget->indexOf(tab), ViewsUtils::local("algo1Name"));
+	tabWidget->setTabText(tabWidget->indexOf(tab), ViewsUtils::local("algoPerlinNoiseName"));
 
 	tabWidget->setTabText(tabWidget->indexOf(tab_2), ViewsUtils::local("algo2Name"));
 	btnGenerate->setText(ViewsUtils::local("btnGenerateMap"));

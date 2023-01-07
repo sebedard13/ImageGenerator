@@ -12,15 +12,23 @@ Localization::Localization(const std::string& language) :language(language)
 		textTable.insert(std::pair("fr-btnLoad", "Charger"));
 		textTable.insert(std::pair("fr-btnQuit", "Quitter"));
 		textTable.insert(std::pair("fr-btnSeeAbout", "Voir"));
-		textTable.insert(std::pair("fr-worldSize1", "5000x5000"));
-		textTable.insert(std::pair("fr-worldSize2", "10000x10000"));
 		textTable.insert(std::pair("fr-btnGenerateMap", "Générer"));
 		textTable.insert(std::pair("fr-btnFile", "Fichier"));
 		textTable.insert(std::pair("fr-btnAbout", "À propos"));
+
 		textTable.insert(std::pair("fr-tipNothing", "En attente de l'utilisateur"));
 		textTable.insert(std::pair("fr-tipLoading", "Chargement..."));
 		textTable.insert(std::pair("fr-tipLoadView", "Génération de l'image"));
 		textTable.insert(std::pair("fr-tipAlgoDistanceFromCenter", "Calcul des distances"));
+
+		//Algo Perlin Noise
+		textTable.insert(std::pair("fr-algoPerlinNoiseName", "Bruix de Perlin"));
+		textTable.insert(std::pair("fr-labelSize", "Taille de l'image"));
+		textTable.insert(std::pair("fr-size100", "100x100"));
+		textTable.insert(std::pair("fr-size500", "500x500"));
+		textTable.insert(std::pair("fr-size1000", "1000x1000"));
+		textTable.insert(std::pair("fr-size2500", "2500x2500"));
+		textTable.insert(std::pair("fr-size5000", "5000x5000"));
 	}
 
 }

@@ -29,11 +29,11 @@ public:
 		array = new int[w * h];
 	}
 
-	void forAll(std::function<int(const unsigned int& v, const unsigned int& x, const unsigned int& y, const unsigned int& i)> func);
-
-	void forEach(std::function<int(const unsigned int& v, const unsigned int& x, const unsigned int& y, const unsigned int& i)> func) const;
+	std::pair<int, int> toCoordinate(const int& i) const;
 
 	~Map();
+
+	void set(const unsigned& i, const int& value);
 
 	int* array;
 private:

@@ -8,14 +8,17 @@ class MapView
 {
 private:
 	MapScreen* mapScreen;
+	QGraphicsScene* scene;
+	uchar* buffer = nullptr;
 	std::chrono::time_point<std::chrono::system_clock> percentLastChange = std::chrono::system_clock::now();
 	const static unsigned short timeElapsedPercent{ 50 };
 public:
-	MapView(MapScreen* map_screen) :mapScreen(map_screen) {}
+	MapView(MapScreen* map_screen);
+
 	void loadMap(std::unique_ptr<Map> map);
 	void setMessageId(std::string key);
 	void setPercent(unsigned int percent);
-
+	~MapView();
 };
 
 template<typename T>

@@ -71,11 +71,12 @@ class ColorInterpolate<int>
 {
 
 public:
+	//94,447,3
 	ColorInterpolate(const  int& min, const  int& max, std::vector<QRgb>& colors = defaultColors) : min(min), range(max - min)
 	{
 		colorTable = new QRgb[range + 1];
-		double step = range / (colors.size() - 1);
-		for (auto i	= 0; i < range; i++)
+		double step = static_cast<double> (range) / (colors.size() - 1);
+		for (auto i = 0; i < range; i++)
 		{
 			colorTable[i] = uniformColorCalcul(i + min, step, colors);
 		}

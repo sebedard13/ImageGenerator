@@ -59,6 +59,15 @@
     <ClCompile Include="model\algos\DistanceFromCenter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="model\algos\AlgoPerlinNoise.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="view\tab\input\InputInteger.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="view\tab\input\InputDouble.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Localization.h">
@@ -104,6 +113,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="model\algos\DistanceFromCenter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="model\algos\AlgoPerlinNoise.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="model\PerlinNoise.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="view\tab\input\InputInteger.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="view\tab\input\InputDouble.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

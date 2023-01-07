@@ -1,40 +1,30 @@
 #include "Map.h"
 
-void Map::forAll(std::function<int(const unsigned int& v, const unsigned int& x, const unsigned int& y, const unsigned int& i)> func)
-{
-	for (unsigned int y = 0; y < height; ++y)
-	{
-		for (unsigned int x = 0; x < width; ++x)
-		{
-			const auto i = x + y * width;
-			const int result = func(array[i], x, y, i);
-			array[i] = result;
 
-			if (result < min)
-			{
-				min = result;
-			}
-			if (result > max)
-			{
-				max = result;
-			}
-		}
-	}
-}
 
-void Map::forEach(std::function<int(const unsigned int& v, const unsigned int& x, const unsigned int& y, const unsigned int& i)> func) const
+//X first
+std::pair<int, int> Map::toCoordinate(const int& i) const
 {
-	for (int y = 0; y < height; ++y)
-	{
-		for (int x = 0; x < width; ++x)
-		{
-			auto i = x + y * width;
-			func(array[i], x, y, i);
-		}
-	}
+	const int y = i / width;
+	const int x = i % width;
+	return { x, y };
 }
 
 Map::~Map()
 {
 	delete[] array;
+}
+
+void Map::set(const unsigned& i, const int& value)
+{
+	array[i] = value;
+
+	if (value < min)
+	{
+		min = value;
+	}
+	if (value > max)
+	{
+		max = value;
+	}
 }

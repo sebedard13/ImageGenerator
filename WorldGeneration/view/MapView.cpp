@@ -6,19 +6,21 @@
 
 #include "ColorInterpolate.h"
 
+MapView::MapView(MapScreen* map_screen) :mapScreen(map_screen)
+{
+	scene = new QGraphicsScene(mapScreen);
+	scene->setItemIndexMethod(QGraphicsScene::NoIndex);
+	scene->setBackgroundBrush(QBrush(QColor(Qt::lightGray)));
+	mapScreen->graphicsView->setScene(scene);
+}
+
 void MapView::loadMap(std::unique_ptr<Map> map)
 {
-	constexpr int squareSize = 1;
-
-	const auto scene = new QGraphicsScene(mapScreen);
-	scene->setItemIndexMethod(QGraphicsScene::NoIndex);
-
-
-	scene->setBackgroundBrush(QBrush(QColor(Qt::lightGray)));
-
 	setMessageId("tipLoadView");
-
-	const auto buffer = new uchar[map->height * map->width * 4];
+	constexpr int squareSize = 1;
+	scene->clear();
+	delete[] buffer;
+	buffer = new uchar[map->height * map->width * 4];
 
 	ColorInterpolate<int> colorInterpolate{ map->min, map->max };
 
@@ -48,9 +50,6 @@ void MapView::loadMap(std::unique_ptr<Map> map)
 	));
 	pixmapItem->setOffset(borderScene, borderScene);
 
-
-
-	mapScreen->graphicsView->setScene(scene);
 	mapScreen->graphicsView->fitInView(0, 0, map->width + borderScene * 2, map->height + borderScene * 2, Qt::KeepAspectRatio);
 	mapScreen->graphicsView->show();
 
@@ -78,4 +77,9 @@ void MapView::setPercent(unsigned int percent)
 			mapScreen->changePercent(percent);
 		}
 	}
+}
+
+MapView::~MapView()
+{
+	delete[] buffer;
 }
