@@ -103,6 +103,7 @@
     <ClCompile Include="model\algos\DistanceFromCenter.cpp" />
     <ClCompile Include="model\algos\AlgoPerlinNoise.cpp" />
     <ClCompile Include="model\perlin\PerlinNoise.cpp" />
+    <ClCompile Include="model\ThreadController.cpp" />
     <ClCompile Include="view\GraphicView.cpp" />
     <ClCompile Include="view\MapScreen.cpp" />
     <ClCompile Include="view\MapView.cpp" />
@@ -124,6 +125,7 @@
     <ClInclude Include="model\algos\DistanceFromCenter.h" />
     <ClInclude Include="model\algos\AlgoPerlinNoise.h" />
     <ClInclude Include="model\perlin\PerlinNoise.h" />
+    <ClInclude Include="model\ThreadController.h" />
     <ClInclude Include="view\ColorInterpolate.h" />
     <ClInclude Include="view\GraphicView.h" />
     <ClInclude Include="view\MapScreen.h" />
