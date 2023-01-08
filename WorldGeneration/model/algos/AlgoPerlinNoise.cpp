@@ -1,5 +1,7 @@
 #include "AlgoPerlinNoise.h"
 
+#include <thread>
+
 #include "../ThreadController.h"
 
 std::unique_ptr<Map> AlgoPerlinNoise::run()
@@ -7,7 +9,9 @@ std::unique_ptr<Map> AlgoPerlinNoise::run()
 	output->setMessageId("tipLoadingPerlinNoise");
 	Map* map = new Map(width, height);
 
-	ThreadController::runIteration(0, map->size,
+	ThreadController thC = { output.get() };
+
+	thC.runIterationOutpout(0, map->size,
 		[this, map](const unsigned i)
 		{
 			{
@@ -16,10 +20,6 @@ std::unique_ptr<Map> AlgoPerlinNoise::run()
 				map->set(i, static_cast<int>((v * 256) + 256));
 			}
 		});
-
-
-
-
 
 	return std::unique_ptr<Map>(map);
 }

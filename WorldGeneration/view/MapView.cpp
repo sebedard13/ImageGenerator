@@ -5,6 +5,7 @@
 #include <QGraphicsPixmapItem>
 
 #include "ColorInterpolate.h"
+#include "../model/ThreadController.h"
 
 MapView::MapView(MapScreen* map_screen) :mapScreen(map_screen)
 {
@@ -22,25 +23,20 @@ void MapView::loadMap(std::unique_ptr<Map> map)
 	delete[] buffer;
 	buffer = new uchar[map->height * map->width * 4];
 
+	uchar* pointer = buffer;
 	ColorInterpolate<int> colorInterpolate{ map->min, map->max };
+	ThreadController thC = { this };
+	thC.runIterationOutpout(0, map->size, [&pointer, &colorInterpolate, &map](unsigned i) {
+		{
+			auto color = colorInterpolate.uniformColor(map->array[i]);
 
-	const int m = (map->size / 128);
-	for (unsigned int i = 0; i < map->size; i++)
-	{
-		auto color = colorInterpolate.uniformColor(map->array[i]);
 
-
-		buffer[i * 4] = qBlue(color);
-		buffer[i * 4 + 1] = qGreen(color);
-		buffer[i * 4 + 2] = qRed(color);
-		buffer[i * 4 + 3] = qAlpha(color);
-
-		if (i % m == 0) {
-			setPercent(percent(i, map->size));
+			pointer[i * 4] = qBlue(color);
+			pointer[i * 4 + 1] = qGreen(color);
+			pointer[i * 4 + 2] = qRed(color);
+			pointer[i * 4 + 3] = qAlpha(color);
 		}
-
-
-	}
+		});
 
 	constexpr  int borderScene = 64;
 	scene->setSceneRect(0, 0, map->width + borderScene * 2, map->height + borderScene * 2);
@@ -67,7 +63,7 @@ void MapView::setPercent(unsigned int percent)
 {
 	if (percent < 0 || percent>100)
 	{
-		std::cout << "Non valid percent" << std::endl;
+		std::cout << "Non valid percent of " << percent << std::endl;
 	}
 	else
 	{
