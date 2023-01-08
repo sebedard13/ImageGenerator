@@ -1,15 +1,14 @@
 #pragma once
 #include "Algo.h"
+#include "../perlin/PerlinNoise.h"
 
 class AlgoPerlinNoise final : public Algo
 {
 public:
-	AlgoPerlinNoise(unsigned width, unsigned height, unsigned cellSize, unsigned octaves, double persistence)
+	AlgoPerlinNoise(unsigned width, unsigned height, unsigned cellSize, unsigned octaves, double persistence, unsigned seed)
 		: width(width),
 		height(height),
-		cellSize(cellSize),
-		octaves(octaves),
-		persistence(persistence)
+		perlinNoise(cellSize, octaves, persistence, seed)
 	{
 	}
 
@@ -18,11 +17,5 @@ public:
 	const unsigned int width;
 	const unsigned int height;
 
-	const unsigned int cellSize;
-	const unsigned int octaves;
-	const double persistence; //0 to 1
-
-
-
-
+	const PerlinNoise perlinNoise;
 };

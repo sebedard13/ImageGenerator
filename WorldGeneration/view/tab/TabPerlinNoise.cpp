@@ -58,7 +58,10 @@ void TabPerlinNoise::setupUi(QMainWindow* ViewRootClass)
 
 	mainLayout->addWidget(sizeContainer);
 
-	cellSizeInput = new InputInteger("labelCellSize", 4, 1, 50);
+	seedInput = new InputInteger("labelSeed", 0, 0);
+	mainLayout->addWidget(seedInput);
+
+	cellSizeInput = new InputInteger("labelCellSize", 24, 1, 50);
 	mainLayout->addWidget(cellSizeInput);
 
 	octavesInput = new InputInteger("labelOctaves", 1, 1, 50);
@@ -87,4 +90,9 @@ void TabPerlinNoise::retranslateUi(QMainWindow* ViewRootClass)
 	sizeComboBox->setItemText(2, ViewsUtils::local("size1000"));
 	sizeComboBox->setItemText(3, ViewsUtils::local("size2500"));
 	sizeComboBox->setItemText(4, ViewsUtils::local("size5000"));
+
+	seedInput->retranslateUi();
+	cellSizeInput->retranslateUi();
+	octavesInput->retranslateUi();
+	persistenceInput->retranslateUi();
 }

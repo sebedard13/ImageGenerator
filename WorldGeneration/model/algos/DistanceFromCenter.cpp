@@ -10,21 +10,19 @@ std::unique_ptr<Map> DistanceFromCenter::run()
 	a->setMessageId("tipAlgoDistanceFromCenter");
 	const int halfH = map->height / 2;
 	const int halfW = map->width / 2;
-	map->forAll([&map, &a, &m, &halfH, &halfW](const unsigned int& v, const unsigned int& x, const unsigned int& y, const unsigned int& i) -> int
+	for (unsigned i = 0; i < map->size; ++i)
+	{
+		auto coord = map->toCoordinate(i);
+		const int diffx = std::abs(static_cast<int> (halfW - coord.first));
+		const int diffy = std::abs(static_cast<int> (halfH - coord.second));
+
+		if (i % m == 0)
 		{
-			{
-				const int diffx = std::abs(static_cast<int> (halfW - x));
-				const int diffy = std::abs(static_cast<int> (halfH - y));
-
-				if (i % m == 0)
-				{
-					a->setPercent(percent(i, map->size));
-				}
-
-				return diffx + diffy;
-			}
+			a->setPercent(percent(i, map->size));
 		}
-	);
+
+		map->set(i, diffx + diffy);
+	}
 
 	return map;
 }

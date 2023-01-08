@@ -32,6 +32,7 @@ public:
 	InputInteger* cellSizeInput;
 	InputInteger* octavesInput;
 	InputDouble* persistenceInput;
+	InputInteger* seedInput;
 
 	QSpacerItem* verticalSpacer;
 

@@ -1,9 +1,5 @@
 #include "AlgoPerlinNoise.h"
 
-#include "../PerlinNoise.h"
-
-
-
 std::unique_ptr<Map> AlgoPerlinNoise::run()
 {
 	output->setMessageId("tipLoadingPerlinNoise");
@@ -14,7 +10,7 @@ std::unique_ptr<Map> AlgoPerlinNoise::run()
 	for (unsigned i = 0; i < map->size; ++i)
 	{
 		const auto coord = map->toCoordinate(i);
-		double v = octavesPerlin(static_cast<double>(coord.first) / cellSize, static_cast<double>(coord.second) / cellSize, 0.0, octaves, persistence);
+		double v = perlinNoise.perlin(coord.first, coord.second);
 		map->set(i, static_cast<int>((v * 256) + 256));
 		if (i > 256)
 		{

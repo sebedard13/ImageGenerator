@@ -2,10 +2,8 @@
 #include <QtWidgets/QApplication>
 
 #include "Localization.h"
-#include "Map.h"
 #include "Windows.h"
 #include "controller/Controller.h"
-#include "controller/commands/DoAlgo.h"
 #include "model/algos/DistanceFromCenter.h"
 
 int main(int argc, char* argv[])

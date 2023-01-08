@@ -68,6 +68,9 @@
     <ClCompile Include="view\tab\input\InputDouble.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="model\perlin\PerlinNoise.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Localization.h">
@@ -118,13 +121,13 @@
     <ClInclude Include="model\algos\AlgoPerlinNoise.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="model\PerlinNoise.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="view\tab\input\InputInteger.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="view\tab\input\InputDouble.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="model\perlin\PerlinNoise.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

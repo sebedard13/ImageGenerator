@@ -12,7 +12,9 @@ void GeneratePerlinNoise::handleGenerate()
 	auto algo = std::make_unique<AlgoPerlinNoise>(sizes[sizeIndex], sizes[sizeIndex],
 		tabPerlinNoise->cellSizeInput->getValue(),
 		tabPerlinNoise->octavesInput->getValue(),
-		tabPerlinNoise->persistenceInput->getValue());
+		tabPerlinNoise->persistenceInput->getValue(),
+		tabPerlinNoise->seedInput->getValue()
+		);
 
 	Controller::execute(std::make_unique<DoAlgo>(std::move(algo)));
 }
