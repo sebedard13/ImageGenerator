@@ -1,6 +1,6 @@
 #include "PerlinNoise.h"
 
-double PerlinNoise::perlin(const int x) const
+double PerlinNoise::perlin(const int& x) const
 {
 	double total = 0;
 	double frequency = 1;
@@ -18,14 +18,21 @@ double PerlinNoise::perlin(const int x) const
 	return total / maxValue;
 }
 
-double PerlinNoise::perlin(const int x, const int y) const
+double PerlinNoise::perlin(const int& x, const int& y) const
 {
 	double total = 0;
 	double frequency = 1;
 	double amplitude = 1;
 	double maxValue = 0;  // Used for normalizing result to 0.0 - 1.0
 	for (int i = 0; i < octaves; i++) {
-		total += perlin2d(x * frequency / cellSize, y * frequency / cellSize) * amplitude;
+		double x2 = x * frequency / cellSize;
+		double perlin2d1 = perlin2d(x2, y * frequency / cellSize);
+		double x1 = perlin2d1 * amplitude;
+		if (x1 < -2)
+		{
+			int a = 0;
+		}
+		total += x1;
 
 		maxValue += amplitude;
 
@@ -33,10 +40,15 @@ double PerlinNoise::perlin(const int x, const int y) const
 		frequency *= 2;
 	}
 
-	return total / maxValue;
+	double x3 = total / maxValue;
+	if (x3 < -1)
+	{
+		int a = 0;
+	}
+	return x3;
 }
 
-double PerlinNoise::perlin(const int x, const int y, const int z) const
+double PerlinNoise::perlin(const int& x, const int& y, const int& z) const
 {
 	double total = 0;
 	double frequency = 1;
@@ -54,7 +66,7 @@ double PerlinNoise::perlin(const int x, const int y, const int z) const
 	return total / maxValue;
 }
 
-double PerlinNoise::perlin1d(double x) const
+double PerlinNoise::perlin1d(const double& x) const
 {
 	// Left coordinate of the unit-line that contains the input
 	int const xi0 = floor(x);
@@ -77,7 +89,7 @@ double PerlinNoise::perlin1d(double x) const
 	return lerp(dot_grad(h0, xf0), dot_grad(h1, xf1), u);
 }
 
-double PerlinNoise::perlin2d(double x, double y) const
+double PerlinNoise::perlin2d(const double& x, const double& y) const
 {
 	// doubleop-left coordinates of the unit-square
 	int const xi0 = floor(x);
@@ -110,7 +122,7 @@ double PerlinNoise::perlin2d(double x, double y) const
 	return ret;
 }
 
-double PerlinNoise::perlin3d(double x, double y, double z) const
+double PerlinNoise::perlin3d(const double& x, const double& y, const double& z) const
 {
 	// Top-left coordinates of the unit-cube
 	int const xi0 = floor(x);

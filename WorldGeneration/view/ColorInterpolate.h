@@ -73,7 +73,14 @@ class ColorInterpolate<int>
 public:
 	ColorInterpolate(const  int& min, const  int& max, std::vector<QRgb>& colors = defaultColors) : min(min), range(max - min)
 	{
+
+		if (range > INT32_MAX / 4)
+		{
+			throw new std::invalid_argument("Range trop grand");
+		}
 		colorTable = new QRgb[range + 1];
+
+
 		double step = static_cast<double> (range) / (colors.size() - 1);
 		for (auto i = 0; i < range; i++)
 		{

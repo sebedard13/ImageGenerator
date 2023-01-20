@@ -1,16 +1,23 @@
 #pragma once
 
 #include <cstdlib>
+#include <stdexcept>
 
 class PerlinNoise
 {
 public:
-	PerlinNoise(int cellSize = 24, unsigned octaves = 1, double persistence = 0.8, unsigned seed = 0)
+	PerlinNoise(const int& cellSize = 24, const unsigned& octaves = 1, const double& persistence = 0.8, const unsigned& seed = 0)
 		: cellSize(cellSize),
 		octaves(octaves),
 		persistence(persistence),
 		seed(seed)
 	{
+		//To big octave may overflow double and not do much change in the final perlin noise
+		if (octaves > 24)
+		{
+			throw std::invalid_argument("To big octave need less than 32");
+		}
+
 		if (seed != 0)
 		{
 			std::srand(seed);
@@ -22,57 +29,64 @@ public:
 		}
 	}
 
-	double perlin(const int x) const;
-	double perlin(const int x, const int y) const;
-	double perlin(const int x, const int y, const int z) const;
+	double perlin(const int& x) const;
+	double perlin(const int& x, const int& y) const;
+	double perlin(const int& x, const int& y, const int& z) const;
 
 private:
-	double perlin1d(double x) const;
-	double perlin2d(double x, double y) const;
-	double perlin3d(double x, double y, double z) const;
+	double perlin1d(const double& x) const;
+	double perlin2d(const double& x, const double& y) const;
+	double perlin3d(const double& x, const double& y, const double& z) const;
 
 	unsigned char getP(const int& v) const
 	{
 		return p[v % 256];
 	}
 
-	static double lerp(double a, double b, double t) {
+	static double lerp(const double& a, const double& b, const double& t) {
 		return a + t * (b - a);
 	}
 
-	static int floor(double x) {
-		auto const xi = int(x);
-		return (x < double(xi)) ? xi - 1 : xi;
+	static int floor(const double& x) {
+		auto const xi = static_cast<int>(x);
+		return (x < static_cast<double>(xi)) ? xi - 1 : xi;
 	}
 
-	static double fade(double t) {
+	static double fade(const double& t) {
 		return t * t * t * (t * (t * 6.0 - 15.0) + 10.0);
 	}
 
-	static double dot_grad(int hash, double xf) {
+	static double dot_grad(const int& hash, const double& xf) {
 		// In 1D case, the gradient may be either 1 or -1
 		// doublehe distance vector is the input offset (relative to the smallest bound)
 		return (hash & 0x1) ? xf : -xf;
 	}
 
-	static double dot_grad(int hash, double xf, double yf) {
+	static double dot_grad(const int& hash, const double& xf, const double& yf) {
 		// In 2D case, the gradient may be any of 8 direction vectors pointing to the
-		// edges of a unit-square. doublehe distance vector is the input offset (relative to
+		// edges of a unit-square. double the distance vector is the input offset (relative to
 		// the smallest bound)
-		switch (hash & 0x7) {
-		case 0x0: return  xf + yf;
-		case 0x1: return  xf;
-		case 0x2: return  xf - yf;
-		case 0x3: return -yf;
-		case 0x4: return -xf - yf;
-		case 0x5: return -xf;
-		case 0x6: return -xf + yf;
-		case 0x7: return  yf;
-		default:  return  0.0;
-		}
+
+		const double moinsxf = -xf;
+		const double moinsyf = -yf;
+
+		double a[]{
+			  xf + yf, //0
+			  xf,  //1
+			  xf + moinsyf, // 2
+			 moinsyf, //3
+			 moinsxf + moinsyf,//4
+			 moinsxf, //5
+			 moinsxf + yf,//6
+			  yf     //7
+		};
+
+		int index = hash / 32; //[0,8[
+
+		return a[index];
 	}
 
-	static inline auto dot_grad(int hash, double xf, double yf, double zf) -> double {
+	static inline auto dot_grad(const int& hash, const double& xf, const double& yf, const double& zf) -> double {
 		// In 3D case, the gradient may be any of 12 direction vectors pointing to the edges
 		// of a unit-cube (rounded to 16 with duplications). doublehe distance vector is the input
 		// offset (relative to the smallest bound)

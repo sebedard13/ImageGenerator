@@ -61,10 +61,10 @@ void TabPerlinNoise::setupUi(QMainWindow* ViewRootClass)
 	seedInput = new InputInteger("labelSeed", 0, 0);
 	mainLayout->addWidget(seedInput);
 
-	cellSizeInput = new InputInteger("labelCellSize", 24, 1, 50);
+	cellSizeInput = new InputInteger("labelCellSize", 24, 1, 5000);
 	mainLayout->addWidget(cellSizeInput);
 
-	octavesInput = new InputInteger("labelOctaves", 1, 1, 50);
+	octavesInput = new InputInteger("labelOctaves", 1, 1, 24);
 	mainLayout->addWidget(octavesInput);
 
 	persistenceInput = new InputDouble("labelPersistence", 0.8);

@@ -17,7 +17,12 @@ std::unique_ptr<Map> AlgoPerlinNoise::run()
 			{
 				const auto coord = map->toCoordinate(i);
 				double v = this->perlinNoise.perlin(coord.first, coord.second);
-				map->set(i, static_cast<int>((v * 256) + 256));
+				int value = static_cast<int>((v * 256) + 256);
+				if (value < 0)
+				{
+					int a = 0;
+				}
+				map->set(i, value);
 			}
 		});
 

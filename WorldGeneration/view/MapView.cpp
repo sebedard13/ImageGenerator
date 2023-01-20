@@ -48,6 +48,7 @@ void MapView::loadMap(std::unique_ptr<Map> map)
 
 	mapScreen->graphicsView->fitInView(0, 0, map->width + borderScene * 2, map->height + borderScene * 2, Qt::KeepAspectRatio);
 	mapScreen->graphicsView->show();
+	mapScreen->graphicsView->resetScale();
 
 	map.reset();
 	setPercent(0);
