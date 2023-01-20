@@ -1,8 +1,8 @@
 #pragma once
 #include <string>
 
-#include "MapScreen.h"
-#include "../Map.h"
+#include "../6-view/MapScreen.h"
+#include "../4-domain/Map.h"
 
 class MapView
 {

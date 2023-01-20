@@ -1,11 +1,11 @@
 #include "MapView.h"
-#include "ViewUtils.h"
+#include "../6-view/ViewUtils.h"
 
 #include <iostream>
 #include <QGraphicsPixmapItem>
 
-#include "ColorInterpolate.h"
-#include "../model/ThreadController.h"
+#include "../6-view/ColorInterpolate.h"
+#include "../2-services/ThreadController.h"
 
 MapView::MapView(MapScreen* map_screen) :mapScreen(map_screen)
 {

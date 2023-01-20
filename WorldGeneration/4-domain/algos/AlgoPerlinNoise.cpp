@@ -2,7 +2,7 @@
 
 #include <thread>
 
-#include "../ThreadController.h"
+#include "../../2-services/ThreadController.h"
 
 std::unique_ptr<Map> AlgoPerlinNoise::run()
 {

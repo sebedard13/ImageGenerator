@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../../view/MapView.h"
+#include "../MapView.h"
 
 class Command
 {

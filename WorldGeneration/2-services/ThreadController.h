@@ -2,7 +2,7 @@
 
 #include <atomic>
 #include <functional>
-#include "../view/MapView.h"
+#include "../5-controller/MapView.h"
 
 struct Counters { unsigned int currentOperation = 0; bool done = false; };
 

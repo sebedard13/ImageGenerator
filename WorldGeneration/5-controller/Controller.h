@@ -1,5 +1,5 @@
 #pragma once
-#include "../view/MapView.h"
+#include "MapView.h"
 #include "commands/Command.h"
 
 class Controller

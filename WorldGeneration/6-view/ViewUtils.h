@@ -1,7 +1,7 @@
 #pragma once
 #include <QString>
 
-#include "../Localization.h"
+#include "../3-infrastructure/Localization.h"
 
 class ViewsUtils
 {

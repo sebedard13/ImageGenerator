@@ -1,10 +1,9 @@
-﻿#include "view/ViewRoot.h"
-#include <QtWidgets/QApplication>
-
-#include "Localization.h"
+﻿#include "6-view/ViewRoot.h"
+#include "3-infrastructure/Localization.h"
 #include "Windows.h"
-#include "controller/Controller.h"
-#include "model/algos/DistanceFromCenter.h"
+#include "5-controller/Controller.h"
+#include "4-domain/algos/DistanceFromCenter.h"
+#include <QtWidgets/QApplication>
 
 int main(int argc, char* argv[])
 {

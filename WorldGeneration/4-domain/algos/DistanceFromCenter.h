@@ -1,7 +1,7 @@
 #pragma once
 #include "Algo.h"
 #include <memory>
-#include "../../Map.h"
+#include "../Map.h"
 
 
 class DistanceFromCenter final : public Algo

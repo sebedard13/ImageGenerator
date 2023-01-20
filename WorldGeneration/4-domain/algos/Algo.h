@@ -1,6 +1,6 @@
 #pragma once
-#include "../../Map.h"
-#include "../../view/MapView.h"
+#include "../Map.h"
+#include "../../5-controller/MapView.h"
 #include <memory>
 
 class Algo

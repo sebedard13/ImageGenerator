@@ -1,8 +1,8 @@
 #include "GeneratePerlinNoise.h"
 
-#include "../../controller/Controller.h"
-#include "../../controller/commands/DoAlgo.h"
-#include "../../model/algos/AlgoPerlinNoise.h"
+#include "../../5-controller/Controller.h"
+#include "../../5-controller/commands/DoAlgo.h"
+#include "../../4-domain/algos/AlgoPerlinNoise.h"
 
 void GeneratePerlinNoise::handleGenerate()
 {

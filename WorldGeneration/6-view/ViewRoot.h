@@ -9,7 +9,7 @@
 #include <QPushButton>
 
 #include "MapScreen.h"
-#include "MapView.h"
+#include "../5-controller/MapView.h"
 #include "tab/TabAlgo.h"
 #include "tab/TabPerlinNoise.h"
 

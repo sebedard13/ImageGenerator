@@ -1,6 +1,6 @@
 ﻿#pragma once
 #include "Command.h"
-#include "../../model/algos/Algo.h"
+#include "../../4-domain/algos/Algo.h"
 
 class DoAlgo final : public Command
 {

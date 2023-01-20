@@ -26,9 +26,6 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Localization.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="view\MapScreen.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -44,22 +41,19 @@
     <ClCompile Include="view\MapView.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Map.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="view\GraphicView.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="controller\Controller.cpp">
+    <ClCompile Include="5-controller\Controller.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="controller\commands\DoAlgo.cpp">
+    <ClCompile Include="5-controller\commands\DoAlgo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="model\algos\DistanceFromCenter.cpp">
+    <ClCompile Include="4-domain\algos\DistanceFromCenter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="model\algos\AlgoPerlinNoise.cpp">
+    <ClCompile Include="4-domain\algos\AlgoPerlinNoise.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="view\tab\input\InputInteger.cpp">
@@ -68,17 +62,47 @@
     <ClCompile Include="view\tab\input\InputDouble.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="model\perlin\PerlinNoise.cpp">
+    <ClCompile Include="4-domain\perlin\PerlinNoise.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="model\ThreadController.cpp">
+    <ClCompile Include="4-domain\ThreadController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="6-view\tab\input\InputDouble.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="6-view\tab\input\InputInteger.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="6-view\tab\GeneratePerlinNoise.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="6-view\tab\TabPerlinNoise.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="6-view\GraphicView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="6-view\MapScreen.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="6-view\ViewRoot.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="5-controller\MapView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="2-services\ThreadController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="3-infrastructure\Localization.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="4-domain\Map.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Localization.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="view\MapScreen.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -97,31 +121,28 @@
     <ClInclude Include="view\MapView.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Map.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="view\ColorInterpolate.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="view\GraphicView.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="controller\Controller.h">
+    <ClInclude Include="5-controller\Controller.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="controller\commands\Command.h">
+    <ClInclude Include="5-controller\commands\Command.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="controller\commands\DoAlgo.h">
+    <ClInclude Include="5-controller\commands\DoAlgo.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="model\algos\Algo.h">
+    <ClInclude Include="4-domain\algos\Algo.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="model\algos\DistanceFromCenter.h">
+    <ClInclude Include="4-domain\algos\DistanceFromCenter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="model\algos\AlgoPerlinNoise.h">
+    <ClInclude Include="4-domain\algos\AlgoPerlinNoise.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="view\tab\input\InputInteger.h">
@@ -130,10 +151,52 @@
     <ClInclude Include="view\tab\input\InputDouble.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="model\perlin\PerlinNoise.h">
+    <ClInclude Include="4-domain\perlin\PerlinNoise.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="model\ThreadController.h">
+    <ClInclude Include="4-domain\ThreadController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="6-view\tab\input\InputDouble.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="6-view\tab\input\InputInteger.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="6-view\tab\GeneratePerlinNoise.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="6-view\tab\TabAlgo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="6-view\tab\TabPerlinNoise.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="6-view\ColorInterpolate.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="6-view\GraphicView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="6-view\MapScreen.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="6-view\ViewRoot.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="6-view\ViewUtils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="5-controller\MapView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="2-services\ThreadController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="3-infrastructure\Localization.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="4-domain\Map.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
