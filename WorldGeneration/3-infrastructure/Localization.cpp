@@ -22,12 +22,12 @@ Localization::Localization(const std::string& language) :language(language)
 		textTable.insert(std::pair("fr-tipAlgoDistanceFromCenter", "Calcul des distances"));
 
 		//Algo Perlin Noise
-		textTable.insert(std::pair("fr-algoPerlinNoiseName", "Bruix de Perlin"));
+		textTable.insert(std::pair("fr-algoPerlinNoiseName", "Bruit de Perlin"));
 		textTable.insert(std::pair("fr-labelSize", "Taille de l'image"));
 		textTable.insert(std::pair("fr-labelSeed", "Germe aléatoire"));
 		textTable.insert(std::pair("fr-labelCellSize", "Taille du plus grande cellule"));
 		textTable.insert(std::pair("fr-labelOctaves", "Octaves pour augmenter les détails"));
-		textTable.insert(std::pair("fr-labelPersistence", "Octaves pour definir les détails des octaves"));
+		textTable.insert(std::pair("fr-labelPersistence", "Persistance dans les octaves"));
 		textTable.insert(std::pair("fr-size100", "100x100"));
 		textTable.insert(std::pair("fr-size500", "500x500"));
 		textTable.insert(std::pair("fr-size1000", "1000x1000"));
