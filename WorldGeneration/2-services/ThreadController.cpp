@@ -1,4 +1,5 @@
 #include "ThreadController.h"
+#include "../1-foundation/MathUtils.h"
 #include <thread>
 
 ThreadController::ThreadController() :threadCount(ThreadController::THREADS)
@@ -41,7 +42,7 @@ void ThreadController::runIteration(const unsigned min, const unsigned max, cons
 	}
 }
 
-void ThreadController::runIterationOutpout(const unsigned min, const unsigned max,
+void ThreadController::runIterationOutput(const unsigned min, const unsigned max,
 	const std::function<void(unsigned i)>& func)
 {
 	runIteration(min, max, func);

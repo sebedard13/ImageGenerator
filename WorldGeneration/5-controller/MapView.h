@@ -1,4 +1,5 @@
 #pragma once
+#include <filesystem>
 #include <string>
 
 #include "../6-view/MapScreen.h"
@@ -9,6 +10,7 @@ class MapView
 private:
 	MapScreen* mapScreen;
 	QGraphicsScene* scene;
+	QImage image;
 	uchar* buffer = nullptr;
 	std::chrono::time_point<std::chrono::system_clock> percentLastChange = std::chrono::system_clock::now();
 	const static unsigned short timeElapsedPercent{ 50 };
@@ -18,19 +20,6 @@ public:
 	void loadMap(std::unique_ptr<Map> map);
 	void setMessageId(std::string key);
 	void setPercent(unsigned int percent);
+	void saveImageAt(const std::filesystem::path& path) const;
 	~MapView();
 };
-
-template<typename T>
-T percent(T num, T denum)
-{
-	while (num > 255)
-	{
-		num >>= 2;
-		denum >>= 2;
-	}
-
-	num *= 100;
-
-	return num / denum;
-}

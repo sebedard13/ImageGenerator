@@ -19,10 +19,10 @@ public:
 
 	const static int THREADS = 8;
 	void runIteration(const unsigned min, const unsigned max, const std::function<void(unsigned i)>& func);
-	void runIterationOutpout(const unsigned min, const unsigned max, const std::function<void(unsigned i)>& func);
+	void runIterationOutput(const unsigned min, const unsigned max, const std::function<void(unsigned i)>& func);
 
-	bool isDone() const;
-	unsigned getDoneOperations() const;
+	[[nodiscard]] bool isDone() const;
+	[[nodiscard]] unsigned getDoneOperations() const;
 
 private:
 	std::atomic<Counters>* counters = nullptr;

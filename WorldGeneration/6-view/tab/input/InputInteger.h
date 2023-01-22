@@ -25,7 +25,7 @@ public:
 	void changeInput();
 
 
-	int getValue() const { return value; }
+	[[nodiscard]] int getValue() const { return value; }
 private:
 	QVBoxLayout* containerLayout;
 	QLabel* label;

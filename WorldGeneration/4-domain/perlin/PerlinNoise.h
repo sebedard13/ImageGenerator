@@ -18,27 +18,27 @@ public:
 			throw std::invalid_argument("To big octave need less than 32");
 		}
 
-		if (seed != 0)
+		if (this->seed != 0)
 		{
 			std::srand(seed);
 
-			for (int i = 0; i < pSize; ++i)
+			for (unsigned char& i : p)
 			{
-				p[i] = std::rand() % 256;
+				i = static_cast<unsigned char>(std::rand() % 256);
 			}
 		}
 	}
 
-	double perlin(const int& x) const;
-	double perlin(const int& x, const int& y) const;
-	double perlin(const int& x, const int& y, const int& z) const;
+	[[nodiscard]] double perlin(const int& x) const;
+	[[nodiscard]] double perlin(const int& x, const int& y) const;
+	[[nodiscard]] double perlin(const int& x, const int& y, const int& z) const;
 
 private:
-	double perlin1d(const double& x) const;
-	double perlin2d(const double& x, const double& y) const;
-	double perlin3d(const double& x, const double& y, const double& z) const;
+	[[nodiscard]] double perlin1d(const double& x) const;
+	[[nodiscard]] double perlin2d(const double& x, const double& y) const;
+	[[nodiscard]] double perlin3d(const double& x, const double& y, const double& z) const;
 
-	unsigned char getP(const int& v) const
+	[[nodiscard]] unsigned char getP(const int& v) const
 	{
 		return p[v % 256];
 	}
@@ -58,26 +58,22 @@ private:
 
 	static double dot_grad(const int& hash, const double& xf) {
 		// In 1D case, the gradient may be either 1 or -1
-		// doublehe distance vector is the input offset (relative to the smallest bound)
+		// double the distance vector is the input offset (relative to the smallest bound)
 		return (hash & 0x1) ? xf : -xf;
 	}
 
 	static double dot_grad(const int& hash, const double& xf, const double& yf) {
 		// In 2D case, the gradient may be any of 8 direction vectors pointing to the
 		// edges of a unit-square. double the distance vector is the input offset (relative to
-		// the smallest bound)
-
-		const double moinsxf = -xf;
-		const double moinsyf = -yf;
-
+		// the smallest bound
 		double a[]{
 			  xf + yf, //0
 			  xf,  //1
-			  xf + moinsyf, // 2
-			 moinsyf, //3
-			 moinsxf + moinsyf,//4
-			 moinsxf, //5
-			 moinsxf + yf,//6
+			  xf + -yf, // 2
+			 -yf, //3
+			 -xf + -yf,//4
+			 -xf, //5
+			-xf + yf,//6
 			  yf     //7
 		};
 
@@ -88,7 +84,7 @@ private:
 
 	static inline auto dot_grad(const int& hash, const double& xf, const double& yf, const double& zf) -> double {
 		// In 3D case, the gradient may be any of 12 direction vectors pointing to the edges
-		// of a unit-cube (rounded to 16 with duplications). doublehe distance vector is the input
+		// of a unit-cube (rounded to 16 with duplications). double the distance vector is the input
 		// offset (relative to the smallest bound)
 		switch (hash & 0xF) {
 		case 0x0: return  xf + yf;

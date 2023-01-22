@@ -11,7 +11,7 @@ std::unique_ptr<Map> AlgoPerlinNoise::run()
 
 	ThreadController thC = { output.get() };
 
-	thC.runIterationOutpout(0, map->size,
+	thC.runIterationOutput(0, map->size,
 		[this, map](const unsigned i)
 		{
 			{

@@ -6,7 +6,7 @@ double PerlinNoise::perlin(const int& x) const
 	double frequency = 1;
 	double amplitude = 1;
 	double maxValue = 0;  // Used for normalizing result to 0.0 - 1.0
-	for (int i = 0; i < octaves; i++) {
+	for (unsigned i = 0; i < octaves; i++) {
 		total += perlin1d(x * frequency / cellSize) * amplitude;
 
 		maxValue += amplitude;
@@ -24,28 +24,15 @@ double PerlinNoise::perlin(const int& x, const int& y) const
 	double frequency = 1;
 	double amplitude = 1;
 	double maxValue = 0;  // Used for normalizing result to 0.0 - 1.0
-	for (int i = 0; i < octaves; i++) {
-		double x2 = x * frequency / cellSize;
-		double perlin2d1 = perlin2d(x2, y * frequency / cellSize);
-		double x1 = perlin2d1 * amplitude;
-		if (x1 < -2)
-		{
-			int a = 0;
-		}
-		total += x1;
+	for (unsigned i = 0; i < octaves; i++) {
+		total += perlin2d(x * frequency / cellSize, y * frequency / cellSize) * amplitude;
 
 		maxValue += amplitude;
 
 		amplitude *= persistence;
 		frequency *= 2;
 	}
-
-	double x3 = total / maxValue;
-	if (x3 < -1)
-	{
-		int a = 0;
-	}
-	return x3;
+	return  total / maxValue;
 }
 
 double PerlinNoise::perlin(const int& x, const int& y, const int& z) const
@@ -54,7 +41,7 @@ double PerlinNoise::perlin(const int& x, const int& y, const int& z) const
 	double frequency = 1;
 	double amplitude = 1;
 	double maxValue = 0;  // Used for normalizing result to 0.0 - 1.0
-	for (int i = 0; i < octaves; i++) {
+	for (unsigned i = 0; i < octaves; i++) {
 		total += perlin3d(x * frequency / cellSize, y * frequency / cellSize, z * frequency / cellSize) * amplitude;
 
 		maxValue += amplitude;
@@ -91,7 +78,7 @@ double PerlinNoise::perlin1d(const double& x) const
 
 double PerlinNoise::perlin2d(const double& x, const double& y) const
 {
-	// doubleop-left coordinates of the unit-square
+	// double top-left coordinates of the unit-square
 	int const xi0 = floor(x);
 	int const yi0 = floor(y);
 

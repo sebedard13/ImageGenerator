@@ -101,6 +101,7 @@
     <ClCompile Include="3-infrastructure\Localization.cpp" />
     <ClCompile Include="4-domain\Map.cpp" />
     <ClCompile Include="5-controller\commands\DoAlgo.cpp" />
+    <ClCompile Include="5-controller\commands\SaveImage.cpp" />
     <ClCompile Include="5-controller\Controller.cpp" />
     <ClCompile Include="4-domain\algos\DistanceFromCenter.cpp" />
     <ClCompile Include="4-domain\algos\AlgoPerlinNoise.cpp" />
@@ -116,11 +117,13 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="1-foundation\MathUtils.h" />
     <ClInclude Include="2-services\ThreadController.h" />
     <ClInclude Include="3-infrastructure\Localization.h" />
     <ClInclude Include="4-domain\Map.h" />
     <ClInclude Include="5-controller\commands\Command.h" />
     <ClInclude Include="5-controller\commands\DoAlgo.h" />
+    <ClInclude Include="5-controller\commands\SaveImage.h" />
     <ClInclude Include="5-controller\Controller.h" />
     <ClInclude Include="4-domain\algos\Algo.h" />
     <ClInclude Include="4-domain\algos\DistanceFromCenter.h" />

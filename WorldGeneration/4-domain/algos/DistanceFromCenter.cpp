@@ -1,4 +1,5 @@
 #include "DistanceFromCenter.h"
+#include "../../1-foundation/MathUtils.h"
 
 std::unique_ptr<Map> DistanceFromCenter::run()
 {

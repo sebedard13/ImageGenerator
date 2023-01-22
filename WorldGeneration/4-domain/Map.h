@@ -29,7 +29,7 @@ public:
 		array = new int[w * h];
 	}
 
-	std::pair<int, int> toCoordinate(const int& i) const;
+	[[nodiscard]] std::pair<int, int> toCoordinate(const int& i) const;
 
 	~Map();
 

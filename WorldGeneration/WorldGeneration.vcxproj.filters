@@ -26,24 +26,6 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="view\MapScreen.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="view\ViewRoot.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="view\tab\TabPerlinNoise.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="view\tab\GeneratePerlinNoise.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="view\MapView.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="view\GraphicView.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="5-controller\Controller.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -56,16 +38,7 @@
     <ClCompile Include="4-domain\algos\AlgoPerlinNoise.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="view\tab\input\InputInteger.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="view\tab\input\InputDouble.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="4-domain\perlin\PerlinNoise.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="4-domain\ThreadController.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="6-view\tab\input\InputDouble.cpp">
@@ -101,32 +74,11 @@
     <ClCompile Include="4-domain\Map.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="5-controller\commands\SaveImage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="view\MapScreen.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="view\tab\TabAlgo.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="view\tab\TabPerlinNoise.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="view\ViewUtils.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="view\tab\GeneratePerlinNoise.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="view\MapView.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="view\ColorInterpolate.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="view\GraphicView.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="5-controller\Controller.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -145,16 +97,7 @@
     <ClInclude Include="4-domain\algos\AlgoPerlinNoise.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="view\tab\input\InputInteger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="view\tab\input\InputDouble.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="4-domain\perlin\PerlinNoise.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="4-domain\ThreadController.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="6-view\tab\input\InputDouble.h">
@@ -181,9 +124,6 @@
     <ClInclude Include="6-view\MapScreen.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="6-view\ViewRoot.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="6-view\ViewUtils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -199,9 +139,15 @@
     <ClInclude Include="4-domain\Map.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="1-foundation\MathUtils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="5-controller\commands\SaveImage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="view\ViewRoot.h">
+    <QtMoc Include="6-view\ViewRoot.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>

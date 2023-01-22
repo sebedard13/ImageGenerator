@@ -1,7 +1,5 @@
 #include "Map.h"
 
-
-
 //X first
 std::pair<int, int> Map::toCoordinate(const int& i) const
 {

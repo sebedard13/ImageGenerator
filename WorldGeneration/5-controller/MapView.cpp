@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <QGraphicsPixmapItem>
+#include <QString>
 
 #include "../6-view/ColorInterpolate.h"
 #include "../2-services/ThreadController.h"
@@ -26,7 +27,7 @@ void MapView::loadMap(std::unique_ptr<Map> map)
 	uchar* pointer = buffer;
 	ColorInterpolate<int> colorInterpolate{ map->min, map->max };
 	ThreadController thC = { this };
-	thC.runIterationOutpout(0, map->size, [&pointer, &colorInterpolate, &map](unsigned i) {
+	thC.runIterationOutput(0, map->size, [&pointer, &colorInterpolate, &map](unsigned i) {
 		{
 			auto color = colorInterpolate.uniformColor(map->array[i]);
 
@@ -41,10 +42,12 @@ void MapView::loadMap(std::unique_ptr<Map> map)
 	constexpr  int borderScene = 64;
 	scene->setSceneRect(0, 0, map->width + borderScene * 2, map->height + borderScene * 2);
 
-	auto pixmapItem = scene->addPixmap(QPixmap::fromImage(QImage(buffer, map->width, map->height, QImage::Format_ARGB32),
+	image = QImage(buffer, map->width, map->height, QImage::Format_ARGB32);
+	auto pixmapItem = scene->addPixmap(QPixmap::fromImage(image,
 		Qt::ColorOnly | Qt::ThresholdDither | Qt::OrderedAlphaDither | Qt::NoFormatConversion
 	));
 	pixmapItem->setOffset(borderScene, borderScene);
+
 
 	mapScreen->graphicsView->fitInView(0, 0, map->width + borderScene * 2, map->height + borderScene * 2, Qt::KeepAspectRatio);
 	mapScreen->graphicsView->show();
@@ -73,6 +76,19 @@ void MapView::setPercent(unsigned int percent)
 			percentLastChange = now;
 			mapScreen->changePercent(percent);
 		}
+	}
+}
+
+void MapView::saveImageAt(const std::filesystem::path& path) const
+{
+	const bool result = image.save(QString::fromStdString(path.generic_string()), "PNG", 100);
+	if (result)
+	{
+		std::cout << "Image saved successfully at " << path << std::endl;
+	}
+	else
+	{
+		std::cout << "Unable to save image at " << path << std::endl;
 	}
 }
 
