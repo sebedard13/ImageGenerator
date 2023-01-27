@@ -110,29 +110,29 @@ void ViewRootClass::setupUi(QMainWindow* ViewRootClass)
 	horizontalLayout_2->addLayout(horizontalLayout);
 
 	ViewRootClass->setCentralWidget(centralWidget);
-	menuBar = new QMenuBar(ViewRootClass);
-	menuBar->setObjectName("menuBar");
-	menuBar->setGeometry(QRect(0, 0, 1228, 22));
-	menusfas = new QMenu(menuBar);
-	menusfas->setObjectName("menusfas");
-	menusfas->setToolTipsVisible(false);
-	menuA_propos = new QMenu(menuBar);
-	menuA_propos->setObjectName("menuA_propos");
-	menuA_propos->setTearOffEnabled(false);
-	menuA_propos->setSeparatorsCollapsible(false);
-	menuA_propos->setToolTipsVisible(false);
+//	menuBar = new QMenuBar(ViewRootClass);
+//	menuBar->setObjectName("menuBar");
+//	menuBar->setGeometry(QRect(0, 0, 1228, 22));
+//	menusfas = new QMenu(menuBar);
+//	menusfas->setObjectName("menusfas");
+//	menusfas->setToolTipsVisible(false);
+//	menuA_propos = new QMenu(menuBar);
+//	menuA_propos->setObjectName("menuA_propos");
+//	menuA_propos->setTearOffEnabled(false);
+//	menuA_propos->setSeparatorsCollapsible(false);
+//	menuA_propos->setToolTipsVisible(false);
 	ViewRootClass->setMenuBar(menuBar);
 
 	statusBar = new QStatusBar(ViewRootClass);
 	statusBar->setObjectName("statusBar");
 	ViewRootClass->setStatusBar(statusBar);
 
-	menuBar->addAction(menusfas->menuAction());
-	menuBar->addAction(menuA_propos->menuAction());
-	menusfas->addAction(actionSauvegarder);
-	menusfas->addAction(actionCharger);
-	menusfas->addAction(actionQuiter);
-	menuA_propos->addAction(actionVoir);
+//	menuBar->addAction(menusfas->menuAction());
+//	menuBar->addAction(menuA_propos->menuAction());
+//	menusfas->addAction(actionSauvegarder);
+//	menusfas->addAction(actionCharger);
+//	menusfas->addAction(actionQuiter);
+//	menuA_propos->addAction(actionVoir);
 
 	retranslateUi(ViewRootClass);
 	QObject::connect(btnGenerate, &QAbstractButton::released, dynamic_cast<const ViewRoot*>(ViewRootClass), &ViewRoot::clickGenerate);
@@ -156,8 +156,8 @@ void ViewRootClass::retranslateUi(QMainWindow* ViewRootClass)
 	tabWidget->setTabText(tabWidget->indexOf(tab_2), ViewsUtils::local("algo2Name"));
 	btnGenerate->setText(ViewsUtils::local("btnGenerateMap"));
 
-	menusfas->setTitle(ViewsUtils::local("btnFile"));
-	menuA_propos->setTitle(ViewsUtils::local("btnAbout"));
+//	menusfas->setTitle(ViewsUtils::local("btnFile"));
+//	menuA_propos->setTitle(ViewsUtils::local("btnAbout"));
 
 	tab->retranslateUi(ViewRootClass);
 	mainMapScreen->retranslateUi(ViewRootClass);
