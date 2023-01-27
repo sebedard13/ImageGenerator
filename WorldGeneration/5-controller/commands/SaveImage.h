@@ -15,6 +15,6 @@ public:
 	SaveImage& operator=(SaveImage&& other) noexcept = delete;
 
 	void execute(const std::shared_ptr<MapView>& mapView) override;
-	~SaveImage() override;
+	~SaveImage() =default;
 };
 
