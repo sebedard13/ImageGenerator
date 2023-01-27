@@ -58,19 +58,22 @@ target_link_libraries(WorldGeneration
         PRIVATE  Qt::Widgets
         )
 
+
+#Qt6_DIR = Qt/{version}/{compiler}/lib/cmake/Qt6
+#the_qt_path = Qt/{version}/{compiler}
 cmake_path(GET Qt6_DIR PARENT_PATH the_qt_path)
 cmake_path(GET the_qt_path PARENT_PATH the_qt_path)
 cmake_path(GET the_qt_path PARENT_PATH the_qt_path)
 
 install(DIRECTORY ${the_qt_path}/plugins/platforms/
         DESTINATION $<TARGET_FILE_DIR:${PROJECT_NAME}>/plugins/platforms
-        FILES_MATCHING PATTERN "qwindows*"
         )
 
 install(FILES $<TARGET_RUNTIME_DLLS:WorldGeneration>
         DESTINATION $<TARGET_FILE_DIR:${PROJECT_NAME}>
         )
 
+#gcc compiler dll
 install(DIRECTORY ${the_qt_path}/bin/
         DESTINATION $<TARGET_FILE_DIR:${PROJECT_NAME}>
         FILES_MATCHING PATTERN "libgcc_s_seh-1.dll"

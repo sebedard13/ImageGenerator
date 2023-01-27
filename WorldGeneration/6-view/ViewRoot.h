@@ -39,7 +39,6 @@ public:
 	QMenuBar* menuBar;
 	QMenu* menusfas;
 	QMenu* menuA_propos;
-	QToolBar* mainToolBar;
 	QStatusBar* statusBar;
 
 	std::vector<std::unique_ptr<TabAlgo>> tabs{};

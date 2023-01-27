@@ -122,9 +122,7 @@ void ViewRootClass::setupUi(QMainWindow* ViewRootClass)
 	menuA_propos->setSeparatorsCollapsible(false);
 	menuA_propos->setToolTipsVisible(false);
 	ViewRootClass->setMenuBar(menuBar);
-	mainToolBar = new QToolBar(ViewRootClass);
-	mainToolBar->setObjectName("mainToolBar");
-	ViewRootClass->addToolBar(Qt::TopToolBarArea, mainToolBar);
+
 	statusBar = new QStatusBar(ViewRootClass);
 	statusBar->setObjectName("statusBar");
 	ViewRootClass->setStatusBar(statusBar);
