@@ -1,45 +1,45 @@
 #pragma once
+
 #include <QLabel>
 #include <QVBoxLayout>
 #include <QLineEdit>
+#include <utility>
 #include <qwidget.h>
+
 class InputInteger :
-	public QWidget
-{
+        public QWidget {
 public:
 
-	InputInteger(const std::string& textId, int defaultValue, int min = INT32_MIN, int max = INT32_MAX)
-		: textID(textId),
-		min(min),
-		max(max),
-		defaultV((defaultValue >= min && defaultValue <= max) ? defaultValue : min)
-	{
-		setupUi();
-	}
+    InputInteger(std::string textId, int defaultValue, int min = INT32_MIN, int max = INT32_MAX)
+            : textID(std::move(textId)),
+            min(min),
+            max(max),
+            defaultV((defaultValue >= min && defaultValue <= max) ? defaultValue : min) {
+        setupUi();
+    }
 
 
-	void setupUi();
+    void setupUi();
 
-	void retranslateUi();
+    void retranslateUi();
 
-	void changeInput();
+    void changeInput();
 
 
-	[[nodiscard]] int getValue() const { return value; }
+    [[nodiscard]] int getValue() const { return value; }
+
 private:
-	QVBoxLayout* containerLayout;
-	QLabel* label;
-	QLineEdit* input;
-	void setValue(int v);
+    QVBoxLayout *containerLayout;
+    QLabel *label;
+    QLineEdit *input;
 
-	const std::string textID;
-	const int min;
-	const int max;
-	const int defaultV;
-	int value;
+    void setValue(int v);
 
-
-
+    const std::string textID;
+    const int min;
+    const int max;
+    const int defaultV;
+    int value;
 
 
 };

@@ -2,16 +2,19 @@
 
 #include "../MapView.h"
 
-class Command
-{
+class Command {
 public:
-	Command() =default;
-	Command(const Command& other) = delete;
-	Command(Command&& other) noexcept = delete;
-	Command& operator=(const Command& other) = delete;
-	Command& operator=(Command&& other) noexcept = delete;
+    Command() = default;
 
-	virtual void execute(const std::shared_ptr<MapView>& mapView) = 0;
+    Command(const Command &other) = delete;
 
-	virtual ~Command() = default;
+    Command(Command &&other) noexcept = delete;
+
+    Command &operator=(const Command &other) = delete;
+
+    Command &operator=(Command &&other) noexcept = delete;
+
+    virtual void execute(const std::shared_ptr<MapView> &mapView) = 0;
+
+    virtual ~Command() = default;
 };

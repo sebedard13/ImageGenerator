@@ -5,96 +5,95 @@
 #include "ViewUtils.h"
 #include "tab/GeneratePerlinNoise.h"
 
-void ViewRootClass::setupUi(QMainWindow* ViewRootClass)
-{
-	if (ViewRootClass->objectName().isEmpty())
-		ViewRootClass->setObjectName("ViewRootClass");
-	ViewRootClass->resize(1228, 818);
-	ViewRootClass->setLayoutDirection(Qt::LeftToRight);
-	centralWidget = new QWidget(ViewRootClass);
-	centralWidget->setObjectName("centralWidget");
-	centralWidget->setEnabled(true);
-	QSizePolicy sizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
-	sizePolicy.setHorizontalStretch(0);
-	sizePolicy.setVerticalStretch(0);
-	sizePolicy.setHeightForWidth(centralWidget->sizePolicy().hasHeightForWidth());
-	centralWidget->setSizePolicy(sizePolicy);
-	centralWidget->setContextMenuPolicy(Qt::DefaultContextMenu);
-	horizontalLayout_2 = new QHBoxLayout(centralWidget);
-	horizontalLayout_2->setSpacing(6);
-	horizontalLayout_2->setContentsMargins(11, 11, 11, 11);
-	horizontalLayout_2->setObjectName("horizontalLayout_2");
-	horizontalLayout_2->setContentsMargins(9, -1, -1, 4);
-	horizontalLayout = new QHBoxLayout();
-	horizontalLayout->setSpacing(20);
-	horizontalLayout->setObjectName("horizontalLayout");
-	frame = new QFrame(centralWidget);
-	frame->setObjectName("frame");
-	verticalLayout = new QVBoxLayout(frame);
-	verticalLayout->setSpacing(6);
-	verticalLayout->setContentsMargins(11, 11, 11, 11);
-	verticalLayout->setObjectName("verticalLayout");
-	verticalLayout->setContentsMargins(0, 0, 0, 0);
-	tabWidget = new QTabWidget(frame);
-	tabWidget->setObjectName("tabWidget");
-	tabWidget->setEnabled(true);
-	QSizePolicy sizePolicy1(QSizePolicy::Fixed, QSizePolicy::MinimumExpanding);
-	sizePolicy1.setHorizontalStretch(0);
-	sizePolicy1.setVerticalStretch(0);
-	sizePolicy1.setHeightForWidth(tabWidget->sizePolicy().hasHeightForWidth());
-	tabWidget->setSizePolicy(sizePolicy1);
-	tabWidget->setMinimumSize(QSize(200, 0));
-	tabWidget->setAutoFillBackground(true);
+void ViewRootClass::setupUi(QMainWindow *ViewRootClass) {
+    if (ViewRootClass->objectName().isEmpty())
+        ViewRootClass->setObjectName("ViewRootClass");
+    ViewRootClass->resize(1228, 818);
+    ViewRootClass->setLayoutDirection(Qt::LeftToRight);
+    centralWidget = new QWidget(ViewRootClass);
+    centralWidget->setObjectName("centralWidget");
+    centralWidget->setEnabled(true);
+    QSizePolicy sizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
+    sizePolicy.setHorizontalStretch(0);
+    sizePolicy.setVerticalStretch(0);
+    sizePolicy.setHeightForWidth(centralWidget->sizePolicy().hasHeightForWidth());
+    centralWidget->setSizePolicy(sizePolicy);
+    centralWidget->setContextMenuPolicy(Qt::DefaultContextMenu);
+    horizontalLayout_2 = new QHBoxLayout(centralWidget);
+    horizontalLayout_2->setSpacing(6);
+    horizontalLayout_2->setContentsMargins(11, 11, 11, 11);
+    horizontalLayout_2->setObjectName("horizontalLayout_2");
+    horizontalLayout_2->setContentsMargins(9, -1, -1, 4);
+    horizontalLayout = new QHBoxLayout();
+    horizontalLayout->setSpacing(20);
+    horizontalLayout->setObjectName("horizontalLayout");
+    frame = new QFrame(centralWidget);
+    frame->setObjectName("frame");
+    verticalLayout = new QVBoxLayout(frame);
+    verticalLayout->setSpacing(6);
+    verticalLayout->setContentsMargins(11, 11, 11, 11);
+    verticalLayout->setObjectName("verticalLayout");
+    verticalLayout->setContentsMargins(0, 0, 0, 0);
+    tabWidget = new QTabWidget(frame);
+    tabWidget->setObjectName("tabWidget");
+    tabWidget->setEnabled(true);
+    QSizePolicy sizePolicy1(QSizePolicy::Fixed, QSizePolicy::MinimumExpanding);
+    sizePolicy1.setHorizontalStretch(0);
+    sizePolicy1.setVerticalStretch(0);
+    sizePolicy1.setHeightForWidth(tabWidget->sizePolicy().hasHeightForWidth());
+    tabWidget->setSizePolicy(sizePolicy1);
+    tabWidget->setMinimumSize(QSize(200, 0));
+    tabWidget->setAutoFillBackground(true);
 
-	//Tab 1
-	tab = new TabPerlinNoise();
-	tab->setupUi(ViewRootClass);
-	tabs.push_back(std::make_unique<GeneratePerlinNoise>(tab));
-	tabWidget->addTab(tab, QString());
-	//Tab 2
+    //Tab 1
+    tab = new TabPerlinNoise();
+    tab->setupUi(ViewRootClass);
+    tabs.push_back(std::make_unique<GeneratePerlinNoise>(tab));
+    tabWidget->addTab(tab, QString());
+    //Tab 2
 
-	tab_2 = new QWidget();
-
-
-	verticalLayout->addWidget(tabWidget);
-
-	frame1 = new QFrame(frame);
-	frame1->setObjectName("frame1");
-	frame1->setAutoFillBackground(true);
-	frame1->setFrameShape(QFrame::StyledPanel);
-	frame1->setFrameShadow(QFrame::Plain);
-	verticalLayout_4 = new QVBoxLayout(frame1);
-	verticalLayout_4->setSpacing(6);
-	verticalLayout_4->setContentsMargins(11, 11, 11, 11);
-	verticalLayout_4->setObjectName("verticalLayout_4");
-	verticalLayout_4->setSizeConstraint(QLayout::SetDefaultConstraint);
-	verticalLayout_4->setContentsMargins(5, 5, 5, 5);
-	btnGenerate = new QPushButton(frame1);
-	btnGenerate->setObjectName("btnGenerate");
-	QSizePolicy sizePolicy2(QSizePolicy::Minimum, QSizePolicy::Fixed);
-	sizePolicy2.setHorizontalStretch(0);
-	sizePolicy2.setVerticalStretch(0);
-	sizePolicy2.setHeightForWidth(btnGenerate->sizePolicy().hasHeightForWidth());
-	btnGenerate->setSizePolicy(sizePolicy2);
-
-	verticalLayout_4->addWidget(btnGenerate);
+    tab_2 = new QWidget();
 
 
-	verticalLayout->addWidget(frame1);
+    verticalLayout->addWidget(tabWidget);
+
+    frame1 = new QFrame(frame);
+    frame1->setObjectName("frame1");
+    frame1->setAutoFillBackground(true);
+    frame1->setFrameShape(QFrame::StyledPanel);
+    frame1->setFrameShadow(QFrame::Plain);
+    verticalLayout_4 = new QVBoxLayout(frame1);
+    verticalLayout_4->setSpacing(6);
+    verticalLayout_4->setContentsMargins(11, 11, 11, 11);
+    verticalLayout_4->setObjectName("verticalLayout_4");
+    verticalLayout_4->setSizeConstraint(QLayout::SetDefaultConstraint);
+    verticalLayout_4->setContentsMargins(5, 5, 5, 5);
+    btnGenerate = new QPushButton(frame1);
+    btnGenerate->setObjectName("btnGenerate");
+    QSizePolicy sizePolicy2(QSizePolicy::Minimum, QSizePolicy::Fixed);
+    sizePolicy2.setHorizontalStretch(0);
+    sizePolicy2.setVerticalStretch(0);
+    sizePolicy2.setHeightForWidth(btnGenerate->sizePolicy().hasHeightForWidth());
+    btnGenerate->setSizePolicy(sizePolicy2);
+
+    verticalLayout_4->addWidget(btnGenerate);
 
 
-	horizontalLayout->addWidget(frame);
+    verticalLayout->addWidget(frame1);
 
-	mainMapScreen = new MapScreen(centralWidget);
-	mainMapScreen->setupUi(ViewRootClass);
 
-	mapView = std::make_shared<MapView>(mainMapScreen);
+    horizontalLayout->addWidget(frame);
 
-	horizontalLayout->addWidget(mainMapScreen);
+    mainMapScreen = new MapScreen(centralWidget);
+    mainMapScreen->setupUi(ViewRootClass);
 
-	horizontalLayout_2->addLayout(horizontalLayout);
+    mapView = std::make_shared<MapView>(mainMapScreen);
 
-	ViewRootClass->setCentralWidget(centralWidget);
+    horizontalLayout->addWidget(mainMapScreen);
+
+    horizontalLayout_2->addLayout(horizontalLayout);
+
+    ViewRootClass->setCentralWidget(centralWidget);
 
     ////MENU BAR
     menuBar = new MenuBar(ViewRootClass);
@@ -108,40 +107,36 @@ void ViewRootClass::setupUi(QMainWindow* ViewRootClass)
 //	statusBar->setObjectName("statusBar");
 //	ViewRootClass->setStatusBar(statusBar);
 
-	retranslateUi(ViewRootClass);
-	QObject::connect(btnGenerate, &QAbstractButton::released, dynamic_cast<const ViewRoot*>(ViewRootClass), &ViewRoot::clickGenerate);
+    retranslateUi(ViewRootClass);
+    QObject::connect(btnGenerate, &QAbstractButton::released, dynamic_cast<const ViewRoot *>(ViewRootClass),
+                     &ViewRoot::clickGenerate);
 
-	tabWidget->setCurrentIndex(0);
+    tabWidget->setCurrentIndex(0);
 
 
-	QMetaObject::connectSlotsByName(ViewRootClass);
+    QMetaObject::connectSlotsByName(ViewRootClass);
 } // setupUi
 
-void ViewRootClass::retranslateUi(QMainWindow* ViewRootClass)
-{
-	ViewRootClass->setWindowTitle(ViewsUtils::local("mainWindowName"));
+void ViewRootClass::retranslateUi(QMainWindow *ViewRootClass) {
+    ViewRootClass->setWindowTitle(ViewsUtils::local("mainWindowName"));
 
-	tabWidget->setTabText(tabWidget->indexOf(tab), ViewsUtils::local("algoPerlinNoiseName"));
+    tabWidget->setTabText(tabWidget->indexOf(tab), ViewsUtils::local("algoPerlinNoiseName"));
 
-	tabWidget->setTabText(tabWidget->indexOf(tab_2), ViewsUtils::local("algo2Name"));
-	btnGenerate->setText(ViewsUtils::local("btnGenerateMap"));
-
+    tabWidget->setTabText(tabWidget->indexOf(tab_2), ViewsUtils::local("algo2Name"));
+    btnGenerate->setText(ViewsUtils::local("btnGenerateMap"));
 
 
-	tab->retranslateUi(ViewRootClass);
-	mainMapScreen->retranslateUi(ViewRootClass);
+    tab->retranslateUi();
+    mainMapScreen->retranslateUi();
 } // retranslateUi
-void ViewRoot::clickGenerate()
-{
-	int index = ui.tabWidget->currentIndex();
-	ui.tabs[index]->handleGenerate();
+void ViewRoot::clickGenerate() {
+    int index = ui.tabWidget->currentIndex();
+    ui.tabs[index]->handleGenerate();
 }
 
-ViewRoot::ViewRoot(QWidget* parent)
-	: QMainWindow(parent)
-{
-	ui.setupUi(this);
+ViewRoot::ViewRoot(QWidget *parent)
+        : QMainWindow(parent) {
+    ui.setupUi(this);
 }
 
-ViewRoot::~ViewRoot()
-{}
+ViewRoot::~ViewRoot() {}

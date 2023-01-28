@@ -1,531 +1,537 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>ViewRootClass</class>
- <widget class="QMainWindow" name="ViewRootClass">
-  <property name="geometry">
-   <rect>
-    <x>0</x>
-    <y>0</y>
-    <width>1228</width>
-    <height>818</height>
-   </rect>
-  </property>
-  <property name="windowTitle">
-   <string>ViewRoot</string>
-  </property>
-  <property name="layoutDirection">
-   <enum>Qt::LeftToRight</enum>
-  </property>
-  <widget class="QWidget" name="centralWidget">
-   <property name="enabled">
-    <bool>true</bool>
-   </property>
-   <property name="sizePolicy">
-    <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
-     <horstretch>0</horstretch>
-     <verstretch>0</verstretch>
-    </sizepolicy>
-   </property>
-   <property name="contextMenuPolicy">
-    <enum>Qt::DefaultContextMenu</enum>
-   </property>
-   <layout class="QHBoxLayout" name="horizontalLayout_2">
-    <property name="leftMargin">
-     <number>9</number>
-    </property>
-    <property name="bottomMargin">
-     <number>4</number>
-    </property>
-    <item>
-     <layout class="QHBoxLayout" name="horizontalLayout">
-      <property name="spacing">
-       <number>20</number>
-      </property>
-      <item>
-       <widget class="QFrame" name="frame">
-        <layout class="QVBoxLayout" name="verticalLayout">
-         <property name="leftMargin">
-          <number>0</number>
-         </property>
-         <property name="topMargin">
-          <number>0</number>
-         </property>
-         <property name="rightMargin">
-          <number>0</number>
-         </property>
-         <property name="bottomMargin">
-          <number>0</number>
-         </property>
-         <item>
-          <widget class="QTabWidget" name="tabWidget">
-           <property name="enabled">
-            <bool>true</bool>
-           </property>
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Fixed" vsizetype="MinimumExpanding">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="minimumSize">
-            <size>
-             <width>200</width>
-             <height>0</height>
-            </size>
-           </property>
-           <property name="autoFillBackground">
-            <bool>true</bool>
-           </property>
-           <property name="currentIndex">
-            <number>0</number>
-           </property>
-           <widget class="QWidget" name="tab">
-            <property name="contextMenuPolicy">
-             <enum>Qt::DefaultContextMenu</enum>
-            </property>
-            <property name="autoFillBackground">
-             <bool>false</bool>
-            </property>
-            <attribute name="title">
-             <string>Tab 1</string>
-            </attribute>
-            <layout class="QVBoxLayout" name="verticalLayout_6">
-             <property name="leftMargin">
-              <number>0</number>
-             </property>
-             <property name="topMargin">
-              <number>0</number>
-             </property>
-             <property name="rightMargin">
-              <number>0</number>
-             </property>
-             <item>
-              <widget class="QScrollArea" name="scrollArea">
-               <property name="widgetResizable">
+    <class>ViewRootClass</class>
+    <widget class="QMainWindow" name="ViewRootClass">
+        <property name="geometry">
+            <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>1228</width>
+                <height>818</height>
+            </rect>
+        </property>
+        <property name="windowTitle">
+            <string>ViewRoot</string>
+        </property>
+        <property name="layoutDirection">
+            <enum>Qt::LeftToRight</enum>
+        </property>
+        <widget class="QWidget" name="centralWidget">
+            <property name="enabled">
                 <bool>true</bool>
-               </property>
-               <widget class="QWidget" name="scrollAreaWidgetContents">
-                <property name="geometry">
-                 <rect>
-                  <x>0</x>
-                  <y>0</y>
-                  <width>192</width>
-                  <height>666</height>
-                 </rect>
+            </property>
+            <property name="sizePolicy">
+                <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                </sizepolicy>
+            </property>
+            <property name="contextMenuPolicy">
+                <enum>Qt::DefaultContextMenu</enum>
+            </property>
+            <layout class="QHBoxLayout" name="horizontalLayout_2">
+                <property name="leftMargin">
+                    <number>9</number>
                 </property>
-                <layout class="QVBoxLayout" name="verticalLayout_7">
-                 <property name="spacing">
-                  <number>10</number>
-                 </property>
-                 <property name="leftMargin">
-                  <number>9</number>
-                 </property>
-                 <item>
-                  <widget class="QLabel" name="label_18">
-                   <property name="font">
-                    <font>
-                     <pointsize>11</pointsize>
-                    </font>
-                   </property>
-                   <property name="text">
-                    <string>Algo1</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QWidget" name="widget" native="true">
-                   <layout class="QVBoxLayout" name="verticalLayout_9">
-                    <property name="spacing">
-                     <number>5</number>
-                    </property>
-                    <property name="leftMargin">
-                     <number>0</number>
-                    </property>
-                    <property name="topMargin">
-                     <number>0</number>
-                    </property>
-                    <property name="rightMargin">
-                     <number>0</number>
-                    </property>
-                    <property name="bottomMargin">
-                     <number>0</number>
-                    </property>
-                    <item>
-                     <widget class="QLabel" name="label_2">
-                      <property name="text">
-                       <string>TextLabel</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item>
-                     <widget class="QComboBox" name="comboBox">
-                      <item>
-                       <property name="text">
-                        <string>5000x5000</string>
-                       </property>
-                      </item>
-                      <item>
-                       <property name="text">
-                        <string>10000x10000</string>
-                       </property>
-                      </item>
-                     </widget>
-                    </item>
-                   </layout>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QLabel" name="label_5">
-                   <property name="text">
-                    <string>TextLabel</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QLabel" name="label_6">
-                   <property name="text">
-                    <string>TextLabel</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QLabel" name="label_7">
-                   <property name="text">
-                    <string>TextLabel</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QLabel" name="label_8">
-                   <property name="text">
-                    <string>TextLabel</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QLabel" name="label_9">
-                   <property name="text">
-                    <string>TextLabel</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QLabel" name="label_10">
-                   <property name="text">
-                    <string>TextLabel</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QLabel" name="label_11">
-                   <property name="text">
-                    <string>TextLabel</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QLabel" name="label_12">
-                   <property name="text">
-                    <string>TextLabel</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QLabel" name="label_13">
-                   <property name="text">
-                    <string>TextLabel</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QLabel" name="label_14">
-                   <property name="text">
-                    <string>TextLabel</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QLabel" name="label_15">
-                   <property name="text">
-                    <string>TextLabel</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QLabel" name="label_16">
-                   <property name="text">
-                    <string>TextLabel</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QLabel" name="label_17">
-                   <property name="text">
-                    <string>TextLabel</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <spacer name="verticalSpacer">
-                   <property name="orientation">
-                    <enum>Qt::Vertical</enum>
-                   </property>
-                   <property name="sizeHint" stdset="0">
-                    <size>
-                     <width>20</width>
-                     <height>40</height>
-                    </size>
-                   </property>
-                  </spacer>
-                 </item>
-                </layout>
-               </widget>
-              </widget>
-             </item>
+                <property name="bottomMargin">
+                    <number>4</number>
+                </property>
+                <item>
+                    <layout class="QHBoxLayout" name="horizontalLayout">
+                        <property name="spacing">
+                            <number>20</number>
+                        </property>
+                        <item>
+                            <widget class="QFrame" name="frame">
+                                <layout class="QVBoxLayout" name="verticalLayout">
+                                    <property name="leftMargin">
+                                        <number>0</number>
+                                    </property>
+                                    <property name="topMargin">
+                                        <number>0</number>
+                                    </property>
+                                    <property name="rightMargin">
+                                        <number>0</number>
+                                    </property>
+                                    <property name="bottomMargin">
+                                        <number>0</number>
+                                    </property>
+                                    <item>
+                                        <widget class="QTabWidget" name="tabWidget">
+                                            <property name="enabled">
+                                                <bool>true</bool>
+                                            </property>
+                                            <property name="sizePolicy">
+                                                <sizepolicy hsizetype="Fixed" vsizetype="MinimumExpanding">
+                                                    <horstretch>0</horstretch>
+                                                    <verstretch>0</verstretch>
+                                                </sizepolicy>
+                                            </property>
+                                            <property name="minimumSize">
+                                                <size>
+                                                    <width>200</width>
+                                                    <height>0</height>
+                                                </size>
+                                            </property>
+                                            <property name="autoFillBackground">
+                                                <bool>true</bool>
+                                            </property>
+                                            <property name="currentIndex">
+                                                <number>0</number>
+                                            </property>
+                                            <widget class="QWidget" name="tab">
+                                                <property name="contextMenuPolicy">
+                                                    <enum>Qt::DefaultContextMenu</enum>
+                                                </property>
+                                                <property name="autoFillBackground">
+                                                    <bool>false</bool>
+                                                </property>
+                                                <attribute name="title">
+                                                    <string>Tab 1</string>
+                                                </attribute>
+                                                <layout class="QVBoxLayout" name="verticalLayout_6">
+                                                    <property name="leftMargin">
+                                                        <number>0</number>
+                                                    </property>
+                                                    <property name="topMargin">
+                                                        <number>0</number>
+                                                    </property>
+                                                    <property name="rightMargin">
+                                                        <number>0</number>
+                                                    </property>
+                                                    <item>
+                                                        <widget class="QScrollArea" name="scrollArea">
+                                                            <property name="widgetResizable">
+                                                                <bool>true</bool>
+                                                            </property>
+                                                            <widget class="QWidget" name="scrollAreaWidgetContents">
+                                                                <property name="geometry">
+                                                                    <rect>
+                                                                        <x>0</x>
+                                                                        <y>0</y>
+                                                                        <width>192</width>
+                                                                        <height>666</height>
+                                                                    </rect>
+                                                                </property>
+                                                                <layout class="QVBoxLayout" name="verticalLayout_7">
+                                                                    <property name="spacing">
+                                                                        <number>10</number>
+                                                                    </property>
+                                                                    <property name="leftMargin">
+                                                                        <number>9</number>
+                                                                    </property>
+                                                                    <item>
+                                                                        <widget class="QLabel" name="label_18">
+                                                                            <property name="font">
+                                                                                <font>
+                                                                                    <pointsize>11</pointsize>
+                                                                                </font>
+                                                                            </property>
+                                                                            <property name="text">
+                                                                                <string>Algo1</string>
+                                                                            </property>
+                                                                        </widget>
+                                                                    </item>
+                                                                    <item>
+                                                                        <widget class="QWidget" name="widget"
+                                                                                native="true">
+                                                                            <layout class="QVBoxLayout"
+                                                                                    name="verticalLayout_9">
+                                                                                <property name="spacing">
+                                                                                    <number>5</number>
+                                                                                </property>
+                                                                                <property name="leftMargin">
+                                                                                    <number>0</number>
+                                                                                </property>
+                                                                                <property name="topMargin">
+                                                                                    <number>0</number>
+                                                                                </property>
+                                                                                <property name="rightMargin">
+                                                                                    <number>0</number>
+                                                                                </property>
+                                                                                <property name="bottomMargin">
+                                                                                    <number>0</number>
+                                                                                </property>
+                                                                                <item>
+                                                                                    <widget class="QLabel"
+                                                                                            name="label_2">
+                                                                                        <property name="text">
+                                                                                            <string>TextLabel</string>
+                                                                                        </property>
+                                                                                    </widget>
+                                                                                </item>
+                                                                                <item>
+                                                                                    <widget class="QComboBox"
+                                                                                            name="comboBox">
+                                                                                        <item>
+                                                                                            <property name="text">
+                                                                                                <string>5000x5000
+                                                                                                </string>
+                                                                                            </property>
+                                                                                        </item>
+                                                                                        <item>
+                                                                                            <property name="text">
+                                                                                                <string>10000x10000
+                                                                                                </string>
+                                                                                            </property>
+                                                                                        </item>
+                                                                                    </widget>
+                                                                                </item>
+                                                                            </layout>
+                                                                        </widget>
+                                                                    </item>
+                                                                    <item>
+                                                                        <widget class="QLabel" name="label_5">
+                                                                            <property name="text">
+                                                                                <string>TextLabel</string>
+                                                                            </property>
+                                                                        </widget>
+                                                                    </item>
+                                                                    <item>
+                                                                        <widget class="QLabel" name="label_6">
+                                                                            <property name="text">
+                                                                                <string>TextLabel</string>
+                                                                            </property>
+                                                                        </widget>
+                                                                    </item>
+                                                                    <item>
+                                                                        <widget class="QLabel" name="label_7">
+                                                                            <property name="text">
+                                                                                <string>TextLabel</string>
+                                                                            </property>
+                                                                        </widget>
+                                                                    </item>
+                                                                    <item>
+                                                                        <widget class="QLabel" name="label_8">
+                                                                            <property name="text">
+                                                                                <string>TextLabel</string>
+                                                                            </property>
+                                                                        </widget>
+                                                                    </item>
+                                                                    <item>
+                                                                        <widget class="QLabel" name="label_9">
+                                                                            <property name="text">
+                                                                                <string>TextLabel</string>
+                                                                            </property>
+                                                                        </widget>
+                                                                    </item>
+                                                                    <item>
+                                                                        <widget class="QLabel" name="label_10">
+                                                                            <property name="text">
+                                                                                <string>TextLabel</string>
+                                                                            </property>
+                                                                        </widget>
+                                                                    </item>
+                                                                    <item>
+                                                                        <widget class="QLabel" name="label_11">
+                                                                            <property name="text">
+                                                                                <string>TextLabel</string>
+                                                                            </property>
+                                                                        </widget>
+                                                                    </item>
+                                                                    <item>
+                                                                        <widget class="QLabel" name="label_12">
+                                                                            <property name="text">
+                                                                                <string>TextLabel</string>
+                                                                            </property>
+                                                                        </widget>
+                                                                    </item>
+                                                                    <item>
+                                                                        <widget class="QLabel" name="label_13">
+                                                                            <property name="text">
+                                                                                <string>TextLabel</string>
+                                                                            </property>
+                                                                        </widget>
+                                                                    </item>
+                                                                    <item>
+                                                                        <widget class="QLabel" name="label_14">
+                                                                            <property name="text">
+                                                                                <string>TextLabel</string>
+                                                                            </property>
+                                                                        </widget>
+                                                                    </item>
+                                                                    <item>
+                                                                        <widget class="QLabel" name="label_15">
+                                                                            <property name="text">
+                                                                                <string>TextLabel</string>
+                                                                            </property>
+                                                                        </widget>
+                                                                    </item>
+                                                                    <item>
+                                                                        <widget class="QLabel" name="label_16">
+                                                                            <property name="text">
+                                                                                <string>TextLabel</string>
+                                                                            </property>
+                                                                        </widget>
+                                                                    </item>
+                                                                    <item>
+                                                                        <widget class="QLabel" name="label_17">
+                                                                            <property name="text">
+                                                                                <string>TextLabel</string>
+                                                                            </property>
+                                                                        </widget>
+                                                                    </item>
+                                                                    <item>
+                                                                        <spacer name="verticalSpacer">
+                                                                            <property name="orientation">
+                                                                                <enum>Qt::Vertical</enum>
+                                                                            </property>
+                                                                            <property name="sizeHint" stdset="0">
+                                                                                <size>
+                                                                                    <width>20</width>
+                                                                                    <height>40</height>
+                                                                                </size>
+                                                                            </property>
+                                                                        </spacer>
+                                                                    </item>
+                                                                </layout>
+                                                            </widget>
+                                                        </widget>
+                                                    </item>
+                                                </layout>
+                                            </widget>
+                                            <widget class="QWidget" name="tab_2">
+                                                <attribute name="title">
+                                                    <string>Tab 2</string>
+                                                </attribute>
+                                            </widget>
+                                        </widget>
+                                    </item>
+                                    <item>
+                                        <widget class="QFrame" name="frame">
+                                            <property name="autoFillBackground">
+                                                <bool>true</bool>
+                                            </property>
+                                            <property name="frameShape">
+                                                <enum>QFrame::StyledPanel</enum>
+                                            </property>
+                                            <property name="frameShadow">
+                                                <enum>QFrame::Plain</enum>
+                                            </property>
+                                            <layout class="QVBoxLayout" name="verticalLayout_4">
+                                                <property name="sizeConstraint">
+                                                    <enum>QLayout::SetDefaultConstraint</enum>
+                                                </property>
+                                                <property name="leftMargin">
+                                                    <number>5</number>
+                                                </property>
+                                                <property name="topMargin">
+                                                    <number>5</number>
+                                                </property>
+                                                <property name="rightMargin">
+                                                    <number>5</number>
+                                                </property>
+                                                <property name="bottomMargin">
+                                                    <number>5</number>
+                                                </property>
+                                                <item>
+                                                    <widget class="QPushButton" name="pushButton">
+                                                        <property name="sizePolicy">
+                                                            <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                                                                <horstretch>0</horstretch>
+                                                                <verstretch>0</verstretch>
+                                                            </sizepolicy>
+                                                        </property>
+                                                        <property name="text">
+                                                            <string>G茅n茅rate</string>
+                                                        </property>
+                                                    </widget>
+                                                </item>
+                                            </layout>
+                                        </widget>
+                                    </item>
+                                </layout>
+                            </widget>
+                        </item>
+                        <item>
+                            <widget class="QFrame" name="frame">
+                                <layout class="QVBoxLayout" name="verticalLayout_2">
+                                    <property name="leftMargin">
+                                        <number>0</number>
+                                    </property>
+                                    <property name="topMargin">
+                                        <number>0</number>
+                                    </property>
+                                    <property name="rightMargin">
+                                        <number>0</number>
+                                    </property>
+                                    <property name="bottomMargin">
+                                        <number>0</number>
+                                    </property>
+                                    <item>
+                                        <widget class="QGraphicsView" name="graphicsView"/>
+                                    </item>
+                                    <item>
+                                        <widget class="QFrame" name="frame_2">
+                                            <property name="autoFillBackground">
+                                                <bool>true</bool>
+                                            </property>
+                                            <property name="frameShape">
+                                                <enum>QFrame::StyledPanel</enum>
+                                            </property>
+                                            <property name="frameShadow">
+                                                <enum>QFrame::Plain</enum>
+                                            </property>
+                                            <layout class="QVBoxLayout" name="verticalLayout_5">
+                                                <property name="spacing">
+                                                    <number>1</number>
+                                                </property>
+                                                <property name="leftMargin">
+                                                    <number>5</number>
+                                                </property>
+                                                <property name="topMargin">
+                                                    <number>5</number>
+                                                </property>
+                                                <property name="rightMargin">
+                                                    <number>5</number>
+                                                </property>
+                                                <property name="bottomMargin">
+                                                    <number>5</number>
+                                                </property>
+                                                <item>
+                                                    <widget class="QProgressBar" name="progressBar">
+                                                        <property name="sizePolicy">
+                                                            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                                                                <horstretch>0</horstretch>
+                                                                <verstretch>0</verstretch>
+                                                            </sizepolicy>
+                                                        </property>
+                                                        <property name="font">
+                                                            <font>
+                                                                <pointsize>9</pointsize>
+                                                            </font>
+                                                        </property>
+                                                        <property name="value">
+                                                            <number>24</number>
+                                                        </property>
+                                                    </widget>
+                                                </item>
+                                                <item>
+                                                    <widget class="QLabel" name="label">
+                                                        <property name="sizePolicy">
+                                                            <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+                                                                <horstretch>0</horstretch>
+                                                                <verstretch>0</verstretch>
+                                                            </sizepolicy>
+                                                        </property>
+                                                        <property name="text">
+                                                            <string>Chargement ..</string>
+                                                        </property>
+                                                    </widget>
+                                                </item>
+                                            </layout>
+                                        </widget>
+                                    </item>
+                                </layout>
+                            </widget>
+                        </item>
+                    </layout>
+                </item>
             </layout>
-           </widget>
-           <widget class="QWidget" name="tab_2">
-            <attribute name="title">
-             <string>Tab 2</string>
+        </widget>
+        <widget class="QMenuBar" name="menuBar">
+            <property name="geometry">
+                <rect>
+                    <x>0</x>
+                    <y>0</y>
+                    <width>1228</width>
+                    <height>22</height>
+                </rect>
+            </property>
+            <widget class="QMenu" name="menuFile">
+                <property name="title">
+                    <string>Fichier</string>
+                </property>
+                <property name="toolTipsVisible">
+                    <bool>false</bool>
+                </property>
+                <addaction name="actionSauvegarder"/>
+                <addaction name="actionCharger"/>
+                <addaction name="actionQuiter"/>
+            </widget>
+            <widget class="QMenu" name="menuA_propos">
+                <property name="tearOffEnabled">
+                    <bool>false</bool>
+                </property>
+                <property name="title">
+                    <string>A propos</string>
+                </property>
+                <property name="separatorsCollapsible">
+                    <bool>false</bool>
+                </property>
+                <property name="toolTipsVisible">
+                    <bool>false</bool>
+                </property>
+                <addaction name="actionVoir"/>
+            </widget>
+            <addaction name="menuFile"/>
+            <addaction name="menuA_propos"/>
+        </widget>
+        <widget class="QToolBar" name="mainToolBar">
+            <attribute name="toolBarArea">
+                <enum>TopToolBarArea</enum>
             </attribute>
-           </widget>
-          </widget>
-         </item>
-         <item>
-          <widget class="QFrame" name="frame">
-           <property name="autoFillBackground">
-            <bool>true</bool>
-           </property>
-           <property name="frameShape">
-            <enum>QFrame::StyledPanel</enum>
-           </property>
-           <property name="frameShadow">
-            <enum>QFrame::Plain</enum>
-           </property>
-           <layout class="QVBoxLayout" name="verticalLayout_4">
-            <property name="sizeConstraint">
-             <enum>QLayout::SetDefaultConstraint</enum>
+            <attribute name="toolBarBreak">
+                <bool>false</bool>
+            </attribute>
+        </widget>
+        <widget class="QStatusBar" name="statusBar"/>
+        <action name="actionSauvegarder">
+            <property name="text">
+                <string>Sauvegarder</string>
             </property>
-            <property name="leftMargin">
-             <number>5</number>
+            <property name="iconVisibleInMenu">
+                <bool>true</bool>
             </property>
-            <property name="topMargin">
-             <number>5</number>
+        </action>
+        <action name="actionCharger">
+            <property name="checkable">
+                <bool>false</bool>
             </property>
-            <property name="rightMargin">
-             <number>5</number>
+            <property name="text">
+                <string>Charger</string>
             </property>
-            <property name="bottomMargin">
-             <number>5</number>
+            <property name="iconVisibleInMenu">
+                <bool>true</bool>
             </property>
-            <item>
-             <widget class="QPushButton" name="pushButton">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="text">
-               <string>G茅n茅rate</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-      </item>
-      <item>
-       <widget class="QFrame" name="frame">
-        <layout class="QVBoxLayout" name="verticalLayout_2">
-         <property name="leftMargin">
-          <number>0</number>
-         </property>
-         <property name="topMargin">
-          <number>0</number>
-         </property>
-         <property name="rightMargin">
-          <number>0</number>
-         </property>
-         <property name="bottomMargin">
-          <number>0</number>
-         </property>
-         <item>
-          <widget class="QGraphicsView" name="graphicsView"/>
-         </item>
-         <item>
-          <widget class="QFrame" name="frame_2">
-           <property name="autoFillBackground">
-            <bool>true</bool>
-           </property>
-           <property name="frameShape">
-            <enum>QFrame::StyledPanel</enum>
-           </property>
-           <property name="frameShadow">
-            <enum>QFrame::Plain</enum>
-           </property>
-           <layout class="QVBoxLayout" name="verticalLayout_5">
-            <property name="spacing">
-             <number>1</number>
+        </action>
+        <action name="actionQuiter">
+            <property name="text">
+                <string>Quiter</string>
             </property>
-            <property name="leftMargin">
-             <number>5</number>
+            <property name="iconVisibleInMenu">
+                <bool>true</bool>
             </property>
-            <property name="topMargin">
-             <number>5</number>
+        </action>
+        <action name="actionVoir">
+            <property name="text">
+                <string>Voir</string>
             </property>
-            <property name="rightMargin">
-             <number>5</number>
-            </property>
-            <property name="bottomMargin">
-             <number>5</number>
-            </property>
-            <item>
-             <widget class="QProgressBar" name="progressBar">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="font">
-               <font>
-                <pointsize>9</pointsize>
-               </font>
-              </property>
-              <property name="value">
-               <number>24</number>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLabel" name="label">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="text">
-               <string>Chargement ..</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-      </item>
-     </layout>
-    </item>
-   </layout>
-  </widget>
-  <widget class="QMenuBar" name="menuBar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>1228</width>
-     <height>22</height>
-    </rect>
-   </property>
-   <widget class="QMenu" name="menuFile">
-    <property name="title">
-     <string>Fichier</string>
-    </property>
-    <property name="toolTipsVisible">
-     <bool>false</bool>
-    </property>
-    <addaction name="actionSauvegarder"/>
-    <addaction name="actionCharger"/>
-    <addaction name="actionQuiter"/>
-   </widget>
-   <widget class="QMenu" name="menuA_propos">
-    <property name="tearOffEnabled">
-     <bool>false</bool>
-    </property>
-    <property name="title">
-     <string>A propos</string>
-    </property>
-    <property name="separatorsCollapsible">
-     <bool>false</bool>
-    </property>
-    <property name="toolTipsVisible">
-     <bool>false</bool>
-    </property>
-    <addaction name="actionVoir"/>
-   </widget>
-   <addaction name="menuFile"/>
-   <addaction name="menuA_propos"/>
-  </widget>
-  <widget class="QToolBar" name="mainToolBar">
-   <attribute name="toolBarArea">
-    <enum>TopToolBarArea</enum>
-   </attribute>
-   <attribute name="toolBarBreak">
-    <bool>false</bool>
-   </attribute>
-  </widget>
-  <widget class="QStatusBar" name="statusBar"/>
-  <action name="actionSauvegarder">
-   <property name="text">
-    <string>Sauvegarder</string>
-   </property>
-   <property name="iconVisibleInMenu">
-    <bool>true</bool>
-   </property>
-  </action>
-  <action name="actionCharger">
-   <property name="checkable">
-    <bool>false</bool>
-   </property>
-   <property name="text">
-    <string>Charger</string>
-   </property>
-   <property name="iconVisibleInMenu">
-    <bool>true</bool>
-   </property>
-  </action>
-  <action name="actionQuiter">
-   <property name="text">
-    <string>Quiter</string>
-   </property>
-   <property name="iconVisibleInMenu">
-    <bool>true</bool>
-   </property>
-  </action>
-  <action name="actionVoir">
-   <property name="text">
-    <string>Voir</string>
-   </property>
-  </action>
- </widget>
- <layoutdefault spacing="6" margin="11"/>
- <resources>
-  <include location="ViewRoot.qrc"/>
- </resources>
- <connections>
-  <connection>
-   <sender>pushButton</sender>
-   <signal>clicked()</signal>
-   <receiver>ViewRootClass</receiver>
-   <slot>slot1()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>188</x>
-     <y>776</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>220</x>
-     <y>677</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
- <slots>
-  <slot>slot1()</slot>
- </slots>
+        </action>
+    </widget>
+    <layoutdefault spacing="6" margin="11"/>
+    <resources>
+        <include location="ViewRoot.qrc"/>
+    </resources>
+    <connections>
+        <connection>
+            <sender>pushButton</sender>
+            <signal>clicked()</signal>
+            <receiver>ViewRootClass</receiver>
+            <slot>slot1()</slot>
+            <hints>
+                <hint type="sourcelabel">
+                    <x>188</x>
+                    <y>776</y>
+                </hint>
+                <hint type="destinationlabel">
+                    <x>220</x>
+                    <y>677</y>
+                </hint>
+            </hints>
+        </connection>
+    </connections>
+    <slots>
+        <slot>slot1()</slot>
+    </slots>
 </ui>

@@ -1,25 +1,29 @@
 #pragma once
+
 #include "../Map.h"
 #include "../../5-controller/MapView.h"
 #include <memory>
 
-class Algo
-{
+class Algo {
 public:
-	Algo() = default;
-	Algo(const Algo& other) = delete;
-	Algo(Algo&& other) noexcept = delete;
-	Algo& operator=(const Algo& other) = delete;
-	Algo& operator=(Algo&& other) noexcept = delete;
+    Algo() = default;
 
-	virtual std::unique_ptr<Map> run() = 0;
+    Algo(const Algo &other) = delete;
 
-	virtual ~Algo() = default;
+    Algo(Algo &&other) noexcept = delete;
 
-	void setOutput(const std::shared_ptr<MapView>& mapView)
-	{
-		output = mapView;
-	}
+    Algo &operator=(const Algo &other) = delete;
+
+    Algo &operator=(Algo &&other) noexcept = delete;
+
+    virtual std::unique_ptr<Map> run() = 0;
+
+    virtual ~Algo() = default;
+
+    void setOutput(const std::shared_ptr<MapView> &mapView) {
+        output = mapView;
+    }
+
 protected:
-	std::shared_ptr<MapView> output{ nullptr };
+    std::shared_ptr<MapView> output{nullptr};
 };

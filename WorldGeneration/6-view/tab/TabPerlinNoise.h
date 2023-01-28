@@ -1,4 +1,5 @@
 #pragma once
+
 #include <QComboBox>
 #include <QLabel>
 #include <QMainWindow>
@@ -9,37 +10,39 @@
 #include "input/InputDouble.h"
 #include "input/InputInteger.h"
 
-class TabPerlinNoise : public QWidget
-{
+class TabPerlinNoise : public QWidget {
 public:
-	TabPerlinNoise() = default;
-	TabPerlinNoise(const TabPerlinNoise& other) = delete;
-	TabPerlinNoise(TabPerlinNoise&& other) noexcept = delete;
-	TabPerlinNoise& operator=(const TabPerlinNoise& other) = delete;
-	TabPerlinNoise& operator=(TabPerlinNoise&& other) noexcept = delete;
+    TabPerlinNoise() = default;
 
-	QVBoxLayout* verticalLayout_6;
-	QScrollArea* scrollArea;
-	QWidget* scrollAreaWidgetContents;
-	QVBoxLayout* mainLayout;
-	QLabel* tile;
+    TabPerlinNoise(const TabPerlinNoise &other) = delete;
 
-	QWidget* sizeContainer;
-	QVBoxLayout* sizeContainerLayout;
-	QLabel* sizeLabel;
-	QComboBox* sizeComboBox;
+    TabPerlinNoise(TabPerlinNoise &&other) noexcept = delete;
 
-	InputInteger* cellSizeInput;
-	InputInteger* octavesInput;
-	InputDouble* persistenceInput;
-	InputInteger* seedInput;
+    TabPerlinNoise &operator=(const TabPerlinNoise &other) = delete;
 
-	QSpacerItem* verticalSpacer;
+    TabPerlinNoise &operator=(TabPerlinNoise &&other) noexcept = delete;
+
+    QVBoxLayout *verticalLayout_6;
+    QScrollArea *scrollArea;
+    QWidget *scrollAreaWidgetContents;
+    QVBoxLayout *mainLayout;
+    QLabel *tile;
+
+    QWidget *sizeContainer;
+    QVBoxLayout *sizeContainerLayout;
+    QLabel *sizeLabel;
+    QComboBox *sizeComboBox;
+
+    InputInteger *cellSizeInput;
+    InputInteger *octavesInput;
+    InputDouble *persistenceInput;
+    InputInteger *seedInput;
+
+    QSpacerItem *verticalSpacer;
 
 
+    void setupUi(QMainWindow *ViewRootClass);
 
-	void setupUi(QMainWindow* ViewRootClass);
-
-	void retranslateUi(QMainWindow* ViewRootClass);
+    void retranslateUi();
 };
 

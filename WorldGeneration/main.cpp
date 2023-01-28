@@ -4,17 +4,16 @@
 #include "5-controller/Controller.h"
 #include <QtWidgets/QApplication>
 
-int main(int argc, char* argv[])
-{
-	SetConsoleOutputCP(65001);//Console en utf-8
-	Localization::setLanguage("fr");
-	QApplication a(argc, argv);
-	ViewRoot w;
-	w.show();
+int main(int argc, char *argv[]) {
+    SetConsoleOutputCP(65001);//Console en utf-8
+    Localization::setLanguage("fr");
+    QApplication a(argc, argv);
+    ViewRoot w;
+    w.show();
 
-	const auto map = w.getMainMapView();
+    const auto map = w.getMainMapView();
 
-	Controller::setUp(map);
+    Controller::setUp(map);
 
-	return a.exec();
+    return a.exec();
 }

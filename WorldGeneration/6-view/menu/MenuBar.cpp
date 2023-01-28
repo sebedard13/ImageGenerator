@@ -5,7 +5,8 @@
 #include "../../5-controller/Controller.h"
 #include "../../5-controller/commands/SaveImage.h"
 
-MenuBar::MenuBar(QWidget *parent) : QMenuBar(parent) {
+MenuBar::MenuBar(QWidget *parent)
+        : QMenuBar(parent) {
     this->setObjectName("menuBar");
 }
 
@@ -19,7 +20,6 @@ void MenuBar::setupUi(QMainWindow *ViewRootClass) {
     actionSauvegarder->setObjectName("actionSauvegarder");
     actionSauvegarder->setIconVisibleInMenu(true);
     menuFile->addAction(actionSauvegarder);
-
 
 
     actionCharger = new QAction(ViewRootClass);
@@ -47,10 +47,10 @@ void MenuBar::setupUi(QMainWindow *ViewRootClass) {
     QObject::connect(actionSauvegarder, &QAction::triggered, this, &MenuBar::clickSave);
 
 
-    retranslateUi(ViewRootClass);
+    retranslateUi();
 }
 
-void MenuBar::retranslateUi(QMainWindow *ViewRootClass) {
+void MenuBar::retranslateUi() {
     actionSauvegarder->setText(ViewsUtils::local("btnSave"));
     actionCharger->setText(ViewsUtils::local("btnLoad"));
     actionQuiter->setText(ViewsUtils::local("btnQuit"));
@@ -64,5 +64,5 @@ void MenuBar::clickSave() {
                                                     "/",
                                                     "Image (*.png)");
 
-   Controller::execute(std::make_unique<SaveImage>(fileName.toStdString()));
+    Controller::execute(std::make_unique<SaveImage>(fileName.toStdString()));
 }

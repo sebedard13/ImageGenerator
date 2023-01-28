@@ -1,15 +1,16 @@
 #pragma once
+
 #include <qgraphicsview.h>
 #include <QWheelEvent>
 
-class GraphicView : public QGraphicsView
-{
+class GraphicView : public QGraphicsView {
 private:
-	unsigned int scaleNb = 2;
+    unsigned int scaleNb = 2;
 public:
-	GraphicView(QWidget* parent);
+    explicit GraphicView(QWidget *parent);
 
-	void wheelEvent(QWheelEvent* event) override;
-	void resetScale() { scaleNb = 2; };
+    void wheelEvent(QWheelEvent *event) override;
+
+    void resetScale() { scaleNb = 2; };
 };
 

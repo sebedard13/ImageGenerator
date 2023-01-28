@@ -1,4 +1,5 @@
 #pragma once
+
 #include <QFrame>
 #include <QGraphicsView>
 #include <QLabel>
@@ -8,36 +9,40 @@
 #include <QWheelEvent>
 #include "GraphicView.h"
 
-class MapScreen : public QFrame
-{
+class MapScreen : public QFrame {
 public:
-	MapScreen() = delete;
-	MapScreen(const MapScreen& other) = delete;
-	MapScreen(MapScreen&& other) noexcept = delete;
-	MapScreen& operator=(const MapScreen& other) = delete;
-	MapScreen& operator=(MapScreen&& other) noexcept = delete;
-	~MapScreen() = default;
+    MapScreen() = delete;
 
-	QVBoxLayout* verticalLayout_2;
-	GraphicView* graphicsView;
-	QFrame* frame_2;
-	QVBoxLayout* verticalLayout_5;
-	QProgressBar* progressBar;
-	QLabel* label;
-	std::string messageId{ "tipNothing" };
+    MapScreen(const MapScreen &other) = delete;
 
-	MapScreen(QWidget* parent) : QFrame(parent) {}
+    MapScreen(MapScreen &&other) noexcept = delete;
 
-	void setupUi(QMainWindow* ViewRootClass);
+    MapScreen &operator=(const MapScreen &other) = delete;
 
-	void setupMap();
+    MapScreen &operator=(MapScreen &&other) noexcept = delete;
 
-	void retranslateUi(QMainWindow* ViewRootClass);
+    ~MapScreen() = default;
 
-	void changeMessage(const std::string& key);
+    QVBoxLayout *verticalLayout_2;
+    GraphicView *graphicsView;
+    QFrame *frame_2;
+    QVBoxLayout *verticalLayout_5;
+    QProgressBar *progressBar;
+    QLabel *label;
+    std::string messageId{"tipNothing"};
 
-	void changePercent(const int& value); //0 to 100
+    MapScreen(QWidget *parent)
+            : QFrame(parent) {}
 
-	int getPercent();
+    void setupUi(QMainWindow *ViewRootClass);
+
+    void setupMap();
+
+    void retranslateUi();
+
+    void changeMessage(const std::string &key);
+
+    void changePercent(const int &value); //0 to 100
+
 };
 
