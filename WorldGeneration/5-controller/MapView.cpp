@@ -84,24 +84,33 @@ void MapView::setPercent(unsigned int percent)
 
 void MapView::saveImageAt(const std::filesystem::path& path)
 {
+    MapView* mapView = this;
     if(image.isNull()){
         setMessageId("saveRtnEmpty");
+        setTimeout(4000,[mapView](){
+            mapView->setMessageId("tipNothing");
+        });
     }else{
-        const bool result = image.save(QString::fromStdString(path.generic_string()), "PNG", 100);
-        if (result)
-        {
-            setMessageId("saveRtnGood");
-        }
-        else
-        {
-            setMessageId("saveRtnBad");
-        }
+        mapView->setMessageId("saveRtnCompression");
+        setTimeout(0,[mapView, path]()->void {
+            const bool result = mapView->image.save(QString::fromStdString(path.generic_string()), "PNG", -1);
+            if (result)
+            {
+                mapView->setMessageId("saveRtnGood");
+            }
+            else
+            {
+                mapView->setMessageId("saveRtnBad");
+            }
+            setTimeout(4000,[mapView](){
+                mapView->setMessageId("tipNothing");
+            });
+        });
+
     }
 
-    MapView* mapView = this;
-    setTimeout(4000,[mapView](){
-        mapView->setMessageId("tipNothing");
-    });
+
+
 }
 
 MapView::~MapView()
