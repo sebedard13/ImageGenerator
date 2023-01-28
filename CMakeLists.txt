@@ -15,31 +15,32 @@ find_package(Qt6 COMPONENTS
         REQUIRED)
 
 file(GLOB_RECURSE src-1-foundation
-        "WorldGeneration/1-foundation/*.h"
-        "WorldGeneration/1-foundation/*.cpp"
+        "src/1-foundation/*.h"
+        "src/1-foundation/*.cpp"
         )
 file(GLOB_RECURSE src-2-services
-        "WorldGeneration/2-services/*.h"
-        "WorldGeneration/2-services/*.cpp"
+        "src/2-services/*.h"
+        "src/2-services/*.cpp"
         )
 file(GLOB_RECURSE src-3-infrastructure
-        "WorldGeneration/3-infrastructure/*.h"
-        "WorldGeneration/3-infrastructure/*.cpp"
+        "src/3-infrastructure/*.h"
+        "src/3-infrastructure/*.cpp"
         )
 file(GLOB_RECURSE src-4-domain
-        "WorldGeneration/4-domain/*.h"
-        "WorldGeneration/4-domain/*.cpp"
+        "src/4-domain/*.h"
+        "src/4-domain/*.cpp"
         )
 file(GLOB_RECURSE src-5-controller
-        "WorldGeneration/5-controller/*.h"
-        "WorldGeneration/5-controller/*.cpp"
+        "src/5-controller/*.h"
+        "src/5-controller/*.cpp"
         )
 file(GLOB_RECURSE src-6-view
-        "WorldGeneration/6-view/*.h"
-        "WorldGeneration/6-view/*.cpp"
+        "src/6-view/*.h"
+        "src/6-view/*.cpp"
         )
 
-add_executable(WorldGeneration WorldGeneration/main.cpp
+add_executable(WorldGeneration
+        src/main.cpp
         ${src-1-foundation}
         ${src-2-services}
         ${src-3-infrastructure}
