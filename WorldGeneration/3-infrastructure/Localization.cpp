@@ -8,7 +8,13 @@ Localization::Localization(const std::string& language) :language(language)
 	{
 		this->language = "fr";
 		textTable.insert(std::pair("fr-mainWindowName", "Application Génération de Monde"));
+
 		textTable.insert(std::pair("fr-btnSave", "Sauvegarder"));
+		textTable.insert(std::pair("fr-saveRtnEmpty", "Impossible de sauvegarder l'image, l'image est vide"));
+		textTable.insert(std::pair("fr-saveRtnGood", "Image sauvegardée avec succès"));
+		textTable.insert(std::pair("fr-saveRtnBad", "Impossible de sauvegarder l'image"));
+
+
 		textTable.insert(std::pair("fr-btnLoad", "Charger"));
 		textTable.insert(std::pair("fr-btnQuit", "Quitter"));
 		textTable.insert(std::pair("fr-btnSeeAbout", "Voir"));

@@ -1,5 +1,4 @@
 #include "MapView.h"
-#include "../6-view/ViewUtils.h"
 
 #include <iostream>
 #include <QGraphicsPixmapItem>
@@ -7,6 +6,10 @@
 
 #include "../6-view/ColorInterpolate.h"
 #include "../2-services/ThreadController.h"
+#include "../2-services/SetTimeout.h"
+
+#include <thread>
+#include <chrono>
 
 MapView::MapView(MapScreen* map_screen) :mapScreen(map_screen)
 {
@@ -58,7 +61,7 @@ void MapView::loadMap(std::unique_ptr<Map> map)
 	setMessageId("tipNothing");
 }
 
-void MapView::setMessageId(std::string key)
+void MapView::setMessageId(const std::string& key)
 {
 	mapScreen->changeMessage(key);
 }
@@ -79,17 +82,26 @@ void MapView::setPercent(unsigned int percent)
 	}
 }
 
-void MapView::saveImageAt(const std::filesystem::path& path) const
+void MapView::saveImageAt(const std::filesystem::path& path)
 {
-	const bool result = image.save(QString::fromStdString(path.generic_string()), "PNG", 100);
-	if (result)
-	{
-		std::cout << "Image saved successfully at " << path << std::endl;
-	}
-	else
-	{
-		std::cout << "Unable to save image at " << path << std::endl;
-	}
+    if(image.isNull()){
+        setMessageId("saveRtnEmpty");
+    }else{
+        const bool result = image.save(QString::fromStdString(path.generic_string()), "PNG", 100);
+        if (result)
+        {
+            setMessageId("saveRtnGood");
+        }
+        else
+        {
+            setMessageId("saveRtnBad");
+        }
+    }
+
+    MapView* mapView = this;
+    setTimeout(4000,[mapView](){
+        mapView->setMessageId("tipNothing");
+    });
 }
 
 MapView::~MapView()

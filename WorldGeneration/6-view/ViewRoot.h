@@ -12,16 +12,14 @@
 #include "../5-controller/MapView.h"
 #include "tab/TabAlgo.h"
 #include "tab/TabPerlinNoise.h"
+#include "menu/MenuBar.h"
 
 
 class ViewRootClass
 {
 
 public:
-	QAction* actionSauvegarder;
-	QAction* actionCharger;
-	QAction* actionQuiter;
-	QAction* actionVoir;
+
 	QWidget* centralWidget;
 	QHBoxLayout* horizontalLayout_2;
 	QHBoxLayout* horizontalLayout;
@@ -36,9 +34,8 @@ public:
 	MapScreen* mainMapScreen;
 	std::shared_ptr<MapView> mapView;
 
-	QMenuBar* menuBar;
-	QMenu* menusfas;
-	QMenu* menuA_propos;
+	MenuBar* menuBar;
+
 	QStatusBar* statusBar;
 
 	std::vector<std::unique_ptr<TabAlgo>> tabs{};

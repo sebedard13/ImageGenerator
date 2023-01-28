@@ -432,7 +432,7 @@
      <height>22</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menusfas">
+   <widget class="QMenu" name="menuFile">
     <property name="title">
      <string>Fichier</string>
     </property>
@@ -458,7 +458,7 @@
     </property>
     <addaction name="actionVoir"/>
    </widget>
-   <addaction name="menusfas"/>
+   <addaction name="menuFile"/>
    <addaction name="menuA_propos"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
