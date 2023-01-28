@@ -13,6 +13,7 @@ Localization::Localization(const std::string& language) :language(language)
 		textTable.insert(std::pair("fr-saveRtnEmpty", "Impossible de sauvegarder l'image, l'image est vide"));
 		textTable.insert(std::pair("fr-saveRtnGood", "Image sauvegardée avec succès"));
 		textTable.insert(std::pair("fr-saveRtnBad", "Impossible de sauvegarder l'image"));
+		textTable.insert(std::pair("fr-saveRtnCompression", "Compression de l'image"));
 
 
 		textTable.insert(std::pair("fr-btnLoad", "Charger"));
