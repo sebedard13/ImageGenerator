@@ -18,8 +18,8 @@ public:
 	MapView(MapScreen* map_screen);
 
 	void loadMap(std::unique_ptr<Map> map);
-	void setMessageId(std::string key);
+	void setMessageId(const std::string& key);
 	void setPercent(unsigned int percent);
-	void saveImageAt(const std::filesystem::path& path) const;
+	void saveImageAt(const std::filesystem::path& path);
 	~MapView();
 };

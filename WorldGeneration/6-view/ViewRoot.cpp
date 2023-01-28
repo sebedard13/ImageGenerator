@@ -11,18 +11,6 @@ void ViewRootClass::setupUi(QMainWindow* ViewRootClass)
 		ViewRootClass->setObjectName("ViewRootClass");
 	ViewRootClass->resize(1228, 818);
 	ViewRootClass->setLayoutDirection(Qt::LeftToRight);
-	actionSauvegarder = new QAction(ViewRootClass);
-	actionSauvegarder->setObjectName("actionSauvegarder");
-	actionSauvegarder->setIconVisibleInMenu(true);
-	actionCharger = new QAction(ViewRootClass);
-	actionCharger->setObjectName("actionCharger");
-	actionCharger->setCheckable(false);
-	actionCharger->setIconVisibleInMenu(true);
-	actionQuiter = new QAction(ViewRootClass);
-	actionQuiter->setObjectName("actionQuiter");
-	actionQuiter->setIconVisibleInMenu(true);
-	actionVoir = new QAction(ViewRootClass);
-	actionVoir->setObjectName("actionVoir");
 	centralWidget = new QWidget(ViewRootClass);
 	centralWidget->setObjectName("centralWidget");
 	centralWidget->setEnabled(true);
@@ -102,37 +90,23 @@ void ViewRootClass::setupUi(QMainWindow* ViewRootClass)
 
 	mapView = std::make_shared<MapView>(mainMapScreen);
 
-
-
 	horizontalLayout->addWidget(mainMapScreen);
-
 
 	horizontalLayout_2->addLayout(horizontalLayout);
 
 	ViewRootClass->setCentralWidget(centralWidget);
-//	menuBar = new QMenuBar(ViewRootClass);
-//	menuBar->setObjectName("menuBar");
-//	menuBar->setGeometry(QRect(0, 0, 1228, 22));
-//	menusfas = new QMenu(menuBar);
-//	menusfas->setObjectName("menusfas");
-//	menusfas->setToolTipsVisible(false);
-//	menuA_propos = new QMenu(menuBar);
-//	menuA_propos->setObjectName("menuA_propos");
-//	menuA_propos->setTearOffEnabled(false);
-//	menuA_propos->setSeparatorsCollapsible(false);
-//	menuA_propos->setToolTipsVisible(false);
-	ViewRootClass->setMenuBar(menuBar);
 
-	statusBar = new QStatusBar(ViewRootClass);
-	statusBar->setObjectName("statusBar");
-	ViewRootClass->setStatusBar(statusBar);
+    ////MENU BAR
+    menuBar = new MenuBar(ViewRootClass);
+    menuBar->setupUi(ViewRootClass);
+    ViewRootClass->setMenuBar(menuBar);
 
-//	menuBar->addAction(menusfas->menuAction());
-//	menuBar->addAction(menuA_propos->menuAction());
-//	menusfas->addAction(actionSauvegarder);
-//	menusfas->addAction(actionCharger);
-//	menusfas->addAction(actionQuiter);
-//	menuA_propos->addAction(actionVoir);
+
+
+
+//	statusBar = new QStatusBar(ViewRootClass);
+//	statusBar->setObjectName("statusBar");
+//	ViewRootClass->setStatusBar(statusBar);
 
 	retranslateUi(ViewRootClass);
 	QObject::connect(btnGenerate, &QAbstractButton::released, dynamic_cast<const ViewRoot*>(ViewRootClass), &ViewRoot::clickGenerate);
@@ -146,18 +120,13 @@ void ViewRootClass::setupUi(QMainWindow* ViewRootClass)
 void ViewRootClass::retranslateUi(QMainWindow* ViewRootClass)
 {
 	ViewRootClass->setWindowTitle(ViewsUtils::local("mainWindowName"));
-	actionSauvegarder->setText(ViewsUtils::local("btnSave"));
-	actionCharger->setText(ViewsUtils::local("btnLoad"));
-	actionQuiter->setText(ViewsUtils::local("btnQuit"));
-	actionVoir->setText(ViewsUtils::local("btnSeeAbout"));
 
 	tabWidget->setTabText(tabWidget->indexOf(tab), ViewsUtils::local("algoPerlinNoiseName"));
 
 	tabWidget->setTabText(tabWidget->indexOf(tab_2), ViewsUtils::local("algo2Name"));
 	btnGenerate->setText(ViewsUtils::local("btnGenerateMap"));
 
-//	menusfas->setTitle(ViewsUtils::local("btnFile"));
-//	menuA_propos->setTitle(ViewsUtils::local("btnAbout"));
+
 
 	tab->retranslateUi(ViewRootClass);
 	mainMapScreen->retranslateUi(ViewRootClass);
