@@ -25,7 +25,7 @@ public:
 
     ~ThreadController();
 
-    const static int THREADS = 8;
+    static void setThreadNumber(unsigned nb);
 
     void runIteration(const unsigned min, const unsigned max, const std::function<void(unsigned i)> &func);
 
@@ -38,6 +38,7 @@ public:
 private:
     std::atomic<Counters> *counters = nullptr;
     MapView *output{nullptr};
+    static unsigned THREADS;
 
     void run(std::atomic<Counters> *counter, const unsigned min, const unsigned max,
              const std::function<void(unsigned i)> &func);
