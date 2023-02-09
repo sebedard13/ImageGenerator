@@ -18,7 +18,7 @@ public:
 
     ~ViewsUtils() = default;
 
-    static QString local(std::string key) {
+    static QString local(const std::string& key) {
         return QString::fromStdString(Localization::get(key));
     }
 

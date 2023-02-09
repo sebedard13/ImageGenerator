@@ -1,12 +1,13 @@
-#include <iostream>
 #include <thread>
 #include <QFileDialog>
 #include <QApplication>
+#include <QShortcut>
 #include "MenuBar.h"
 #include "../ViewUtils.h"
 #include "../../5-controller/Controller.h"
 #include "../../5-controller/commands/SaveImage.h"
 #include "../../2-services/ThreadController.h"
+#include "../../3-infrastructure/KeyBinding.h"
 
 MenuBar::MenuBar(QWidget *parent)
         : QMenuBar(parent) {
@@ -22,6 +23,10 @@ void MenuBar::setupUi(QMainWindow *ViewRootClass) {
     actionSauvegarder = new QAction(ViewRootClass);
     actionSauvegarder->setObjectName("actionSauvegarder");
     actionSauvegarder->setIconVisibleInMenu(true);
+    const std::string &s = KeyBinding::get("btnSave");
+    const QKeySequence key = QKeySequence(QString::fromStdString(s));
+    actionSauvegarder->setShortcut(key);
+
     menuFile->addAction(actionSauvegarder);
 
 
