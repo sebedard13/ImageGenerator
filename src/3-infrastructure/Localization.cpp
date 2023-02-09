@@ -21,6 +21,8 @@ Localization::Localization(const std::string &language)
         textTable.insert(std::pair("fr-btnGenerateMap", "Générer"));
         textTable.insert(std::pair("fr-btnFile", "Fichier"));
         textTable.insert(std::pair("fr-btnAbout", "À propos"));
+        textTable.insert(std::pair("fr-btnPerformance", "Performance"));
+        textTable.insert(std::pair("fr-btnThreadNumberTitle", "Nombre de thread"));
 
         textTable.insert(std::pair("fr-tipNothing", "En attente de l'utilisateur"));
         textTable.insert(std::pair("fr-tipLoading", "Chargement..."));

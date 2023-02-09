@@ -1,9 +1,8 @@
 ﻿#include "ViewRoot.h"
-
-#include <iostream>
-
+#include <QShortcut>
 #include "ViewUtils.h"
 #include "tab/GeneratePerlinNoise.h"
+#include "../3-infrastructure/KeyBinding.h"
 
 void ViewRootClass::setupUi(QMainWindow *ViewRootClass) {
     if (ViewRootClass->objectName().isEmpty())
@@ -68,6 +67,7 @@ void ViewRootClass::setupUi(QMainWindow *ViewRootClass) {
     verticalLayout_4->setObjectName("verticalLayout_4");
     verticalLayout_4->setSizeConstraint(QLayout::SetDefaultConstraint);
     verticalLayout_4->setContentsMargins(5, 5, 5, 5);
+
     btnGenerate = new QPushButton(frame1);
     btnGenerate->setObjectName("btnGenerate");
     QSizePolicy sizePolicy2(QSizePolicy::Minimum, QSizePolicy::Fixed);
@@ -75,6 +75,12 @@ void ViewRootClass::setupUi(QMainWindow *ViewRootClass) {
     sizePolicy2.setVerticalStretch(0);
     sizePolicy2.setHeightForWidth(btnGenerate->sizePolicy().hasHeightForWidth());
     btnGenerate->setSizePolicy(sizePolicy2);
+    const QKeySequence key = QKeySequence(QString::fromStdString(KeyBinding::get("btnGenerateMap")));
+    btnGenerate->setShortcut(key);
+    btnGenerate->setToolTip(key.toString());
+
+    auto *shortcut = new QShortcut(key, btnGenerate, SLOT(click()));
+    shortcut->setAutoRepeat(false);
 
     verticalLayout_4->addWidget(btnGenerate);
 
@@ -108,7 +114,7 @@ void ViewRootClass::setupUi(QMainWindow *ViewRootClass) {
 //	ViewRootClass->setStatusBar(statusBar);
 
     retranslateUi(ViewRootClass);
-    QObject::connect(btnGenerate, &QAbstractButton::released, dynamic_cast<const ViewRoot *>(ViewRootClass),
+    QObject::connect(btnGenerate, &QAbstractButton::clicked, dynamic_cast<const ViewRoot *>(ViewRootClass),
                      &ViewRoot::clickGenerate);
 
     tabWidget->setCurrentIndex(0);

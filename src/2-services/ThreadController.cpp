@@ -86,3 +86,9 @@ void ThreadController::run(std::atomic<Counters> *counter, const unsigned min, c
     }
     counter->store({max - min, true});
 }
+
+unsigned ThreadController::THREADS = std::thread::hardware_concurrency();
+
+void ThreadController::setThreadNumber(unsigned int nb) {
+    THREADS = nb;
+}

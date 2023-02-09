@@ -80,7 +80,7 @@ public:
 
 
         double step = static_cast<double> (range) / (colors.size() - 1);
-        for (auto i = 0; i < range; i++) {
+        for (auto i = 0; i < range+1; i++) {
             colorTable[i] = uniformColorCalcul(i + min, step, colors);
         }
     }
@@ -119,7 +119,7 @@ private:
     QRgb uniformColorCalcul(const int &value, double step, std::vector<QRgb> &colors) {
 
         //Include max
-        if (value == min + range) {
+        if (value >= min + range) {
             return colors[colors.size() - 1];
         }
 
