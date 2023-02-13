@@ -14,40 +14,10 @@ find_package(Qt6 COMPONENTS
         Widgets
         REQUIRED)
 
-file(GLOB_RECURSE src-1-foundation
-        "src/1-foundation/*.h"
-        "src/1-foundation/*.cpp"
-        )
-file(GLOB_RECURSE src-2-services
-        "src/2-services/*.h"
-        "src/2-services/*.cpp"
-        )
-file(GLOB_RECURSE src-3-infrastructure
-        "src/3-infrastructure/*.h"
-        "src/3-infrastructure/*.cpp"
-        )
-file(GLOB_RECURSE src-4-domain
-        "src/4-domain/*.h"
-        "src/4-domain/*.cpp"
-        )
-file(GLOB_RECURSE src-5-controller
-        "src/5-controller/*.h"
-        "src/5-controller/*.cpp"
-        )
-file(GLOB_RECURSE src-6-view
-        "src/6-view/*.h"
-        "src/6-view/*.cpp"
-        )
-
 add_executable(WorldGeneration
         src/main.cpp
-        ${src-1-foundation}
-        ${src-2-services}
-        ${src-3-infrastructure}
-        ${src-4-domain}
-        ${src-5-controller}
-        ${src-6-view}
-        )
+
+        src/4-domain/algos/RandomVoronoi.cpp src/4-domain/algos/Algo.h src/4-domain/algos/AlgoPerlinNoise.cpp src/4-domain/algos/AlgoPerlinNoise.h src/4-domain/algos/DistanceFromCenter.cpp src/4-domain/algos/DistanceFromCenter.h src/4-domain/perlin/PerlinNoise.cpp src/3-infrastructure/KeyBinding.cpp src/3-infrastructure/KeyBinding.h src/3-infrastructure/Localization.cpp src/2-services/SetTimeout.cpp src/2-services/SetTimeout.h src/2-services/ThreadController.cpp src/4-domain/Map.cpp src/5-controller/commands/DoAlgo.cpp src/5-controller/commands/DoAlgo.h src/5-controller/commands/SaveImage.cpp src/5-controller/commands/SaveImage.h src/5-controller/Controller.cpp src/5-controller/MapView.cpp src/6-view/GraphicView.cpp src/6-view/MapScreen.cpp src/6-view/ViewRoot.cpp src/6-view/ViewUtils.h src/6-view/tab/GeneratePerlinNoise.cpp src/6-view/tab/TabPerlinNoise.cpp src/6-view/tab/input/InputDouble.cpp src/6-view/tab/input/InputInteger.cpp src/6-view/menu/MenuBar.cpp src/4-domain/Coord.cpp src/4-domain/Coord.h)
 
 if(CMAKE_BUILD_TYPE STREQUAL "Release")
     set_property(TARGET WorldGeneration PROPERTY WIN32_EXECUTABLE true)

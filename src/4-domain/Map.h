@@ -2,6 +2,7 @@
 
 #include <functional>
 #include <cstdint>
+#include "Coord.h"
 
 class Map {
 public:
@@ -28,7 +29,7 @@ public:
             : width(w),
             height(h),
             size(h * w) {
-        array = new int[w * h];
+        array = new int[w * h]();
     }
 
     [[nodiscard]] std::pair<int, int> toCoordinate(const int &i) const;
@@ -36,6 +37,10 @@ public:
     ~Map();
 
     void set(const unsigned &i, const int &value);
+
+    void set(const Coord&i, const int &value);
+
+    [[nodiscard]] int get(const Coord&i) const;
 
     int *array;
 private:

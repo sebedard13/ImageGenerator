@@ -21,3 +21,11 @@ void Map::set(const unsigned &i, const int &value) {
         max = value;
     }
 }
+
+void Map::set(const Coord &c, const int &value) {
+    set(c.getY()*width+c.getX(), value);
+}
+
+int Map::get(const Coord &c) const {
+    return array[c.getY()*width+c.getX()];
+}

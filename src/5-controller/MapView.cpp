@@ -26,7 +26,16 @@ void MapView::loadMap(std::unique_ptr<Map> map) {
     buffer = new uchar[map->height * map->width * 4];
 
     uchar *pointer = buffer;
-    ColorInterpolate<int> colorInterpolate{map->min, map->max};
+    auto c = std::vector<QRgb>{
+        0xFF000000,
+        0xFF0000FF,
+        0xFF00FFFF,
+        0xFF00FF00,
+        0xFFFFFF00,
+        0xFFFF0000,
+        0xFFFFFFFF,
+    };
+    ColorInterpolate<int> colorInterpolate{map->min, map->max, c};
     ThreadController thC = {this};
     thC.runIterationOutput(0, map->size, [&pointer, &colorInterpolate, &map](unsigned i) {
         {
