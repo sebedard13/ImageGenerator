@@ -14,6 +14,7 @@
 #include "tab/TabAlgo.h"
 #include "tab/TabPerlinNoise.h"
 #include "menu/MenuBar.h"
+#include "tab/TabRandomVoronoi.h"
 
 
 class ViewRootClass {
@@ -27,7 +28,7 @@ public:
     QVBoxLayout *verticalLayout;
     QTabWidget *tabWidget;
     TabPerlinNoise *tab;
-    QWidget *tab_2;
+    TabRandomVoronoi *tab1;
     QFrame *frame1;
     QVBoxLayout *verticalLayout_4;
     QPushButton *btnGenerate;
