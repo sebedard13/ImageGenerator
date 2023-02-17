@@ -3,6 +3,7 @@
 #include "ViewUtils.h"
 #include "tab/GeneratePerlinNoise.h"
 #include "../3-infrastructure/KeyBinding.h"
+#include "tab/GenerateRandomVoronoi.h"
 
 void ViewRootClass::setupUi(QMainWindow *ViewRootClass) {
     if (ViewRootClass->objectName().isEmpty())
@@ -51,7 +52,10 @@ void ViewRootClass::setupUi(QMainWindow *ViewRootClass) {
     tabWidget->addTab(tab, QString());
     //Tab 2
 
-    tab_2 = new QWidget();
+    tab1 = new TabRandomVoronoi();
+    tab1->setupUi(ViewRootClass);
+    tabs.push_back(std::make_unique<GenerateRandomVoronoi>(tab1));
+    tabWidget->addTab(tab1, QString());
 
 
     verticalLayout->addWidget(tabWidget);
@@ -128,7 +132,7 @@ void ViewRootClass::retranslateUi(QMainWindow *ViewRootClass) {
 
     tabWidget->setTabText(tabWidget->indexOf(tab), ViewsUtils::local("algoPerlinNoiseName"));
 
-    tabWidget->setTabText(tabWidget->indexOf(tab_2), ViewsUtils::local("algo2Name"));
+    tabWidget->setTabText(tabWidget->indexOf(tab1), ViewsUtils::local("algoRandomVoronoiName"));
     btnGenerate->setText(ViewsUtils::local("btnGenerateMap"));
 
 

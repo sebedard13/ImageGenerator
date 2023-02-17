@@ -76,7 +76,14 @@ unsigned ThreadController::getDoneOperations() const {
 
 void ThreadController::run(std::atomic<Counters> *counter, const unsigned min, const unsigned max,
                            const std::function<void(unsigned i)> &func) {
-    int m = (max - min) / (128 * threadCount);
+    int m;
+    if((max - min)<(128 * threadCount)){
+        m = (max - min)*2;
+    }
+    else{
+        m = (max - min) / (128 * threadCount);
+    }
+
 
     for (unsigned i = min; i < max; ++i) {
         func(i);
