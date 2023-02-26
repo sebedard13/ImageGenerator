@@ -2,7 +2,7 @@
 
 #include "../../5-controller/Controller.h"
 #include "../../5-controller/commands/DoAlgo.h"
-#include "../../4-domain/algos/AlgoPerlinNoise.h"
+#include "../../4-domain/algos/perlin/AlgoPerlinNoise.h"
 
 void GeneratePerlinNoise::handleGenerate() {
     constexpr int sizes[5]{100, 500, 1000, 2500, 5000};

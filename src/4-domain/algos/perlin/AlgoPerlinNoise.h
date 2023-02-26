@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Algo.h"
-#include "../perlin/PerlinNoise.h"
+#include "../Algo.h"
+#include "PerlinNoise.h"
 
 class AlgoPerlinNoise final : public Algo {
 public:
