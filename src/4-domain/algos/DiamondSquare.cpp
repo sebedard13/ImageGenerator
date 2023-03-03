@@ -1,4 +1,6 @@
 #include "DiamondSquare.h"
+#include "../Mapf.h"
+#include "../../1-foundation/MathUtils.h"
 
 #include <limits>
 #include <iostream>
@@ -8,7 +10,6 @@ roughness(roughness), size(size){
     srand(seed);
 
     double resultLog = std::log2(size-1);
-    std::cout << "log:" <<resultLog<<std::endl;
     if(floor(resultLog) != resultLog){
         throw new std::invalid_argument("size is not (2^n)+1");
     }
@@ -16,12 +17,14 @@ roughness(roughness), size(size){
 }
 
 std::unique_ptr<Map> DiamondSquare::run() {
-    const int full_size = size * size;
-    float* tmpMap = new float[full_size];
+    output->setMessageId("tipAlgoDiamondSquare");
+    Mapf *map = new Mapf(size, size);
 
-    for (size_t i = 0; i < full_size; ++i)
-    {
-        tmpMap[i] = 0;
+    const int full_size = size * size;
+    map->array.resize(full_size);
+
+    for (size_t i = 0; i < full_size; ++i) {
+        map->array[i] = 0;
 
     }
 
@@ -41,10 +44,10 @@ std::unique_ptr<Map> DiamondSquare::run() {
     /* Calculate midpoint ("diamond step"). */
     dy = step * size;
 
-    sum = tmpMap[0] + tmpMap[step] + tmpMap[dy] + tmpMap[dy + step] * 0.25f;
+    sum = map->array[0] + map->array[step] + map->array[dy] + map->array[dy + step] * 0.25f;
     sum = sum + slope * ((rand() << 1) - RAND_MAX);
-    masked = !((int)tmpMap[i]);
-    tmpMap[i] = tmpMap[i] * !masked + sum * masked;
+    masked = !((int) map->array[i]);
+    map->array[i] = map->array[i] * !masked + sum * masked;
 
     center_sum = sum;
 
@@ -52,24 +55,26 @@ std::unique_ptr<Map> DiamondSquare::run() {
 
     /* Top row. */
     p0 = step >> 1;
-    sum = (tmpMap[0] + tmpMap[step] + center_sum + center_sum) * 0.25f;
+    sum = (map->array[0] + map->array[step] + center_sum + center_sum) * 0.25f;
     sum = sum + slope * ((rand() << 1) - RAND_MAX);
-    masked = !((int)tmpMap[p0]);
-    tmpMap[p0] = tmpMap[p0] * !masked + sum * masked;
+    masked = !((int) map->array[p0]);
+    map->array[p0] = map->array[p0] * !masked + sum * masked;
 
     /* Left column. */
     p1 = p0 * size;
-    sum = (tmpMap[0] + tmpMap[dy] + center_sum + center_sum) * 0.25f;
+    sum = (map->array[0] + map->array[dy] + center_sum + center_sum) * 0.25f;
     sum = sum + slope * ((rand() << 1) - RAND_MAX);
-    masked = !((int)tmpMap[p1]);\
-    tmpMap[p1] = tmpMap[p1] * !masked + sum * masked;\
+    masked = !((int) map->array[p1]);\
+     map->array[p1] = map->array[p1] * !masked + sum * masked;\
 
-    tmpMap[full_size + p0 - size] = tmpMap[p0];  /* Copy top value into bottom row. */
-    tmpMap[p1 + size - 1] = tmpMap[p1];  /* Copy left value into right column. */
+    map->array[full_size + p0 - size] = map->array[p0];  /* Copy top value into bottom row. */
+    map->array[p1 + size - 1] = map->array[p1];  /* Copy left value into right column. */
 
     slope *= roughness;
     step >>= 1;
 
+    unsigned squareDone = 0;
+    unsigned squares= size*size;
     while (step > 1)  /* Enter the main loop. */
     {
         /**********************************************************************
@@ -83,13 +88,13 @@ std::unique_ptr<Map> DiamondSquare::run() {
 
         for (y0 = 0, y1 = dy; y1 < size * size; y0 += dy, y1 += dy)
         {
-            for (x0 = 0, x1 = dx; x1 < size; x0 += dx, x1 += dx, i += step)
-            {
-                sum = (tmpMap[y0 + x0] + tmpMap[y0 + x1] + tmpMap[y1 + x0] + tmpMap[y1 + x1]) * 0.25f;
+            for (x0 = 0, x1 = dx; x1 < size; x0 += dx, x1 += dx, i += step) {
+                sum = (map->array[y0 + x0] + map->array[y0 + x1] + map->array[y1 + x0] + map->array[y1 + x1]) * 0.25f;
                 sum = sum + slope * ((rand() << 1) - RAND_MAX);
 
-                masked = !((int)tmpMap[i]);
-                tmpMap[i] = tmpMap[i] * !masked + sum * masked;
+                masked = !((int) map->array[i]);
+                map->array[i] = map->array[i] * !masked + sum * masked;
+                squareDone++;
             }
 
             /* There's additional step taken at the end of last valid loop.
@@ -114,16 +119,19 @@ std::unique_ptr<Map> DiamondSquare::run() {
         p3 = full_size + i - (i + 1) * size;  /* top (wraps around map edges) */
 
         /* Calculate "diamond" values for top row in map. */
-        while (p0 < size)
-        {
-            sum = (tmpMap[p0] + tmpMap[p1] + tmpMap[p2] + tmpMap[p3]) * 0.25f;
+        while (p0 < size) {
+            sum = (map->array[p0] + map->array[p1] + map->array[p2] + map->array[p3]) * 0.25f;
             sum = sum + slope * ((rand() << 1) - RAND_MAX);
 
-            masked = !((int)tmpMap[i]);
-            tmpMap[i] = tmpMap[i] * !masked + sum * masked;
-            tmpMap[full_size + i - size] = tmpMap[i];  /* Copy it into bottom row. */
+            masked = !((int) map->array[i]);
+            map->array[i] = map->array[i] * !masked + sum * masked;
+            map->array[full_size + i - size] = map->array[i];  /* Copy it into bottom row. */
 
-            p0 += step; p1 += step; p2 += step; p3 += step; i += step;
+            p0 += step;
+            p1 += step;
+            p2 += step;
+            p3 += step;
+            i += step;
         }
 
         /* Now that top row's values are calculated starting from 'y = step >> 1'
@@ -150,13 +158,12 @@ std::unique_ptr<Map> DiamondSquare::run() {
 
             /* size - (step >> 1) guarantees that data will not be read beyond
              * rightmost column of map. */
-            for (; x < size - (step >> 1); x += step)
-            {
-                sum = (tmpMap[p0] + tmpMap[p1] + tmpMap[p2] + tmpMap[p3]) * 0.25f;
+            for (; x < size - (step >> 1); x += step) {
+                sum = (map->array[p0] + map->array[p1] + map->array[p2] + map->array[p3]) * 0.25f;
                 sum = sum + slope * ((rand() << 1) - RAND_MAX);
 
-                masked = !((int)tmpMap[i]);
-                tmpMap[i] = tmpMap[i] * !masked + sum * masked;
+                masked = !((int) map->array[i]);
+                map->array[i] = map->array[i] * !masked + sum * masked;
 
                 p0 += step;
                 p1 += step;
@@ -172,29 +179,39 @@ std::unique_ptr<Map> DiamondSquare::run() {
 
             /* copy rows first element into its last */
             i = y * size;
-            tmpMap[i + size - 1] = tmpMap[i];
+            map->array[i + size - 1] = map->array[i];
+            output->setPercent(percent(squareDone,squares));
         }
 
         slope *= roughness;  /* reduce the amount of randomness for next round */
         step >>= 1;  /* split squares and diamonds in half */
-    }
-    auto map = std::make_unique<Map>(size, size);
-    float min = std::numeric_limits<float>::max();
 
-    float max =  std::numeric_limits<float>::min();
-
-
-    for (int i = 0; i < full_size; ++i) {
-        if(max < tmpMap[i]){
-            max = tmpMap[i];
-        }
-
-        if(min > tmpMap[i]){
-            min = tmpMap[i];
-        }
     }
 
-    std::cout<< "max: "<< max <<std::endl;
-    std::cout<< "min: "<< min <<std::endl;
-    return map;
+
+    float min = map->array[0];
+    float max = map->array[0];
+
+    for (int i = 1; i < full_size; ++i) {
+        if (max < map->array[i]) {
+            max = map->array[i];
+        }
+
+        if (min > map->array[i]) {
+            min = map->array[i];
+        }
+    }
+    map->minf = min;
+    map->maxf = max;
+
+    map->setColorRender({
+        0xffffffff,
+        0xff000000,
+    });
+    map->max=512;
+    map->min=0;
+    map->prepareRender();
+    output->setMessageId("tipNothing");
+
+    return std::unique_ptr<Map>(map);
 }

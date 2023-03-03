@@ -1,9 +1,7 @@
 ﻿#include "ViewRoot.h"
 #include <QShortcut>
 #include "ViewUtils.h"
-#include "tab/GeneratePerlinNoise.h"
 #include "../3-infrastructure/KeyBinding.h"
-#include "tab/GenerateRandomVoronoi.h"
 
 void ViewRootClass::setupUi(QMainWindow *ViewRootClass) {
     if (ViewRootClass->objectName().isEmpty())
@@ -45,17 +43,23 @@ void ViewRootClass::setupUi(QMainWindow *ViewRootClass) {
     tabWidget->setMinimumSize(QSize(200, 0));
     tabWidget->setAutoFillBackground(true);
 
-    //Tab 1
-    tab = new TabPerlinNoise();
-    tab->setupUi(ViewRootClass);
-    tabs.push_back(std::make_unique<GeneratePerlinNoise>(tab));
-    tabWidget->addTab(tab, QString());
-    //Tab 2
+    //Tab 0
+    tab0 = new TabPerlinNoise();
+    tab0->setupMainUi();
+    tabs.push_back(std::make_unique<GeneratePerlinNoise>(tab0));
+    tabWidget->addTab(tab0, QString());
 
+    //Tab 1
     tab1 = new TabRandomVoronoi();
-    tab1->setupUi(ViewRootClass);
+    tab1->setupMainUi();
     tabs.push_back(std::make_unique<GenerateRandomVoronoi>(tab1));
     tabWidget->addTab(tab1, QString());
+
+    //Tab 2
+    tab2 = new TabDiamondSquare();
+    tab2->setupMainUi();
+    tabs.push_back(std::make_unique<GenerateDiamondSquare>(tab2));
+    tabWidget->addTab(tab2, QString());
 
 
     verticalLayout->addWidget(tabWidget);
@@ -76,6 +80,7 @@ void ViewRootClass::setupUi(QMainWindow *ViewRootClass) {
     btnGenerate->setObjectName("btnGenerate");
     QSizePolicy sizePolicy2(QSizePolicy::Minimum, QSizePolicy::Fixed);
     sizePolicy2.setHorizontalStretch(0);
+
     sizePolicy2.setVerticalStretch(0);
     sizePolicy2.setHeightForWidth(btnGenerate->sizePolicy().hasHeightForWidth());
     btnGenerate->setSizePolicy(sizePolicy2);
@@ -130,13 +135,14 @@ void ViewRootClass::setupUi(QMainWindow *ViewRootClass) {
 void ViewRootClass::retranslateUi(QMainWindow *ViewRootClass) {
     ViewRootClass->setWindowTitle(ViewsUtils::local("mainWindowName"));
 
-    tabWidget->setTabText(tabWidget->indexOf(tab), ViewsUtils::local("algoPerlinNoiseName"));
+    tabWidget->setTabText(tabWidget->indexOf(tab0), ViewsUtils::local("algoPerlinNoiseName"));
 
     tabWidget->setTabText(tabWidget->indexOf(tab1), ViewsUtils::local("algoRandomVoronoiName"));
+    tabWidget->setTabText(tabWidget->indexOf(tab2), ViewsUtils::local("algoDiamondSquareName"));
     btnGenerate->setText(ViewsUtils::local("btnGenerateMap"));
 
 
-    tab->retranslateUi();
+    tab0->retranslateUi();
     mainMapScreen->retranslateUi();
 } // retranslateUi
 void ViewRoot::clickGenerate() {

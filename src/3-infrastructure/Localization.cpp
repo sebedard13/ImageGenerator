@@ -31,16 +31,20 @@ Localization::Localization(const std::string &language)
         textTable.insert(std::pair("fr-tipLoadingRandomVoronoi", "Génération diagramme de Voronoi"));
         textTable.insert(std::pair("fr-tipLoadView", "Génération de l'image"));
         textTable.insert(std::pair("fr-tipAlgoDistanceFromCenter", "Calcul des distances"));
+        textTable.insert(std::pair("fr-tipAlgoDiamondSquare", "Génération du diamond Ssuare"));
 
         //Algo Perlin Noise
         textTable.insert(std::pair("fr-algoPerlinNoiseName", "Bruit de Perlin"));
         textTable.insert(std::pair("fr-algoRandomVoronoiName", "Voronoi Aléatoire"));
+        textTable.insert(std::pair("fr-algoDiamondSquareName", "Diamond Square"));
 
         textTable.insert(std::pair("fr-labelSize", "Taille de l'image"));
         textTable.insert(std::pair("fr-labelSeed", "Germe aléatoire"));
         textTable.insert(std::pair("fr-labelCellSize", "Taille du plus grande cellule"));
         textTable.insert(std::pair("fr-labelOctaves", "Octaves pour augmenter les détails"));
         textTable.insert(std::pair("fr-labelPersistence", "Persistance dans les octaves"));
+        textTable.insert(std::pair("fr-labelRoughness", "Rudesse de l'image"));
+
         textTable.insert(std::pair("fr-size100", "100x100"));
         textTable.insert(std::pair("fr-size500", "500x500"));
         textTable.insert(std::pair("fr-size1000", "1000x1000"));

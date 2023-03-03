@@ -8,8 +8,11 @@
 #include <QScrollArea>
 #include <QComboBox>
 #include "input/InputInteger.h"
+#include "Generate.h"
+#include "Tab.h"
 
-class TabRandomVoronoi : public QWidget {
+
+class TabRandomVoronoi : public Tab {
 public:
     TabRandomVoronoi() = default;
 
@@ -23,12 +26,6 @@ public:
 
     ~TabRandomVoronoi() = default;
 
-    QVBoxLayout *verticalLayout_6;
-    QScrollArea *scrollArea;
-    QWidget *scrollAreaWidgetContents;
-    QVBoxLayout *mainLayout;
-    QLabel *tile;
-
     QWidget *sizeContainer;
     QVBoxLayout *sizeContainerLayout;
     QLabel *sizeLabel;
@@ -37,11 +34,28 @@ public:
     InputInteger *seedInput;
     InputInteger *nbPointsInput;
 
-    QSpacerItem *verticalSpacer;
 
-    void setupUi(QMainWindow *ViewRootClass);
+    virtual void setupUi() override;
 
-    void retranslateUi();
+    virtual void retranslateUi() override;
+};
 
+class GenerateRandomVoronoi : public Generate {
+public:
+    GenerateRandomVoronoi(TabRandomVoronoi* tabRandomVoronoi);
 
+    GenerateRandomVoronoi(const GenerateRandomVoronoi &other) = delete;
+
+    GenerateRandomVoronoi(GenerateRandomVoronoi &&other) noexcept = delete;
+
+    GenerateRandomVoronoi &operator=(const GenerateRandomVoronoi &other) = delete;
+
+    GenerateRandomVoronoi &operator=(GenerateRandomVoronoi &&other) noexcept = delete;
+
+    ~GenerateRandomVoronoi() = default;
+
+    void handleGenerate() override;
+
+private:
+    TabRandomVoronoi* tabRandomVoronoi;
 };

@@ -43,5 +43,5 @@ unsigned Map::render(const unsigned& i) const
 
 void Map::setColorRender(std::vector<unsigned>&& colors)
 {
-	this->colors = std::move(colors);
+	this->colors = colors;
 }

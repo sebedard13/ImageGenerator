@@ -1,44 +1,14 @@
 
 #include "TabRandomVoronoi.h"
 #include "../ViewUtils.h"
+#include "../../5-controller/Controller.h"
+#include "../../5-controller/commands/DoAlgo.h"
+#include "../../4-domain/algos/RandomVoronoi.h"
 
-void TabRandomVoronoi::setupUi(QMainWindow *ViewRootClass) {
-    this->setObjectName("tab");
-    this->setContextMenuPolicy(Qt::DefaultContextMenu);
-    this->setAutoFillBackground(false);
-
-    verticalLayout_6 = new QVBoxLayout(this);
-    verticalLayout_6->setSpacing(6);
-    verticalLayout_6->setContentsMargins(11, 11, 11, 11);
-    verticalLayout_6->setObjectName("verticalLayout_6");
-    verticalLayout_6->setContentsMargins(0, 0, 0, -1);
-    scrollArea = new QScrollArea(this);
-    scrollArea->setObjectName("scrollArea");
-    scrollArea->setWidgetResizable(true);
-    scrollArea->setAutoFillBackground(true);
-    scrollAreaWidgetContents = new QWidget();
-    scrollAreaWidgetContents->setObjectName("scrollAreaWidgetContents");
-    scrollAreaWidgetContents->setGeometry(QRect(0, 0, 192, 666));
-    mainLayout = new QVBoxLayout(scrollAreaWidgetContents);
-    mainLayout->setSpacing(10);
-    mainLayout->setContentsMargins(11, 11, 11, 11);
-    mainLayout->setObjectName("mainLayout");
-    mainLayout->setContentsMargins(9, -1, -1, -1);
-    tile = new QLabel(scrollAreaWidgetContents);
-    tile->setObjectName("tile");
-    QFont font;
-    font.setPointSize(11);
-    tile->setFont(font);
-    mainLayout->addWidget(tile);
-
-    sizeContainer = new QWidget(scrollAreaWidgetContents);
+void TabRandomVoronoi::setupUi() {
+    sizeContainer = new QWidget();
     sizeContainer->setObjectName("sizeContainer");
-
-    sizeContainerLayout = new QVBoxLayout(sizeContainer);
-    sizeContainerLayout->setSpacing(5);
-    sizeContainerLayout->setContentsMargins(11, 11, 11, 11);
-    sizeContainerLayout->setObjectName("sizeContainerLayout");
-    sizeContainerLayout->setContentsMargins(0, 0, 0, 0);
+    sizeContainerLayout = generateInputLayout(sizeContainer);
     sizeLabel = new QLabel(sizeContainer);
     sizeLabel->setObjectName("sizeLabel");
     sizeContainerLayout->addWidget(sizeLabel);
@@ -59,20 +29,10 @@ void TabRandomVoronoi::setupUi(QMainWindow *ViewRootClass) {
 
     nbPointsInput = new InputInteger("labelNbPoints", 5, 2, 500);
     mainLayout->addWidget(nbPointsInput );
-
-
-    verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);mainLayout->addItem(verticalSpacer);
-
-    scrollArea->setWidget(scrollAreaWidgetContents);
-
-    verticalLayout_6->addWidget(scrollArea);
-
-    retranslateUi();
-
 }
 
 void TabRandomVoronoi::retranslateUi() {
-    tile->setText(ViewsUtils::local("algoRandomVoronoiName"));
+    title->setText(ViewsUtils::local("algoRandomVoronoiName"));
     sizeLabel->setText(ViewsUtils::local("labelSize"));
     sizeComboBox->setItemText(0, ViewsUtils::local("size100"));
     sizeComboBox->setItemText(1, ViewsUtils::local("size500"));
@@ -81,4 +41,19 @@ void TabRandomVoronoi::retranslateUi() {
     sizeComboBox->setItemText(4, ViewsUtils::local("size5000"));
 
     seedInput->retranslateUi();
+}
+
+GenerateRandomVoronoi::GenerateRandomVoronoi(TabRandomVoronoi *tabRandomVoronoi)
+        : tabRandomVoronoi(tabRandomVoronoi)
+{}
+
+void GenerateRandomVoronoi::handleGenerate() {
+    constexpr int sizes[5]{100, 500, 1000, 2500, 5000};
+    const int sizeIndex = tabRandomVoronoi->sizeComboBox->currentIndex();
+
+    auto algo = std::make_unique<RandomVoronoi>(tabRandomVoronoi->nbPointsInput->getValue(),sizes[sizeIndex], sizes[sizeIndex],
+                                                tabRandomVoronoi->seedInput->getValue()
+    );
+
+    Controller::execute(std::make_unique<DoAlgo>(std::move(algo)));
 }

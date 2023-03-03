@@ -26,7 +26,6 @@ public:
 
 	Map& operator=(Map&& other) = delete;
 
-
 	Map(unsigned int w, unsigned int h)
 		: width(w),
 		height(h),
@@ -34,7 +33,7 @@ public:
 		array = new int[w * h]();
 	}
 
-	[[nodiscard]] std::pair<int, int> toCoordinate(const int& i) const;
+    [[nodiscard]] std::pair<int, int> toCoordinate(const int& i) const;
 
 	~Map();
 
@@ -46,13 +45,14 @@ public:
 
 	void prepareRender();
 
-	[[nodiscard]] unsigned render(const unsigned& i) const;
+	virtual unsigned render(const unsigned& i) const;
 
 	int* array;
 
 	void setColorRender(std::vector<unsigned>&& colors);
 
-private:
+protected:
+    ColorInterpolate<int> colorInterpolate{ 0,5 };
 	std::vector<unsigned> colors{
 		0xFF000000,
 			0xFF0000FF,
@@ -62,6 +62,6 @@ private:
 			0xFFFF0000,
 			0xFFFFFFFF,
 	};
-	ColorInterpolate<int> colorInterpolate{ 0,5 };
+
 };
 
