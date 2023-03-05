@@ -2,6 +2,7 @@
 #include "vector"
 #include "../Coord.h"
 #include "../../1-foundation/MathUtils.h"
+#include "../Mapi.h"
 
 RandomVoronoi::RandomVoronoi(const unsigned numberPoints, const unsigned width, const unsigned height,
 	const unsigned seed)
@@ -23,7 +24,7 @@ void swap_erase(std::vector<Coord>& vector, unsigned pos)
 std::unique_ptr<Map> RandomVoronoi::run() {
 	//Generate points
 	output->setMessageId("tipLoadingRandomVoronoi");
-	Map* map = new Map(width, height);
+	Mapi* map = new Mapi(width, height);
 	Coord::setSize(width, height);
 
 	unsigned pointsDone = 0;
@@ -61,7 +62,7 @@ std::unique_ptr<Map> RandomVoronoi::run() {
 	}
 
 	bool hasChange;
-	unsigned modulo = map->size / 256;
+	unsigned modulo = map->getSize() / 256;
 	do {
 		hasChange = false;
 		for (int i = 0; i < startPoints.size(); ++i) {
@@ -100,7 +101,7 @@ std::unique_ptr<Map> RandomVoronoi::run() {
 		}
 
 		if (pointsDone % modulo == 0) {
-			output->setPercent(percent(pointsDone, map->size));
+			output->setPercent(percent(pointsDone, map->getSize()));
 		}
 
 

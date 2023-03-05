@@ -22,12 +22,12 @@ void MapView::loadMap(std::unique_ptr<Map> map) {
 	setMessageId("tipLoadView");
 	scene->clear();
 	delete[] buffer;
-	buffer = new uchar[map->height * map->width * 4];
+	buffer = new uchar[map->getHeight() * map->getWidth() * 4];
 
 	uchar* pointer = buffer;
 	ThreadController thC = { this };
 	map->prepareRender();
-	thC.runIterationOutput(0, map->size, [&pointer, &map](unsigned i) {
+	thC.runIterationOutput(0, map->getSize(), [&pointer, &map](unsigned i) {
 		{
 			auto color = map->render(i);
 
@@ -39,9 +39,9 @@ void MapView::loadMap(std::unique_ptr<Map> map) {
 		});
 
 	constexpr int borderScene = 64;
-	scene->setSceneRect(0, 0, map->width + borderScene * 2, map->height + borderScene * 2);
+	scene->setSceneRect(0, 0, map->getWidth() + borderScene * 2, map->getHeight() + borderScene * 2);
 
-	image = QImage(buffer, map->width, map->height, QImage::Format_ARGB32);
+	image = QImage(buffer, map->getWidth(), map->getHeight(), QImage::Format_ARGB32);
 	auto pixmapItem = scene->addPixmap(QPixmap::fromImage(image,
 		Qt::ColorOnly | Qt::ThresholdDither | Qt::OrderedAlphaDither |
 		Qt::NoFormatConversion
@@ -49,7 +49,7 @@ void MapView::loadMap(std::unique_ptr<Map> map) {
 	pixmapItem->setOffset(borderScene, borderScene);
 
 
-	mapScreen->graphicsView->fitInView(0, 0, map->width + borderScene * 2, map->height + borderScene * 2,
+	mapScreen->graphicsView->fitInView(0, 0, map->getWidth() + borderScene * 2, map->getHeight() + borderScene * 2,
 		Qt::KeepAspectRatio);
 	mapScreen->graphicsView->show();
 	mapScreen->graphicsView->resetScale();

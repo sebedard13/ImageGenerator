@@ -3,14 +3,15 @@
 #include <thread>
 
 #include "../../../2-services/ThreadController.h"
+#include "../../Mapi.h"
 
 std::unique_ptr<Map> AlgoPerlinNoise::run() {
 	output->setMessageId("tipLoadingPerlinNoise");
-	Map* map = new Map(width, height);
+	Mapi* map = new Mapi(width, height);
 
 	ThreadController thC = { output.get() };
 
-	thC.runIterationOutput(0, map->size,
+	thC.runIterationOutput(0, map->getSize(),
 		[this, map](const unsigned i) {
 			{
 				const auto coord = map->toCoordinate(i);
@@ -20,7 +21,7 @@ std::unique_ptr<Map> AlgoPerlinNoise::run() {
 			}
 		});
 
-	map->setColorRender({
+	map->setColors({
 		0xFF000000,
 		0xFFFFFFFF,
 		});

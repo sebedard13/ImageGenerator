@@ -14,12 +14,34 @@ public:
 
     Mapf &operator=(Mapf &&other) noexcept = delete;
 
-    ~Mapf() = default;
+    ~Mapf() override = default;
+
+    unsigned int getWidth() const override;
+
+    unsigned int getHeight() const override;
+
+    unsigned int getSize() const override;
+
+    void prepareRender() override;
 
     virtual unsigned int render(const unsigned int &i) const override;
 
     std::vector<float> array{};
 
-    float minf = 0;
-    float maxf = 0;
+    void setColors(std::vector<unsigned int> &&colors);
+
+private:
+    const unsigned int width;
+    const unsigned int height;
+    ColorInterpolate<float> colorInterpolate{ 0,5 };
+    std::vector<unsigned> colors{
+            0xFF000000,
+            0xFF0000FF,
+            0xFF00FFFF,
+            0xFF00FF00,
+            0xFFFFFF00,
+            0xFFFF0000,
+            0xFFFFFFFF,
+    };
+
 };
