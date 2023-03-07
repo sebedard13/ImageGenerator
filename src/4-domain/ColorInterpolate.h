@@ -12,7 +12,7 @@ public:
 	ColorInterpolate(const T& min, const T& max, std::vector<unsigned>& colors = defaultColors)
 		: min(min),
 		range(max - min) {
-		this->colors = std::move(colors);
+		this->colors = colors;
 		step = static_cast<double> (range) / (this->colors.size() - 1);
 	}
 
@@ -23,7 +23,7 @@ public:
 		range(other.range),
 		step(other.step)
 	{
-        colors = std::move(other.colors);
+        colors = other.colors;
 	}
 
 	ColorInterpolate<T>& operator=(const ColorInterpolate<T>& other) = delete;
@@ -35,7 +35,7 @@ public:
 		min = other.min;
 		range = other.range;
 		step = other.step;
-        colors = std::move(other.colors);
+        colors = other.colors;
 		return *this;
 	}
 
