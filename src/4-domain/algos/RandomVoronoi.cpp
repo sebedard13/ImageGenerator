@@ -1,6 +1,5 @@
 #include "RandomVoronoi.h"
 #include "vector"
-#include "../Coord.h"
 #include "../../1-foundation/MathUtils.h"
 #include "../Mapi.h"
 
@@ -8,9 +7,8 @@ RandomVoronoi::RandomVoronoi(const unsigned numberPoints, const unsigned width, 
 	const unsigned seed)
 	: numberPoints(numberPoints),
 	width(width),
-	height(height) {
-
-	std::srand(seed);
+	height(height),
+    rand(seed){
 
 }
 
@@ -30,7 +28,7 @@ std::unique_ptr<Map> RandomVoronoi::run() {
 	unsigned pointsDone = 0;
 	std::vector<Coord> startPoints(numberPoints);
 	for (unsigned i = 0; i < startPoints.size(); i++) {
-		startPoints[i] = Coord(std::rand() % width, std::rand() % height);
+		startPoints[i] = Coord(rand.range(0, width), rand.range(0, height));
 		if (map->get(startPoints[i]) == 0) {
 			map->set(startPoints[i], i + 1);
 			pointsDone++;
@@ -71,7 +69,7 @@ std::unique_ptr<Map> RandomVoronoi::run() {
 			auto index = currentList.size();
 			while (index >= currentList.size() && !currentList.empty()) {
 
-				auto tmpIndex = std::rand() % currentList.size();
+				auto tmpIndex = rand.range(0, currentList.size());
 				if (map->get(currentList[tmpIndex]) == 0) {
 					index = tmpIndex;
 				}

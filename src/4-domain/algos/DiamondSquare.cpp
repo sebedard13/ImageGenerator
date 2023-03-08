@@ -6,11 +6,9 @@
 #include <iostream>
 
 DiamondSquare::DiamondSquare(const unsigned int size, const unsigned int seed, const double roughness)
-        :
-        roughness(roughness),
-        size(size) {
-    srand(seed);
-
+        :roughness(roughness),
+        size(size), rand(seed)
+        {
     double resultLog = std::log2(size - 1);
     if (floor(resultLog) != resultLog) {
         throw new std::invalid_argument("size is not (2^n)+1");

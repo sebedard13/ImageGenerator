@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Algo.h"
+#include "../../2-infrastructure/RandomEngine.h"
 
 class DiamondSquare: public Algo {
 public:
@@ -12,12 +13,13 @@ public:
 
     DiamondSquare &operator=(DiamondSquare &&other) noexcept = delete;
 
-    DiamondSquare(const unsigned size, const unsigned seed, const double roughness);
+    DiamondSquare(unsigned size, unsigned seed, double roughness);
 
     std::unique_ptr<Map> run() override;
 
     ~DiamondSquare() override = default;
 
+    RandomEngine rand = RandomEngine();
 private:
     const double roughness;
     const unsigned size;

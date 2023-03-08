@@ -21,7 +21,7 @@ add_executable(WorldGeneration
         src/4-domain/algos/platec/Lithosphere.h src/4-domain/algos/platec/Lithosphere.cpp src/4-domain/algos/platec/GenerationController.h src/4-domain/algos/platec/GenerationController.cpp src/4-domain/algos/platec/Platec.cpp src/4-domain/algos/platec/Platec.h
         src/4-domain/Mapi.cpp src/4-domain/Mapi.h
         src/4-domain/algos/platec/sqrdmd.c src/4-domain/algos/platec/sqrdmd.h
-        src/4-domain/algos/platec/PlatecMap.cpp src/4-domain/algos/platec/PlatecMap.h src/4-domain/Output.h)
+        src/4-domain/algos/platec/PlatecMap.cpp src/4-domain/algos/platec/PlatecMap.h src/4-domain/Output.h src/2-infrastructure/RandomEngine.cpp src/2-infrastructure/RandomEngine.h)
 
 if(CMAKE_BUILD_TYPE STREQUAL "Release")
     set_property(TARGET WorldGeneration PROPERTY WIN32_EXECUTABLE true)
