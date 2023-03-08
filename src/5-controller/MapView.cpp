@@ -4,8 +4,8 @@
 #include <QGraphicsPixmapItem>
 #include <QString>
 
-#include "../2-services/ThreadController.h"
-#include "../2-services/SetTimeout.h"
+#include "../2-infrastructure/ThreadController.h"
+#include "../2-infrastructure/SetTimeout.h"
 
 #include <thread>
 #include <chrono>

@@ -6,8 +6,8 @@
 #include "../ViewUtils.h"
 #include "../../5-controller/Controller.h"
 #include "../../5-controller/commands/SaveImage.h"
-#include "../../2-services/ThreadController.h"
-#include "../../3-infrastructure/KeyBinding.h"
+#include "../../2-infrastructure/ThreadController.h"
+#include "../../3-services/KeyBinding.h"
 
 MenuBar::MenuBar(QWidget *parent)
         : QMenuBar(parent) {

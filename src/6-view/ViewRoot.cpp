@@ -1,7 +1,7 @@
 ﻿#include "ViewRoot.h"
 #include <QShortcut>
 #include "ViewUtils.h"
-#include "../3-infrastructure/KeyBinding.h"
+#include "../3-services/KeyBinding.h"
 
 void ViewRootClass::setupUi(QMainWindow *ViewRootClass) {
     if (ViewRootClass->objectName().isEmpty())
