@@ -6,6 +6,7 @@
 
 int main(int argc, char *argv[]) {
     SetConsoleOutputCP(65001);//Console en utf-8
+    auto b = Localization::getAllLanguages();
     Localization::setLanguage("fr");
     QApplication a(argc, argv);
     ViewRoot w;

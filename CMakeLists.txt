@@ -36,6 +36,10 @@ cmake_path(GET Qt6_DIR PARENT_PATH the_qt_path)
 cmake_path(GET the_qt_path PARENT_PATH the_qt_path)
 cmake_path(GET the_qt_path PARENT_PATH the_qt_path)
 
+install(DIRECTORY data/
+        DESTINATION $<TARGET_FILE_DIR:${PROJECT_NAME}>
+        )
+
 install(DIRECTORY ${the_qt_path}/plugins/platforms/
         DESTINATION $<TARGET_FILE_DIR:${PROJECT_NAME}>/plugins/platforms
         )

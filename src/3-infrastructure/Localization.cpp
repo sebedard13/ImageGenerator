@@ -1,60 +1,49 @@
 ﻿#include <iostream>
+#include <fstream>
 #include "Localization.h"
 
+
 Localization *Localization::instance = nullptr;
+std::filesystem::path Localization::folder = "localization";
 
 Localization::Localization(const std::string &language)
         : language(language) {
-    if (language == "fr") {
-        this->language = "fr";
-        textTable.insert(std::pair("fr-mainWindowName", "Application Génération de Monde"));
 
-        textTable.insert(std::pair("fr-btnSave", "Sauvegarder"));
-        textTable.insert(std::pair("fr-saveRtnEmpty", "Impossible de sauvegarder l'image, l'image est vide"));
-        textTable.insert(std::pair("fr-saveRtnGood", "Image sauvegardée avec succès"));
-        textTable.insert(std::pair("fr-saveRtnBad", "Impossible de sauvegarder l'image"));
-        textTable.insert(std::pair("fr-saveRtnCompression", "Compression de l'image"));
+    std::string filename =  std::string().append(language).append(".po");
+    std::filesystem::path file = folder.append(filename);
 
+    if (std::filesystem::exists(file)) {
+        this->language = language;
+        textTable.clear();
+        std::ifstream fileStream(file.string());
+        std::string lineStream;
 
-        textTable.insert(std::pair("fr-btnLoad", "Charger"));
-        textTable.insert(std::pair("fr-btnQuit", "Quitter"));
-        textTable.insert(std::pair("fr-btnSeeAbout", "Voir"));
-        textTable.insert(std::pair("fr-btnGenerateMap", "Générer"));
-        textTable.insert(std::pair("fr-btnFile", "Fichier"));
-        textTable.insert(std::pair("fr-btnAbout", "À propos"));
-        textTable.insert(std::pair("fr-btnPerformance", "Performance"));
-        textTable.insert(std::pair("fr-btnThreadNumberTitle", "Nombre de thread"));
+        //Basic .po file reader and insert key in table
+        while (getline (fileStream, lineStream)) {
+            if(lineStream.find_first_of("mgsid",0)!=std::string::npos){
+                std::string id = lineStream.erase(0,7);
+                id = id.erase(id.size()-1,1);
+                if(getline (fileStream, lineStream)){
+                    if(lineStream.find("msgstr",0,6)!=std::string::npos){
+                        std::string value = lineStream.erase(0, 8);
+                        value = value.erase(value.size() - 1, 1);
 
-        textTable.insert(std::pair("fr-tipNothing", "En attente de l'utilisateur"));
-        textTable.insert(std::pair("fr-tipLoading", "Chargement..."));
-        textTable.insert(std::pair("fr-tipLoadingPerlinNoise", "Génération bruit Perlin"));
-        textTable.insert(std::pair("fr-tipLoadingRandomVoronoi", "Génération diagramme de Voronoi"));
-        textTable.insert(std::pair("fr-tipLoadView", "Génération de l'image"));
-        textTable.insert(std::pair("fr-tipAlgoDistanceFromCenter", "Calcul des distances"));
+                        textTable.insert(std::pair(id, value));
+                    }
+                }
 
-        //Algo Perlin Noise
-        textTable.insert(std::pair("fr-algoPerlinNoiseName", "Bruit de Perlin"));
-        textTable.insert(std::pair("fr-algoRandomVoronoiName", "Voronoi Aléatoire"));
-
-        textTable.insert(std::pair("fr-labelSize", "Taille de l'image"));
-        textTable.insert(std::pair("fr-labelSeed", "Germe aléatoire"));
-        textTable.insert(std::pair("fr-labelCellSize", "Taille du plus grande cellule"));
-        textTable.insert(std::pair("fr-labelOctaves", "Octaves pour augmenter les détails"));
-        textTable.insert(std::pair("fr-labelPersistence", "Persistance dans les octaves"));
-        textTable.insert(std::pair("fr-size100", "100x100"));
-        textTable.insert(std::pair("fr-size500", "500x500"));
-        textTable.insert(std::pair("fr-size1000", "1000x1000"));
-        textTable.insert(std::pair("fr-size2500", "2500x2500"));
-        textTable.insert(std::pair("fr-size5000", "5000x5000"));
-
-
-        textTable.insert(std::pair("fr-labelNbPoints", "Nombre de points"));
+            }
+        }
+    }
+    else{
+        std::cout<< "Localization file does not exists for language: "<<language<<std::endl;
+        this->language = "none";
     }
 
 }
 
 std::string Localization::get(const std::string &value) {
-    std::string keyValue = std::string().append(instance->language).append("-").append(value);
+    std::string keyValue = std::string().append(value);
     auto pair = instance->textTable.find(keyValue);
     if (pair == instance->textTable.end()) {
         std::cout<<"Warning: Localization missing: "<<keyValue<<std::endl;
@@ -74,4 +63,21 @@ void Localization::setLanguage(const std::string &language) {
 
 std::string Localization::getLanguage() {
     return instance->language;
+}
+
+std::vector<std::string> Localization::getAllLanguages() {
+    std::vector<std::string> rtn {};
+    if(std::filesystem::exists(folder)){
+        for (const auto & entry : std::filesystem::directory_iterator(folder)) {
+            const std::filesystem::path& path = entry.path();
+            std::string filename = path.filename().string();
+            auto indexPo = filename.find('.');
+            if(filename.find(".po",indexPo)){
+                filename = filename.substr(0,indexPo);
+                rtn.push_back(filename);
+            }
+        }
+    }
+        
+    return rtn;
 }
