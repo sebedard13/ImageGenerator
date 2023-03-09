@@ -2,6 +2,7 @@
 
 #include "Algo.h"
 #include "../../2-infrastructure/RandomEngine.h"
+#include "../Mapf.h"
 
 class DiamondSquare: public Algo {
 public:
@@ -20,7 +21,11 @@ public:
     ~DiamondSquare() override = default;
 
     RandomEngine rand = RandomEngine();
+
+    std::unique_ptr<Mapf> execute();
 private:
     const double roughness;
     const unsigned size;
+
+
 };

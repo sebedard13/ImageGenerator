@@ -16,7 +16,7 @@ DiamondSquare::DiamondSquare(const unsigned int size, const unsigned int seed, c
 
 }
 
-std::unique_ptr<Map> DiamondSquare::run() {
+std::unique_ptr<Mapf> DiamondSquare::execute() {
     output->setMessageId("tipAlgoDiamondSquare");
     Mapf *map = new Mapf(size, size);
 
@@ -187,10 +187,13 @@ std::unique_ptr<Map> DiamondSquare::run() {
     }
 
     map->setColors({
-       0xffffffff,
-       0xff000000,
-       });
+                           0xffffffff,
+                           0xff000000,
+                   });
     output->setMessageId("tipNothing");
+    return std::unique_ptr<Mapf>(map);
+}
 
-    return std::unique_ptr<Map>(map);
+std::unique_ptr<Map> DiamondSquare::run() {
+    return execute();
 }

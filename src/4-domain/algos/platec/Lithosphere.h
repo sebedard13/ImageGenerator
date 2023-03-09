@@ -139,6 +139,8 @@ public:
 	}
 
     std::vector<float> &freeTopography();
-};
 
+public:
+    static RandomEngine rand;
+};
 #endif

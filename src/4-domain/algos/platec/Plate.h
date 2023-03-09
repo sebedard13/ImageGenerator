@@ -2,6 +2,7 @@
 #define PLATE_HPP
 
 #include <vector>
+#include "../../../2-infrastructure/RandomEngine.h"
 
 #define CONT_BASE 1.0 ///< Height limit that separates seas from dry land.
 
@@ -218,15 +219,8 @@ private:
 
 	/// Translate world coordinates into offset within plate's height map.
 	///
-	/// Iff the global world map coordinates are within plate's height map,
-	/// the values of passed coordinates will be altered to contain the
-	/// X and y offset within the plate's height map. Otherwise values are
-	/// left intact.
-	///
-	/// @param[in, out] x	Offset on the global world map along X axis.
-	/// @param[in, out] y	Offset on the global world map along Y axis.
-	/// @return		Offset in height map or -1 on error.
-	std::pair<size_t, std::pair<size_t, size_t>> getMapIndex(size_t px, size_t py) const throw();
+	/// @return		Offset in height map or -1 on error., <x,y>
+	[[nodiscard]] std::pair<size_t, std::pair<size_t, size_t>> getMapIndex(size_t px, size_t py) const throw();
 
 	std::vector<float> map{}; ///< Bitmap of plate's structure/height.
 	std::vector<size_t> age; ///< Bitmap of plate's soil's age: timestamp of creation.
@@ -244,9 +238,8 @@ private:
 	float dx, dy; ///< X and Y components of plate's acceleration vector.
 	float alpha; ///< Angle in the chage of direction in radians.
 
-
-	//static std::vector <std::vector<size_t>> spans_todo;
-	//static std::vector <std::vector<size_t>> spans_done;
+public:
+    static RandomEngine rand;
 };
 
 #endif

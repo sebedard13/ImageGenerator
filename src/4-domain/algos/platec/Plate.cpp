@@ -14,6 +14,8 @@
 #define INITIAL_SPEED_X 1
 #define DEFORMATION_WEIGHT 5
 
+RandomEngine Plate::rand {};
+
 Plate::Plate()
 {
 }
@@ -686,19 +688,25 @@ void Plate::setCrust(size_t x, size_t y, float newMass, size_t ageOfNewCrust) th
 		size_t diffLeft = 0;
 		size_t diffTop = 0;
 
-		if (diff.first < 0)
-		{
-			left += diff.first;
-			diffLeft = -diff.first;
-		}
-		width += std::abs(diff.first);
+        if (diff.first < 0)
+        {
+            left += diff.first;
+            diffLeft = -diff.first;
+            if(this->left<0){
+                left += world_side;
+            }
+        }
+        width += std::abs(diff.first);
 
-		if (diff.second < 0)
-		{
-			top += diff.second;
-			diffTop = -diff.second;
-		}
-		height += std::abs(diff.second);
+        if (diff.second < 0)
+        {
+            top += diff.second;
+            diffTop = -diff.second;
+            if(this->top<0){
+                top += world_side;
+            }
+        }
+        height += std::abs(diff.second);
 
 		std::vector<float> tmph(width * height);
 		std::vector<size_t> tmpa(width * height);

@@ -5,25 +5,27 @@
 #include "../../../1-foundation/MathUtils.h"
 
 std::unique_ptr<Map> Platec::run() {
-    srand(seed);
-    Lithosphere* lithos = new Lithosphere(mapSideLength,
+    Lithosphere lithos = Lithosphere(mapSideLength,
     seaLevel,
     erosionPeriod,
     foldingRatio,
     aggrRatioAbs,
     aggrRatioRel);
-    lithos->createPlates(num_plates);
+    Lithosphere::rand = RandomEngine(seed);
+    Plate::rand = RandomEngine(seed/2); //Change number without going out of bound
 
-    GenerationController* world = new GenerationController(lithos, maxCycleCount, maxIterationCount);
 
-    while (world->getIsRunning()){
-        world->update();
-        output->setPercent(percent(world->getIteration(),(unsigned) maxIterationCount));
+    GenerationController world = GenerationController(&lithos, maxCycleCount, maxIterationCount);
+
+    lithos.createPlates(num_plates);
+    while (world.getIsRunning()){
+        world.update();
+        output->setPercent(percent(world.getIteration(),(unsigned) maxIterationCount));
     }
 
     PlatecMap* map = new PlatecMap(mapSideLength,mapSideLength);
 
-    map->array.swap(lithos->freeTopography());
+    map->array.swap(lithos.freeTopography());
     return std::unique_ptr<Map>(map);
 }
 

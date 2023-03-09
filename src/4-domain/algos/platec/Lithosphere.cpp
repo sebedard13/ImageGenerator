@@ -8,8 +8,10 @@
 #include <cfloat>
 #include <cstdlib>
 #include <vector>
+#include "../DiamondSquare.h"
 
 #define BOOL_REGENERATE_CRUST    1
+
 
 using namespace std;
 
@@ -18,6 +20,8 @@ using namespace std;
  *
  * Used exclusively in plate creation phase.
  */
+RandomEngine Lithosphere::rand {};
+
 class plateArea {
 public:
 	vector<size_t> border; ///< Plate's unprocessed border pixels.
@@ -35,10 +39,25 @@ static const float BUOYANCY_BONUS_X = 3;
 static const size_t MAX_BUOYANCY_AGE = 20;
 static const float MULINV_MAX_BUOYANCY_AGE = 1.0f / (float)MAX_BUOYANCY_AGE;
 
-size_t findBound(const size_t* map, size_t length, size_t x0, size_t y0,
-	int dx, int dy);
 
-size_t findPlate(Plate** plates, float x, float y, size_t num_plates);
+std::vector<float> squareDiamondAdaptater(const size_t map_side_length, const unsigned seed, const double roughness){
+    DiamondSquare ds = DiamondSquare(map_side_length+1, seed, roughness);
+    auto dsMap = ds.execute();
+    std::vector<float> rtn (map_side_length*map_side_length);
+
+    int border = -1;
+    for (size_t i = 0; i < rtn.size(); ++i)
+    {
+        if (i % map_side_length == 0)
+        {
+            border++;
+        }
+        rtn[i] = dsMap->array[i+border];
+
+    }
+    return rtn;
+
+}
 
 Lithosphere::Lithosphere(size_t map_side_length, float sea_level,
 	size_t _erosion_period, float _folding_ratio, size_t aggr_ratio_abs,
@@ -53,11 +72,8 @@ Lithosphere::Lithosphere(size_t map_side_length, float sea_level,
 	const size_t aera = (map_side) * (map_side);
 
 
-	float* tmp = sqrdmd(map_side, SQRDMD_ROUGHNESS);
-	if (tmp == nullptr) {
-		throw invalid_argument("Failed to generate height map.");
-	}
 
+	auto tmp = squareDiamondAdaptater(map_side, rand(), SQRDMD_ROUGHNESS);
 	float lowest = tmp[0], highest = tmp[0];
 	for (size_t i = 1; i < aera; ++i) {
 		lowest = lowest < tmp[i] ? lowest : tmp[i];
@@ -99,11 +115,9 @@ Lithosphere::Lithosphere(size_t map_side_length, float sea_level,
 	}
 
 	ownerMap = std::vector<size_t>(map_side * map_side);
-	delete[] tmp;
 }
 
-Lithosphere::~Lithosphere() throw() {
-}
+Lithosphere::~Lithosphere() noexcept = default;
 
 void Lithosphere::createPlates(size_t num_plates) throw() {
 	const size_t map_area = map_side * map_side;
@@ -597,11 +611,7 @@ void Lithosphere::end()
 	//Add way to big random noise give no details to map but make all mountains bigger
 	{
 
-		float* tmp = sqrdmd(map_side, SQRDMD_ROUGHNESS);
-		if (tmp == nullptr) {
-			ageMap.clear();
-			throw invalid_argument("Failed to generate height map again.");
-		}
+		auto tmp = squareDiamondAdaptater(map_side, rand(), SQRDMD_ROUGHNESS);
 
 		float t_lowest = tmp[0], t_highest = tmp[0];
 		for (size_t i = 1; i < map_area; ++i) {
@@ -619,8 +629,6 @@ void Lithosphere::end()
 			else
 				heightMap[i] = 0.8 * heightMap[i] + 0.2 * tmp[i] * CONTINENTAL_BASE;
 		}
-
-		delete[] tmp;
 	}
 
 	ageMap.clear();

@@ -16,10 +16,7 @@ public:
 	GenerationController& operator=(const GenerationController& other) = delete;
 	GenerationController& operator=(GenerationController&& other) noexcept = delete;
 
-	~GenerationController()
-	{
-		delete lithosphere;
-	}
+	~GenerationController() = default;
 
 	void update();
 
