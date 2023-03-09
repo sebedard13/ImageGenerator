@@ -4,13 +4,13 @@
 
 
 Localization *Localization::instance = nullptr;
-std::filesystem::path Localization::folder = "localization";
+const std::filesystem::path Localization::folder = "localization";
 
 Localization::Localization(const std::string &language)
         : language(language) {
 
     std::string filename =  std::string().append(language).append(".po");
-    std::filesystem::path file = folder.append(filename);
+    std::filesystem::path file = folder / filename;
 
     if (std::filesystem::exists(file)) {
         this->language = language;
@@ -79,5 +79,5 @@ std::vector<std::string> Localization::getAllLanguages() {
         }
     }
         
-    return rtn;
+    return std::move(rtn);
 }

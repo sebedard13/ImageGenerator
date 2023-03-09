@@ -62,6 +62,10 @@ public:
         return ui.mapView;
     }
 
+    void retranslate(){
+        ui.retranslateUi(this);
+    }
+
 private:
     ViewRootClass ui;
 };

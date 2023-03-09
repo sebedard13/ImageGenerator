@@ -29,7 +29,7 @@ public:
 
 
 private:
-    static std::filesystem::path folder;
+    const static std::filesystem::path folder;
     static Localization *instance;
     std::string language{"undefined-language"};
     std::unordered_map<std::string, std::string> textTable{};
