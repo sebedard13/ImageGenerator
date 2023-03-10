@@ -1,6 +1,6 @@
 #pragma once
 
-class TabAlgo {
+class Generate {
 public:
     virtual void handleGenerate() = 0;
 };

@@ -7,9 +7,10 @@ ThreadController::ThreadController()
 
 }
 
-ThreadController::ThreadController(MapView *output)
-        : threadCount(ThreadController::THREADS),
-        output(output) {
+ThreadController::ThreadController(Output *output)
+        : threadCount(ThreadController::THREADS){
+    delete this->output;
+    this->output = output;
 }
 
 ThreadController::~ThreadController() {

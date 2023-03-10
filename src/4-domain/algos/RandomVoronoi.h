@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Algo.h"
+#include "../../2-infrastructure/RandomEngine.h"
 
 class RandomVoronoi : public Algo {
 
@@ -19,6 +20,7 @@ public:
 
     std::unique_ptr<Map> run() override;
 
+    RandomEngine rand;
 private:
     const unsigned numberPoints;
     const unsigned width;

@@ -2,6 +2,7 @@
 
 #include "../Map.h"
 #include "../../5-controller/MapView.h"
+#include "../Output.h"
 #include <memory>
 
 class Algo {
@@ -25,5 +26,5 @@ public:
     }
 
 protected:
-    std::shared_ptr<MapView> output{nullptr};
+    std::shared_ptr<Output> output= std::make_unique<Output>();
 };

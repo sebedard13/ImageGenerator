@@ -1,15 +1,14 @@
 #include "RandomVoronoi.h"
 #include "vector"
-#include "../Coord.h"
 #include "../../1-foundation/MathUtils.h"
+#include "../Mapi.h"
 
 RandomVoronoi::RandomVoronoi(const unsigned numberPoints, const unsigned width, const unsigned height,
 	const unsigned seed)
 	: numberPoints(numberPoints),
 	width(width),
-	height(height) {
-
-	std::srand(seed);
+	height(height),
+    rand(seed){
 
 }
 
@@ -23,13 +22,13 @@ void swap_erase(std::vector<Coord>& vector, unsigned pos)
 std::unique_ptr<Map> RandomVoronoi::run() {
 	//Generate points
 	output->setMessageId("tipLoadingRandomVoronoi");
-	Map* map = new Map(width, height);
+	Mapi* map = new Mapi(width, height);
 	Coord::setSize(width, height);
 
 	unsigned pointsDone = 0;
 	std::vector<Coord> startPoints(numberPoints);
 	for (unsigned i = 0; i < startPoints.size(); i++) {
-		startPoints[i] = Coord(std::rand() % width, std::rand() % height);
+		startPoints[i] = Coord(rand.range(0, width), rand.range(0, height));
 		if (map->get(startPoints[i]) == 0) {
 			map->set(startPoints[i], i + 1);
 			pointsDone++;
@@ -61,7 +60,7 @@ std::unique_ptr<Map> RandomVoronoi::run() {
 	}
 
 	bool hasChange;
-	unsigned modulo = map->size / 256;
+	unsigned modulo = map->getSize() / 256;
 	do {
 		hasChange = false;
 		for (int i = 0; i < startPoints.size(); ++i) {
@@ -70,7 +69,7 @@ std::unique_ptr<Map> RandomVoronoi::run() {
 			auto index = currentList.size();
 			while (index >= currentList.size() && !currentList.empty()) {
 
-				auto tmpIndex = std::rand() % currentList.size();
+				auto tmpIndex = rand.range(0, currentList.size());
 				if (map->get(currentList[tmpIndex]) == 0) {
 					index = tmpIndex;
 				}
@@ -100,7 +99,7 @@ std::unique_ptr<Map> RandomVoronoi::run() {
 		}
 
 		if (pointsDone % modulo == 0) {
-			output->setPercent(percent(pointsDone, map->size));
+			output->setPercent(percent(pointsDone, map->getSize()));
 		}
 
 
