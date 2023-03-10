@@ -11,9 +11,6 @@ public:
     QAction *actionCharger;
     QAction *actionQuiter;
 
-    QMenu *menuA_propos;
-    QAction *actionVoir;
-
 
     QMenu *menuPerformence;
     QAction *menuThreadNumber;
@@ -29,4 +26,7 @@ public:
     void clickSave();
 
     virtual ~MenuBar() override;
+
+    QMenu *menuLang;
+    QActionGroup *actionsLang;
 };

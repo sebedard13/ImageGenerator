@@ -8,7 +8,7 @@
 
 int main(int argc, char *argv[]) {
     SetConsoleOutputCP(65001);//Console en utf-8
-    Localization::setLanguage("fr");
+    Localization::setLanguage("en");
     QApplication a(argc, argv);
     ViewRoot w;
     w.show();

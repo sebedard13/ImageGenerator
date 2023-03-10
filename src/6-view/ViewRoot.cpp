@@ -40,7 +40,8 @@ void ViewRootClass::setupUi(QMainWindow *ViewRootClass) {
     sizePolicy1.setVerticalStretch(0);
     sizePolicy1.setHeightForWidth(tabWidget->sizePolicy().hasHeightForWidth());
     tabWidget->setSizePolicy(sizePolicy1);
-    tabWidget->setMinimumSize(QSize(200, 0));
+    tabWidget->setMinimumWidth(200);
+    tabWidget->setMaximumWidth(350);
     tabWidget->setAutoFillBackground(true);
 
     //Tab 0
@@ -144,6 +145,7 @@ void ViewRootClass::retranslateUi(QMainWindow *ViewRootClass) {
 
     tab0->retranslateUi();
     mainMapScreen->retranslateUi();
+    menuBar->retranslateUi();
 } // retranslateUi
 void ViewRoot::clickGenerate() {
     int index = ui.tabWidget->currentIndex();

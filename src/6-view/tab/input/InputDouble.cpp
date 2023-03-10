@@ -11,6 +11,7 @@ void InputDouble::setupUi() {
 
     label = new QLabel(this);
     containerLayout->addWidget(label);
+    label->setWordWrap(true);
     input = new QLineEdit(this);
     setValue(defaultV);
     containerLayout->addWidget(input);

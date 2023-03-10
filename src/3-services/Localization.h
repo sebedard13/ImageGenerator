@@ -2,6 +2,7 @@
 
 #include <string>
 #include <unordered_map>
+#include <filesystem>
 
 class Localization {
 public:
@@ -24,8 +25,11 @@ public:
     static void setLanguage(const std::string &language); //ISO 639-1
     static std::string getLanguage(); //ISO 639-1
 
+    static std::vector<std::string> getAllLanguages();
+
 
 private:
+    const static std::filesystem::path folder;
     static Localization *instance;
     std::string language{"undefined-language"};
     std::unordered_map<std::string, std::string> textTable{};

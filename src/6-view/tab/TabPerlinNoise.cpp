@@ -40,11 +40,11 @@ void TabPerlinNoise::setupUi() {
 void TabPerlinNoise::retranslateUi() {
     title->setText(ViewsUtils::local("algoPerlinNoiseName"));
     sizeLabel->setText(ViewsUtils::local("labelSize"));
-    sizeComboBox->setItemText(0, ViewsUtils::local("size100"));
-    sizeComboBox->setItemText(1, ViewsUtils::local("size500"));
-    sizeComboBox->setItemText(2, ViewsUtils::local("size1000"));
-    sizeComboBox->setItemText(3, ViewsUtils::local("size2500"));
-    sizeComboBox->setItemText(4, ViewsUtils::local("size5000"));
+    sizeComboBox->setItemText(0, "100x100");
+    sizeComboBox->setItemText(1, "500x500");
+    sizeComboBox->setItemText(2, "1000x1000");
+    sizeComboBox->setItemText(3, "2500x2500");
+    sizeComboBox->setItemText(4, "5000x5000");
 
     seedInput->retranslateUi();
     cellSizeInput->retranslateUi();
