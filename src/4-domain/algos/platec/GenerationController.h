@@ -4,59 +4,54 @@
 
 class GenerationController {
 public:
-	GenerationController(Lithosphere* lithosphere, unsigned maxCycleCount, unsigned maxIterationCount)
-		: lithosphere(lithosphere),
-		maxCycle(maxCycleCount),
-		maxIteration(maxIterationCount)
-	{
-	}
+    GenerationController(Lithosphere* lithosphere, unsigned maxCycleCount, unsigned maxIterationCount)
+            : lithosphere(lithosphere),
+            maxCycle(maxCycleCount),
+            maxIteration(maxIterationCount) {
+    }
 
-	GenerationController(const GenerationController& other) = delete;
-	GenerationController(GenerationController&& other) noexcept = delete;
-	GenerationController& operator=(const GenerationController& other) = delete;
-	GenerationController& operator=(GenerationController&& other) noexcept = delete;
+    GenerationController(const GenerationController &other) = delete;
 
-	~GenerationController() = default;
+    GenerationController(GenerationController &&other) noexcept = delete;
 
-	void update();
+    GenerationController &operator=(const GenerationController &other) = delete;
 
-	size_t getPlateCount() const
-	{
-		return lithosphere->getPlateCount();
-	}
+    GenerationController &operator=(GenerationController &&other) noexcept = delete;
 
-	unsigned getMaxCycle() const
-	{
-		return maxCycle;
-	}
+    ~GenerationController() = default;
 
-	unsigned getMaxIteration() const
-	{
-		return maxIteration;
-	}
+    void update();
 
-	unsigned getIteration() const
-	{
-		return iteration;
-	}
+    [[nodiscard]] unsigned getMaxCycle() const {
+        return maxCycle;
+    }
 
-	unsigned getCycle() const
-	{
-		return cycle;
-	}
+    [[nodiscard]] unsigned getMaxIteration() const {
+        return maxIteration;
+    }
 
-    bool getIsRunning() const;
-    bool isRunning = true;
+    [[nodiscard]] unsigned getIteration() const {
+        return iteration;
+    }
+
+    [[nodiscard]] unsigned getCycle() const {
+        return cycle;
+    }
+
+    [[nodiscard]] bool getIsRunning() const;
+
 private:
 
-	bool isStale() const;
-	bool isContinuing() const;
+    [[nodiscard]] bool isStale() const;
 
-	Lithosphere* lithosphere;
-	const unsigned maxCycle;
-	const unsigned maxIteration;
-	unsigned iteration = 0;
-	unsigned cycle = 0;
+    [[nodiscard]] bool isContinuing() const;
+
+    bool isRunning = true;
+    Lithosphere* lithosphere;
+    const unsigned maxCycle;
+    const unsigned maxIteration;
+    unsigned iteration = 0;
+    unsigned cycle = 0;
 
 public:
 
