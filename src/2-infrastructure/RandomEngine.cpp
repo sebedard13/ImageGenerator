@@ -1,38 +1,38 @@
 #include <iostream>
 #include "RandomEngine.h"
 
-RandomEngine::RandomEngine(const RandomEngine &other) {
+RandomEngine::RandomEngine(const RandomEngine& other) {
     engine = other.engine;
     seed = other.seed;
 }
 
 RandomEngine::RandomEngine(const unsigned int seed)
-        : seed(seed){
+        : seed(seed) {
     engine = std::make_unique<std::minstd_rand>(seed);
 }
 
-RandomEngine::RandomEngine(RandomEngine &&other) noexcept {
+RandomEngine::RandomEngine(RandomEngine&& other) noexcept {
     engine = other.engine;
     seed = other.seed;
 }
 
-RandomEngine &RandomEngine::operator=(const RandomEngine &other) {
-    engine = other.engine;
-    seed = other.seed;
-    return *this;
-}
-
-RandomEngine &RandomEngine::operator=(RandomEngine &&other) noexcept {
+RandomEngine& RandomEngine::operator=(const RandomEngine& other) {
     engine = other.engine;
     seed = other.seed;
     return *this;
 }
 
+RandomEngine& RandomEngine::operator=(RandomEngine&& other) noexcept {
+    engine = other.engine;
+    seed = other.seed;
+    return *this;
+}
 
 
 int RandomEngine::operator()() {
     std::uniform_int_distribution<int> dist{0, RAND_MAX};
-    return dist(*engine);
+    int i = dist(*engine);
+    return i;
 }
 
 unsigned RandomEngine::getSeed() const {

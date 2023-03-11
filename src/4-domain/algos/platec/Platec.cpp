@@ -7,6 +7,11 @@
 
 std::unique_ptr<Map> Platec::run() {
     output->setMessageId("tipLoadingPlatec");
+    
+    Lithosphere::rand = RandomEngine(seed);
+    Plate::rand = RandomEngine(seed / 2); //Change number without going out of bound
+
+
     Lithosphere lithos = Lithosphere(mapSideLength,
             seaLevel,
             erosionPeriod,
@@ -15,9 +20,6 @@ std::unique_ptr<Map> Platec::run() {
             aggrRatioRel,
             mapRoughness
     );
-    Lithosphere::rand = RandomEngine(seed);
-    Plate::rand = RandomEngine(seed / 2); //Change number without going out of bound
-
 
     GenerationController world = GenerationController(&lithos, maxCycleCount, maxIterationCount);
 

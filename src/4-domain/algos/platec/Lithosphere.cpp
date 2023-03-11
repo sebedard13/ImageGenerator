@@ -5,7 +5,6 @@
 #include "Plate.h"
 
 #include <cfloat>
-#include <cstdlib>
 #include <vector>
 #include "../DiamondSquare.h"
 
@@ -38,6 +37,7 @@ static const float MULINV_MAX_BUOYANCY_AGE = 1.0f / (float) MAX_BUOYANCY_AGE;
 
 
 std::vector<float> squareDiamondAdaptater(const size_t map_side_length, const unsigned seed, const float roughness) {
+    std::cout << seed << std::endl;
     DiamondSquare ds = DiamondSquare(map_side_length + 1, seed, roughness);
     auto dsMap = ds.execute();
     std::vector<float> rtn(map_side_length * map_side_length);
@@ -55,8 +55,8 @@ std::vector<float> squareDiamondAdaptater(const size_t map_side_length, const un
 }
 
 Lithosphere::Lithosphere(size_t map_side_length, float sea_level,
-                         size_t _erosion_period, float _folding_ratio, size_t aggr_ratio_abs,
-                         float aggr_ratio_rel, float map_roughness)
+        size_t _erosion_period, float _folding_ratio, size_t aggr_ratio_abs,
+        float aggr_ratio_rel, float map_roughness)
         :
         aggr_overlap_abs(aggr_ratio_abs),
         aggr_overlap_rel(aggr_ratio_rel),
@@ -238,7 +238,7 @@ void Lithosphere::createPlates(size_t num_plates) throw() {
         const size_t y1 = 1 + y0 + area[i].hgt;
         const size_t width = x1 - x0;
         const size_t height = y1 - y0;
-        float *plt = new float[width * height];
+        float* plt = new float[width * height];
 
         // Copy plate's height data from global map into local map.
         for (size_t y = y0, j = 0; y < y1; ++y)
@@ -268,7 +268,7 @@ const vector<float> Lithosphere::getTopography() const throw() {
     return heightMap;
 }
 
-vector<float> &Lithosphere::freeTopography() {
+vector<float>& Lithosphere::freeTopography() {
     return heightMap;
 }
 
@@ -319,7 +319,7 @@ void Lithosphere::update() throw() {
         const size_t x1 = x0 + plates[i].getWidth();
         const size_t y1 = y0 + plates[i].getHeight();
 
-        const float *this_map = plates[i].getMap();
+        const float* this_map = plates[i].getMap();
         const std::vector<size_t> this_age = plates[i].getAge();
 
         // Copy first part of plate onto world map.
@@ -393,7 +393,7 @@ void Lithosphere::update() throw() {
                         ++oceanic_collisions;
 
                         plates[ownerMap[index_coord]].setCrust(x_mod, y_mod, heightMap[index_coord] - OCEANIC_BASE,
-                                                               prev_timestamp);
+                                prev_timestamp);
                         heightMap[index_coord] -= OCEANIC_BASE;
 
                         if (heightMap[index_coord] <= 0) {
@@ -431,7 +431,7 @@ void Lithosphere::update() throw() {
                     plates[i].setCrust(x_mod, y_mod, this_map[j] + coll.crust, ageMap[index_coord]);
 
                     plates[ownerMap[index_coord]].setCrust(x_mod, y_mod, heightMap[index_coord] * (1.0 - folding_ratio),
-                                                           ageMap[index_coord]);
+                            ageMap[index_coord]);
 
                     collisions[ownerMap[index_coord]].push_back(coll);
                     ++continental_collisions;
@@ -451,7 +451,7 @@ void Lithosphere::update() throw() {
 
     for (size_t i = 0; i < num_plates; ++i) {
         for (size_t j = 0; j < subductions[i].size(); ++j) {
-            const plateCollision &coll = subductions[i][j];
+            const plateCollision& coll = subductions[i][j];
 
 
             // Do not apply friction to oceanic plates.
@@ -469,7 +469,7 @@ void Lithosphere::update() throw() {
 
     for (size_t i = 0; i < num_plates; ++i) {
         for (size_t j = 0; j < collisions[i].size(); ++j) {
-            const plateCollision &coll = collisions[i][j];
+            const plateCollision& coll = collisions[i][j];
             size_t coll_count, coll_count_i, coll_count_j;
             float coll_ratio, coll_ratio_i, coll_ratio_j;
 
@@ -553,7 +553,7 @@ void Lithosphere::restart() throw() {
         const size_t x1 = x0 + plates[i].getWidth();
         const size_t y1 = y0 + plates[i].getHeight();
 
-        const float *this_map = plates[i].getMap();
+        const float* this_map = plates[i].getMap();
         const std::vector<size_t> this_age = plates[i].getAge();
 
         // Copy first part of plate onto world map.
