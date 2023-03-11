@@ -35,11 +35,9 @@ void Tab::setupMainUi() {
     mainLayout->addItem(verticalSpacer);
     scrollArea->setWidget(scrollAreaWidgetContents);
     verticalLayout_6->addWidget(scrollArea);
-
-    retranslateUi();
 }
 
-QVBoxLayout* Tab::generateInputLayout(QWidget *parent) {
+QVBoxLayout* Tab::generateInputLayout(QWidget* parent) {
 
     auto pQvBoxLayout = new QVBoxLayout(parent);
     pQvBoxLayout->setSpacing(5);

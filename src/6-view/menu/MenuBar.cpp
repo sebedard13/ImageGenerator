@@ -10,12 +10,12 @@
 #include "../../3-services/KeyBinding.h"
 #include "../ViewRoot.h"
 
-MenuBar::MenuBar(QWidget *parent)
+MenuBar::MenuBar(QWidget* parent)
         : QMenuBar(parent) {
     this->setObjectName("menuBar");
 }
 
-void MenuBar::setupUi(QMainWindow *ViewRootClass) {
+void MenuBar::setupUi(QMainWindow* ViewRootClass) {
     menuFile = new QMenu(this);
     menuFile->setObjectName("menuFile");
     menuFile->setToolTipsVisible(false);
@@ -47,7 +47,6 @@ void MenuBar::setupUi(QMainWindow *ViewRootClass) {
     QObject::connect(actionQuiter, &QAction::triggered, &QApplication::quit);
 
 
-
     menuPerformence = new QMenu(this);
     menuPerformence->setObjectName("menuPerformence");
     menuPerformence->setToolTipsVisible(false);
@@ -64,12 +63,12 @@ void MenuBar::setupUi(QMainWindow *ViewRootClass) {
 
 
     for (unsigned int threadNumber: threadNumbers) {
-        auto *current = new QAction(this);
+        auto* current = new QAction(this);
         current->setObjectName("actionThreadNumber" + std::to_string(threadNumber));
         actionsThreadNumber->addAction(current);
         current->setCheckable(true);
         unsigned nb = threadNumber;
-        std::function<void()> lambda = [nb] { ThreadController::setThreadNumber(nb); };
+        std::function < void() > lambda = [nb] { ThreadController::setThreadNumber(nb); };
         QObject::connect(current, &QAction::triggered, lambda);
         current->setText(QString::fromStdString(std::to_string(nb)));
     }
@@ -94,20 +93,20 @@ void MenuBar::setupUi(QMainWindow *ViewRootClass) {
 
     std::vector<std::string> langs{Localization::getAllLanguages()};
     for (auto l: langs) {
-        auto *current = new QAction(this);
+        auto* current = new QAction(this);
         current->setObjectName("lang" + l);
         actionsLang->addAction(current);
         current->setCheckable(true);
         std::function < void() > lambda = [l, ViewRootClass] {
             Localization::setLanguage(l);
-            reinterpret_cast<ViewRoot *>(ViewRootClass)->retranslate();
+            reinterpret_cast<ViewRoot*>(ViewRootClass)->retranslate();
         };
         QObject::connect(current, &QAction::triggered, lambda);
         current->setText(QString::fromStdString(l));
     }
     for (int i = 0; i < langs.size(); ++i) {
         if (langs[i] == Localization::getLanguage()) {
-            actionsLang->actions()[i]->trigger();
+            actionsLang->actions()[i]->setChecked(true);
         }
     }
     menuLang->addActions(actionsLang->actions());
@@ -129,8 +128,8 @@ void MenuBar::retranslateUi() {
 
 void MenuBar::clickSave() {
     QString fileName = QFileDialog::getSaveFileName(this, "Save File",
-                                                    "/",
-                                                    "Image (*.png)");
+            "/",
+            "Image (*.png)");
 
     Controller::execute(std::make_unique<SaveImage>(fileName.toStdString()));
 }

@@ -17,7 +17,7 @@ void GenerateDiamondSquare::handleGenerate() {
     Controller::execute(std::make_unique<DoAlgo>(std::move(algo)));
 }
 
-GenerateDiamondSquare::GenerateDiamondSquare(TabDiamondSquare *tabDiamondSquare)
+GenerateDiamondSquare::GenerateDiamondSquare(TabDiamondSquare* tabDiamondSquare)
         : tabDiamondSquare(tabDiamondSquare) {}
 
 
@@ -44,9 +44,6 @@ void TabDiamondSquare::setupUi() {
 
     persistenceInput = new InputDouble("labelRoughness", 0.8, 0.1, 5);
     mainLayout->addWidget(persistenceInput);
-
-
-    retranslateUi();
 }
 
 void TabDiamondSquare::retranslateUi() {

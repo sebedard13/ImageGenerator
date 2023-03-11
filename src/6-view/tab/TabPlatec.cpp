@@ -52,7 +52,6 @@ void TabPlatec::setupUi() {
 
     aggrRatioRel = new InputDouble("labelAggrRatioRel", 0.1);
     mainLayout->addWidget(aggrRatioRel);
-
 }
 
 void TabPlatec::retranslateUi() {

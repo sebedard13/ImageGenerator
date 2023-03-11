@@ -3,7 +3,7 @@
 #include "ViewUtils.h"
 #include "../3-services/KeyBinding.h"
 
-void ViewRootClass::setupUi(QMainWindow *ViewRootClass) {
+void ViewRootClass::setupUi(QMainWindow* ViewRootClass) {
     if (ViewRootClass->objectName().isEmpty())
         ViewRootClass->setObjectName("ViewRootClass");
     ViewRootClass->resize(1228, 818);
@@ -95,7 +95,7 @@ void ViewRootClass::setupUi(QMainWindow *ViewRootClass) {
     btnGenerate->setShortcut(key);
     btnGenerate->setToolTip(key.toString());
 
-    auto *shortcut = new QShortcut(key, btnGenerate, SLOT(click()));
+    auto* shortcut = new QShortcut(key, btnGenerate, SLOT(click()));
     shortcut->setAutoRepeat(false);
 
     verticalLayout_4->addWidget(btnGenerate);
@@ -123,17 +123,19 @@ void ViewRootClass::setupUi(QMainWindow *ViewRootClass) {
     ViewRootClass->setMenuBar(menuBar);
 
 
-    retranslateUi(ViewRootClass);
-    QObject::connect(btnGenerate, &QAbstractButton::clicked, dynamic_cast<const ViewRoot *>(ViewRootClass),
+    QObject::connect(btnGenerate, &QAbstractButton::clicked, dynamic_cast<const ViewRoot*>(ViewRootClass),
             &ViewRoot::clickGenerate);
 
     tabWidget->setCurrentIndex(0);
 
 
     QMetaObject::connectSlotsByName(ViewRootClass);
+
+
+    retranslateUi(ViewRootClass);
 } // setupUi
 
-void ViewRootClass::retranslateUi(QMainWindow *ViewRootClass) {
+void ViewRootClass::retranslateUi(QMainWindow* ViewRootClass) {
     ViewRootClass->setWindowTitle(ViewsUtils::local("mainWindowName"));
 
     tabWidget->setTabText(tabWidget->indexOf(tab0), ViewsUtils::local("algoPerlinNoiseName"));
@@ -143,8 +145,11 @@ void ViewRootClass::retranslateUi(QMainWindow *ViewRootClass) {
     tabWidget->setTabText(tabWidget->indexOf(tab3), ViewsUtils::local("algoPlatecName"));
     btnGenerate->setText(ViewsUtils::local("btnGenerateMap"));
 
-
     tab0->retranslateUi();
+    tab1->retranslateUi();
+    tab2->retranslateUi();
+    tab3->retranslateUi();
+
     mainMapScreen->retranslateUi();
     menuBar->retranslateUi();
 } // retranslateUi
@@ -153,7 +158,7 @@ void ViewRoot::clickGenerate() {
     ui.tabs[index]->handleGenerate();
 }
 
-ViewRoot::ViewRoot(QWidget *parent)
+ViewRoot::ViewRoot(QWidget* parent)
         : QMainWindow(parent) {
     ui.setupUi(this);
 }
