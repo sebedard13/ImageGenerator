@@ -3,7 +3,6 @@
 #include <cassert>
 
 #include "Plate.h"
-#include "sqrdmd.h"
 
 #include <cfloat>
 #include <cstdlib>

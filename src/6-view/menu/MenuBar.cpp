@@ -93,7 +93,6 @@ void MenuBar::setupUi(QMainWindow *ViewRootClass) {
     actionsLang->setObjectName("actionsThreadNumber");
 
     std::vector<std::string> langs{Localization::getAllLanguages()};
-    std::cout << langs[0] << std::endl;
     for (auto l: langs) {
         auto *current = new QAction(this);
         current->setObjectName("lang" + l);

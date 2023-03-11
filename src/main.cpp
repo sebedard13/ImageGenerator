@@ -17,7 +17,7 @@ int main(int argc, char *argv[]) {
 
     Controller::setUp(map);
 
-    Controller::execute(std::make_unique<DoAlgo>(std::make_unique<Platec>()));
+  //  Controller::execute(std::make_unique<DoAlgo>(std::make_unique<Platec>()));
 
     return a.exec();
 }
