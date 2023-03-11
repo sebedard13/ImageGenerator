@@ -16,6 +16,7 @@
 #include "menu/MenuBar.h"
 #include "tab/TabRandomVoronoi.h"
 #include "tab/TabDiamondSquare.h"
+#include "tab/TabPlatec.h"
 
 class ViewRootClass {
 
@@ -30,6 +31,7 @@ public:
     TabPerlinNoise *tab0;
     TabRandomVoronoi *tab1;
     TabDiamondSquare *tab2;
+    TabPlatec *tab3;
     QFrame *frame1;
     QVBoxLayout *verticalLayout_4;
     QPushButton *btnGenerate;
@@ -63,7 +65,7 @@ public:
         return ui.mapView;
     }
 
-    void retranslate(){
+    void retranslate() {
         ui.retranslateUi(this);
     }
 

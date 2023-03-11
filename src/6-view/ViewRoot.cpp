@@ -62,6 +62,12 @@ void ViewRootClass::setupUi(QMainWindow *ViewRootClass) {
     tabs.push_back(std::make_unique<GenerateDiamondSquare>(tab2));
     tabWidget->addTab(tab2, QString());
 
+    //Tab 3
+    tab3 = new TabPlatec();
+    tab3->setupMainUi();
+    tabs.push_back(std::make_unique<GeneratePlatec>(tab3));
+    tabWidget->addTab(tab3, QString());
+
 
     verticalLayout->addWidget(tabWidget);
 
@@ -117,15 +123,9 @@ void ViewRootClass::setupUi(QMainWindow *ViewRootClass) {
     ViewRootClass->setMenuBar(menuBar);
 
 
-
-
-//	statusBar = new QStatusBar(ViewRootClass);
-//	statusBar->setObjectName("statusBar");
-//	ViewRootClass->setStatusBar(statusBar);
-
     retranslateUi(ViewRootClass);
     QObject::connect(btnGenerate, &QAbstractButton::clicked, dynamic_cast<const ViewRoot *>(ViewRootClass),
-                     &ViewRoot::clickGenerate);
+            &ViewRoot::clickGenerate);
 
     tabWidget->setCurrentIndex(0);
 
@@ -140,6 +140,7 @@ void ViewRootClass::retranslateUi(QMainWindow *ViewRootClass) {
 
     tabWidget->setTabText(tabWidget->indexOf(tab1), ViewsUtils::local("algoRandomVoronoiName"));
     tabWidget->setTabText(tabWidget->indexOf(tab2), ViewsUtils::local("algoDiamondSquareName"));
+    tabWidget->setTabText(tabWidget->indexOf(tab3), ViewsUtils::local("algoPlatecName"));
     btnGenerate->setText(ViewsUtils::local("btnGenerateMap"));
 
 
