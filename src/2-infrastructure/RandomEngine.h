@@ -11,13 +11,13 @@ public:
 
     RandomEngine(const unsigned seed);
 
-    RandomEngine(const RandomEngine &other);
+    RandomEngine(const RandomEngine& other);
 
-    RandomEngine(RandomEngine &&other) noexcept;
+    RandomEngine(RandomEngine&& other) noexcept;
 
-    RandomEngine &operator=(const RandomEngine &other);
+    RandomEngine& operator=(const RandomEngine& other);
 
-    RandomEngine &operator=(RandomEngine &&other) noexcept;
+    RandomEngine& operator=(RandomEngine&& other) noexcept;
 
     ~RandomEngine() = default;
 
@@ -27,10 +27,12 @@ public:
 
     int range(int minInclude, int maxExclude);
 
+    unsigned range(unsigned minInclude, unsigned maxExclude);
+
     float range(float minInclude, float maxExclude);
 
 private:
 
     std::shared_ptr<std::minstd_rand> engine = std::make_unique<std::minstd_rand>(default_seed);
-    unsigned seed =default_seed;
+    unsigned seed = default_seed;
 };

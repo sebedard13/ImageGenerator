@@ -24,11 +24,11 @@ void TabRandomVoronoi::setupUi() {
 
     mainLayout->addWidget(sizeContainer);
 
-    seedInput = new InputInteger("labelSeed", 0, 0);
+    seedInput = new InputSeed();
     mainLayout->addWidget(seedInput);
 
     nbPointsInput = new InputInteger("labelNbPoints", 5, 2, 500);
-    mainLayout->addWidget(nbPointsInput );
+    mainLayout->addWidget(nbPointsInput);
 }
 
 void TabRandomVoronoi::retranslateUi() {
@@ -43,16 +43,16 @@ void TabRandomVoronoi::retranslateUi() {
     seedInput->retranslateUi();
 }
 
-GenerateRandomVoronoi::GenerateRandomVoronoi(TabRandomVoronoi *tabRandomVoronoi)
-        : tabRandomVoronoi(tabRandomVoronoi)
-{}
+GenerateRandomVoronoi::GenerateRandomVoronoi(TabRandomVoronoi* tabRandomVoronoi)
+        : tabRandomVoronoi(tabRandomVoronoi) {}
 
 void GenerateRandomVoronoi::handleGenerate() {
     constexpr int sizes[5]{100, 500, 1000, 2500, 5000};
     const int sizeIndex = tabRandomVoronoi->sizeComboBox->currentIndex();
 
-    auto algo = std::make_unique<RandomVoronoi>(tabRandomVoronoi->nbPointsInput->getValue(),sizes[sizeIndex], sizes[sizeIndex],
-                                                tabRandomVoronoi->seedInput->getValue()
+    auto algo = std::make_unique<RandomVoronoi>(tabRandomVoronoi->nbPointsInput->getValue(), sizes[sizeIndex],
+            sizes[sizeIndex],
+            tabRandomVoronoi->seedInput->getValue()
     );
 
     Controller::execute(std::make_unique<DoAlgo>(std::move(algo)));

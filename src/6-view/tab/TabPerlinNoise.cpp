@@ -24,7 +24,7 @@ void TabPerlinNoise::setupUi() {
     sizeContainerLayout->addWidget(sizeComboBox);
     mainLayout->addWidget(sizeContainer);
 
-    seedInput = new InputInteger("labelSeed", 0, 0);
+    seedInput = new InputSeed();
     mainLayout->addWidget(seedInput);
 
     cellSizeInput = new InputInteger("labelCellSize", 24, 1, 5000);
@@ -57,10 +57,10 @@ void GeneratePerlinNoise::handleGenerate() {
     const int sizeIndex = tabPerlinNoise->sizeComboBox->currentIndex();
 
     auto algo = std::make_unique<AlgoPerlinNoise>(sizes[sizeIndex], sizes[sizeIndex],
-                                                  tabPerlinNoise->cellSizeInput->getValue(),
-                                                  tabPerlinNoise->octavesInput->getValue(),
-                                                  tabPerlinNoise->persistenceInput->getValue(),
-                                                  tabPerlinNoise->seedInput->getValue()
+            tabPerlinNoise->cellSizeInput->getValue(),
+            tabPerlinNoise->octavesInput->getValue(),
+            tabPerlinNoise->persistenceInput->getValue(),
+            tabPerlinNoise->seedInput->getValue()
     );
 
     Controller::execute(std::make_unique<DoAlgo>(std::move(algo)));

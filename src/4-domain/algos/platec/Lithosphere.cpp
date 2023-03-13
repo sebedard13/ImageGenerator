@@ -37,7 +37,6 @@ static const float MULINV_MAX_BUOYANCY_AGE = 1.0f / (float) MAX_BUOYANCY_AGE;
 
 
 std::vector<float> squareDiamondAdaptater(const size_t map_side_length, const unsigned seed, const float roughness) {
-    std::cout << seed << std::endl;
     DiamondSquare ds = DiamondSquare(map_side_length + 1, seed, roughness);
     auto dsMap = ds.execute();
     std::vector<float> rtn(map_side_length * map_side_length);

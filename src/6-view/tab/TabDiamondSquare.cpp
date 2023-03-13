@@ -39,7 +39,7 @@ void TabDiamondSquare::setupUi() {
     sizeContainerLayout->addWidget(sizeComboBox);
     mainLayout->addWidget(sizeContainer);
 
-    seedInput = new InputInteger("labelSeed", 0, 0);
+    seedInput = new InputSeed();
     mainLayout->addWidget(seedInput);
 
     persistenceInput = new InputDouble("labelRoughness", 0.8, 0.1, 5);

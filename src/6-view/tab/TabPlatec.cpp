@@ -23,7 +23,7 @@ void TabPlatec::setupUi() {
     sizeContainerLayout->addWidget(sizeComboBox);
     mainLayout->addWidget(sizeContainer);
 
-    seedInput = new InputInteger("labelSeed", 0, 0);
+    seedInput = new InputSeed();
     mainLayout->addWidget(seedInput);
 
     nbPlatesInput = new InputInteger("labelNbPlates", 10, 0);
@@ -75,7 +75,7 @@ void TabPlatec::retranslateUi() {
     aggrRatioRel->retranslateUi();
 }
 
-GeneratePlatec::GeneratePlatec(TabPlatec *tabPlatec)
+GeneratePlatec::GeneratePlatec(TabPlatec* tabPlatec)
         : tabPlatec(tabPlatec) {
 
 }

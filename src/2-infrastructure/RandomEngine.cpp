@@ -44,6 +44,11 @@ int RandomEngine::range(int minInclude, int maxExclude) {
     return dist(*engine);
 }
 
+unsigned RandomEngine::range(unsigned minInclude, unsigned maxExclude) {
+    std::uniform_int_distribution<unsigned> dist{minInclude, maxExclude - 1};
+    return dist(*engine);
+}
+
 float RandomEngine::range(float minInclude, float maxExclude) {
     std::uniform_real_distribution<float> dist{minInclude, maxExclude};
     return dist(*engine);
