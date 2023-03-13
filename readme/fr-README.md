@@ -1,13 +1,13 @@
 # Génération de monde et différents algorithmes
 
-[![en](https://img.shields.io/badge/lang-en-red.svg)](md)
+[![en](https://img.shields.io/badge/lang-en-red.svg)](../README.md)
 [![fr](https://img.shields.io/badge/lang-fr-blue.svg)](fr-README.md)
 
 Cette application permet de générer des images à partir de différents algorithmes.
 Elle a été créer dans le but d'explorer différents algorithmes dans le but de générer des mondes, mais en ce moment
 seulement l'algorithme de Platec est implémenté.
 
-![Image de l'application](/img/img_application.png)
+![Image de l'application](img/img_application.png)
 
 ## Algorithmes
 
