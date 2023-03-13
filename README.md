@@ -96,6 +96,7 @@ generation iteration, the points choose an adjacent random point and add it to t
 
 The diamond square algorithm generates a random noise image from 4 values in the corners of the image. It creates the
 values in a special movement as on this image:
+
 ![Image of the diamond square process](https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Diamond_Square.svg/800px-Diamond_Square.svg.png)
 
 This algorithm makes it easy to create fractal images as if we zoomed into the image and increased the details. This
