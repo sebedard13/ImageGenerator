@@ -8,7 +8,7 @@ RandomVoronoi::RandomVoronoi(const unsigned numberPoints, const unsigned width, 
 	: numberPoints(numberPoints),
 	width(width),
 	height(height),
-    rand(seed){
+	rand(seed) {
 
 }
 
@@ -28,7 +28,7 @@ std::unique_ptr<Map> RandomVoronoi::run() {
 	unsigned pointsDone = 0;
 	std::vector<Coord> startPoints(numberPoints);
 	for (unsigned i = 0; i < startPoints.size(); i++) {
-		startPoints[i] = Coord(rand.range(0, width), rand.range(0, height));
+		startPoints[i] = Coord(rand.range(static_cast<unsigned>(0), width), rand.range(static_cast<unsigned>(0), height));
 		if (map->get(startPoints[i]) == 0) {
 			map->set(startPoints[i], i + 1);
 			pointsDone++;

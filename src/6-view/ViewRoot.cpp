@@ -44,6 +44,12 @@ void ViewRootClass::setupUi(QMainWindow* ViewRootClass) {
     tabWidget->setMaximumWidth(350);
     tabWidget->setAutoFillBackground(true);
 
+    //Tab 3
+    tab3 = new TabPlatec();
+    tab3->setupMainUi();
+    tabs.push_back(std::make_unique<GeneratePlatec>(tab3));
+    tabWidget->addTab(tab3, QString());
+
     //Tab 0
     tab0 = new TabPerlinNoise();
     tab0->setupMainUi();
@@ -61,12 +67,6 @@ void ViewRootClass::setupUi(QMainWindow* ViewRootClass) {
     tab2->setupMainUi();
     tabs.push_back(std::make_unique<GenerateDiamondSquare>(tab2));
     tabWidget->addTab(tab2, QString());
-
-    //Tab 3
-    tab3 = new TabPlatec();
-    tab3->setupMainUi();
-    tabs.push_back(std::make_unique<GeneratePlatec>(tab3));
-    tabWidget->addTab(tab3, QString());
 
 
     verticalLayout->addWidget(tabWidget);
