@@ -6,15 +6,16 @@
 #include "../ViewUtils.h"
 #include "../../5-controller/Controller.h"
 #include "../../5-controller/commands/SaveImage.h"
-#include "../../2-services/ThreadController.h"
-#include "../../3-infrastructure/KeyBinding.h"
+#include "../../2-infrastructure/ThreadController.h"
+#include "../../3-services/KeyBinding.h"
+#include "../ViewRoot.h"
 
-MenuBar::MenuBar(QWidget *parent)
+MenuBar::MenuBar(QWidget* parent)
         : QMenuBar(parent) {
     this->setObjectName("menuBar");
 }
 
-void MenuBar::setupUi(QMainWindow *ViewRootClass) {
+void MenuBar::setupUi(QMainWindow* ViewRootClass) {
     menuFile = new QMenu(this);
     menuFile->setObjectName("menuFile");
     menuFile->setToolTipsVisible(false);
@@ -45,15 +46,6 @@ void MenuBar::setupUi(QMainWindow *ViewRootClass) {
     QObject::connect(actionSauvegarder, &QAction::triggered, this, &MenuBar::clickSave);
     QObject::connect(actionQuiter, &QAction::triggered, &QApplication::quit);
 
-//    menuA_propos = new QMenu(this);
-//    menuA_propos->setObjectName("menuA_propos");
-//    menuA_propos->setToolTipsVisible(false);
-//    this->addAction(menuA_propos->menuAction());
-
-    actionVoir = new QAction(ViewRootClass);
-    actionVoir->setObjectName("actionVoir");
-//	menuA_propos->addAction(actionVoir);
-
 
     menuPerformence = new QMenu(this);
     menuPerformence->setObjectName("menuPerformence");
@@ -71,12 +63,12 @@ void MenuBar::setupUi(QMainWindow *ViewRootClass) {
 
 
     for (unsigned int threadNumber: threadNumbers) {
-        auto *current = new QAction(this);
+        auto* current = new QAction(this);
         current->setObjectName("actionThreadNumber" + std::to_string(threadNumber));
         actionsThreadNumber->addAction(current);
         current->setCheckable(true);
         unsigned nb = threadNumber;
-        std::function<void()> lambda = [nb] { ThreadController::setThreadNumber(nb); };
+        std::function < void() > lambda = [nb] { ThreadController::setThreadNumber(nb); };
         QObject::connect(current, &QAction::triggered, lambda);
         current->setText(QString::fromStdString(std::to_string(nb)));
     }
@@ -90,6 +82,35 @@ void MenuBar::setupUi(QMainWindow *ViewRootClass) {
         actionsThreadNumber->actions()[index - 1]->trigger();
     }
 
+    menuLang = new QMenu(this);
+    menuLang->setObjectName("menuLang");
+    menuLang->setToolTipsVisible(false);
+    this->addAction(menuLang->menuAction());
+
+    actionsLang = new QActionGroup(this);
+    actionsLang->setExclusionPolicy(QActionGroup::ExclusionPolicy::Exclusive);
+    actionsLang->setObjectName("actionsThreadNumber");
+
+    std::vector<std::string> langs{Localization::getAllLanguages()};
+    for (auto l: langs) {
+        auto* current = new QAction(this);
+        current->setObjectName("lang" + l);
+        actionsLang->addAction(current);
+        current->setCheckable(true);
+        std::function < void() > lambda = [l, ViewRootClass] {
+            Localization::setLanguage(l);
+            reinterpret_cast<ViewRoot*>(ViewRootClass)->retranslate();
+        };
+        QObject::connect(current, &QAction::triggered, lambda);
+        current->setText(QString::fromStdString(l));
+    }
+    for (int i = 0; i < langs.size(); ++i) {
+        if (langs[i] == Localization::getLanguage()) {
+            actionsLang->actions()[i]->setChecked(true);
+        }
+    }
+    menuLang->addActions(actionsLang->actions());
+
 
     retranslateUi();
 }
@@ -98,18 +119,17 @@ void MenuBar::retranslateUi() {
     actionSauvegarder->setText(ViewsUtils::local("btnSave"));
     actionCharger->setText(ViewsUtils::local("btnLoad"));
     actionQuiter->setText(ViewsUtils::local("btnQuit"));
-    actionVoir->setText(ViewsUtils::local("btnSeeAbout"));
     menuFile->setTitle(ViewsUtils::local("btnFile"));
-//	menuA_propos->setTitle(ViewsUtils::local("btnAbout"));
     menuPerformence->setTitle(ViewsUtils::local("btnPerformance"));
     menuThreadNumber->setText(ViewsUtils::local("btnThreadNumberTitle"));
+    menuLang->setTitle(ViewsUtils::local("btnLanguages"));
 
 }
 
 void MenuBar::clickSave() {
     QString fileName = QFileDialog::getSaveFileName(this, "Save File",
-                                                    "/",
-                                                    "Image (*.png)");
+            "/",
+            "Image (*.png)");
 
     Controller::execute(std::make_unique<SaveImage>(fileName.toStdString()));
 }

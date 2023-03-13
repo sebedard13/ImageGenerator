@@ -2,7 +2,7 @@
 
 #include <QString>
 
-#include "../3-infrastructure/Localization.h"
+#include "../3-services/Localization.h"
 
 class ViewsUtils {
 public:

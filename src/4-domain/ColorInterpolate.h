@@ -11,13 +11,35 @@ class ColorInterpolate {
 public:
 	ColorInterpolate(const T& min, const T& max, std::vector<unsigned>& colors = defaultColors)
 		: min(min),
-		range(max - min),
-		step(range / (colors.size() - 1)) {
-		this->colors = std::move(colors);
+		range(max - min) {
+		this->colors = colors;
+		step = static_cast<double> (range) / (this->colors.size() - 1);
 	}
 
+	ColorInterpolate(const ColorInterpolate<T>& other) = delete;
 
-	unsigned uniformColor(const T& value) {
+	ColorInterpolate(ColorInterpolate<T>&& other) noexcept
+		: min(other.min),
+		range(other.range),
+		step(other.step)
+	{
+        colors = other.colors;
+	}
+
+	ColorInterpolate<T>& operator=(const ColorInterpolate<T>& other) = delete;
+
+	ColorInterpolate<T>& operator=(ColorInterpolate<T>&& other) noexcept
+	{
+		if (this == &other)
+			return *this;
+		min = other.min;
+		range = other.range;
+		step = other.step;
+        colors = other.colors;
+		return *this;
+	}
+
+	unsigned uniformColor(const T& value) const {
 		//Include max
 		if (value == min + range) {
 			return colors[colors.size() - 1];
@@ -60,7 +82,7 @@ private:
 			0xFF2ca25f,
 	};
 
-	double const min, range, step;
+	double min, range, step;
 	std::vector<unsigned> colors{};
 
 

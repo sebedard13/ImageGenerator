@@ -11,11 +11,12 @@
 
 #include "MapScreen.h"
 #include "../5-controller/MapView.h"
-#include "tab/TabAlgo.h"
+#include "tab/Generate.h"
 #include "tab/TabPerlinNoise.h"
 #include "menu/MenuBar.h"
 #include "tab/TabRandomVoronoi.h"
-
+#include "tab/TabDiamondSquare.h"
+#include "tab/TabPlatec.h"
 
 class ViewRootClass {
 
@@ -27,8 +28,10 @@ public:
     QFrame *frame;
     QVBoxLayout *verticalLayout;
     QTabWidget *tabWidget;
-    TabPerlinNoise *tab;
+    TabPerlinNoise *tab0;
     TabRandomVoronoi *tab1;
+    TabDiamondSquare *tab2;
+    TabPlatec *tab3;
     QFrame *frame1;
     QVBoxLayout *verticalLayout_4;
     QPushButton *btnGenerate;
@@ -39,7 +42,7 @@ public:
 
     QStatusBar *statusBar;
 
-    std::vector<std::unique_ptr<TabAlgo>> tabs{};
+    std::vector<std::unique_ptr<Generate>> tabs{};
 
     void setupUi(QMainWindow *ViewRootClass);
 
@@ -60,6 +63,10 @@ public:
 
     std::shared_ptr<MapView> getMainMapView() {
         return ui.mapView;
+    }
+
+    void retranslate() {
+        ui.retranslateUi(this);
     }
 
 private:

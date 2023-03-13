@@ -2,6 +2,7 @@
 
 #include <cstdlib>
 #include <stdexcept>
+#include "../../../2-infrastructure/RandomEngine.h"
 
 class PerlinNoise {
 public:
@@ -17,10 +18,10 @@ public:
         }
 
         if (this->seed != 0) {
-            std::srand(seed);
+            RandomEngine rand {seed};
 
             for (unsigned char &i: p) {
-                i = static_cast<unsigned char>(std::rand() % 256);
+                i = static_cast<unsigned char>(rand.range(0,256));
             }
         }
     }

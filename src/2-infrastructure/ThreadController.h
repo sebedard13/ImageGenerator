@@ -13,7 +13,7 @@ class ThreadController {
 public:
     ThreadController();
 
-    ThreadController(MapView *output);
+    ThreadController(Output *output);
 
     ThreadController(const ThreadController &other) = delete;
 
@@ -37,7 +37,7 @@ public:
 
 private:
     std::atomic<Counters> *counters = nullptr;
-    MapView *output{nullptr};
+    Output *output = new Output;
     static unsigned THREADS;
 
     void run(std::atomic<Counters> *counter, const unsigned min, const unsigned max,

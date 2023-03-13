@@ -6,7 +6,7 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
-set (CMAKE_RUNTIME_OUTPUT_DIRECTORY "build")
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "build")
 
 find_package(Qt6 COMPONENTS
         Core
@@ -17,16 +17,19 @@ find_package(Qt6 COMPONENTS
 add_executable(WorldGeneration
         src/main.cpp
 
-        src/4-domain/algos/RandomVoronoi.cpp src/4-domain/algos/Algo.h src/4-domain/algos/AlgoPerlinNoise.cpp src/4-domain/algos/AlgoPerlinNoise.h src/4-domain/algos/DistanceFromCenter.cpp src/4-domain/algos/DistanceFromCenter.h src/4-domain/perlin/PerlinNoise.cpp src/3-infrastructure/KeyBinding.cpp src/3-infrastructure/KeyBinding.h src/3-infrastructure/Localization.cpp src/2-services/SetTimeout.cpp src/2-services/SetTimeout.h src/2-services/ThreadController.cpp src/4-domain/Map.cpp src/5-controller/commands/DoAlgo.cpp src/5-controller/commands/DoAlgo.h src/5-controller/commands/SaveImage.cpp src/5-controller/commands/SaveImage.h src/5-controller/Controller.cpp src/5-controller/MapView.cpp src/6-view/GraphicView.cpp src/6-view/MapScreen.cpp src/6-view/ViewRoot.cpp src/6-view/ViewUtils.h src/6-view/tab/GeneratePerlinNoise.cpp src/6-view/tab/TabPerlinNoise.cpp src/6-view/tab/input/InputDouble.cpp src/6-view/tab/input/InputInteger.cpp src/6-view/menu/MenuBar.cpp src/4-domain/Coord.cpp src/4-domain/Coord.h src/6-view/tab/GenerateRandomVoronoi.cpp src/6-view/tab/GenerateRandomVoronoi.h src/6-view/tab/TabRandomVoronoi.cpp src/6-view/tab/TabRandomVoronoi.h)
+        src/4-domain/algos/RandomVoronoi.cpp src/4-domain/algos/Algo.h src/4-domain/algos/perlin/AlgoPerlinNoise.cpp src/4-domain/algos/perlin/AlgoPerlinNoise.h src/4-domain/algos/DistanceFromCenter.cpp src/4-domain/algos/DistanceFromCenter.h src/4-domain/algos/perlin/PerlinNoise.cpp src/3-services/KeyBinding.cpp src/3-services/KeyBinding.h src/3-services/Localization.cpp src/2-infrastructure/SetTimeout.cpp src/2-infrastructure/SetTimeout.h src/2-infrastructure/ThreadController.cpp src/4-domain/Map.cpp src/5-controller/commands/DoAlgo.cpp src/5-controller/commands/DoAlgo.h src/5-controller/commands/SaveImage.cpp src/5-controller/commands/SaveImage.h src/5-controller/Controller.cpp src/5-controller/MapView.cpp src/6-view/GraphicView.cpp src/6-view/MapScreen.cpp src/6-view/ViewRoot.cpp src/6-view/ViewUtils.h src/6-view/tab/TabPerlinNoise.cpp src/6-view/tab/input/InputDouble.cpp src/6-view/tab/input/InputInteger.cpp src/6-view/menu/MenuBar.cpp src/4-domain/Coord.cpp src/4-domain/Coord.h src/6-view/tab/TabRandomVoronoi.cpp src/6-view/tab/TabRandomVoronoi.h src/4-domain/algos/DiamondSquare.cpp src/4-domain/algos/DiamondSquare.h src/4-domain/Mapf.cpp src/4-domain/Mapf.h src/6-view/tab/TabDiamondSquare.cpp src/6-view/tab/TabDiamondSquare.h src/6-view/tab/Tab.h src/6-view/tab/Tab.cpp src/4-domain/algos/platec/Plate.cpp
+        src/4-domain/algos/platec/Lithosphere.h src/4-domain/algos/platec/Lithosphere.cpp src/4-domain/algos/platec/GenerationController.h src/4-domain/algos/platec/GenerationController.cpp src/4-domain/algos/platec/Platec.cpp src/4-domain/algos/platec/Platec.h
+        src/4-domain/Mapi.cpp src/4-domain/Mapi.h
+        src/4-domain/algos/platec/PlatecMap.cpp src/4-domain/algos/platec/PlatecMap.h src/4-domain/Output.h src/2-infrastructure/RandomEngine.cpp src/2-infrastructure/RandomEngine.h src/6-view/tab/TabPlatec.cpp src/6-view/tab/TabPlatec.h src/6-view/tab/input/InputSeed.h src/6-view/tab/input/InputSeed.cpp)
 
-if(CMAKE_BUILD_TYPE STREQUAL "Release")
+if (CMAKE_BUILD_TYPE STREQUAL "Release")
     set_property(TARGET WorldGeneration PROPERTY WIN32_EXECUTABLE true)
-endif()
+endif ()
 
 target_link_libraries(WorldGeneration
         PRIVATE Qt::Core
-        PRIVATE  Qt::Gui
-        PRIVATE  Qt::Widgets
+        PRIVATE Qt::Gui
+        PRIVATE Qt::Widgets
         )
 
 
@@ -35,6 +38,10 @@ target_link_libraries(WorldGeneration
 cmake_path(GET Qt6_DIR PARENT_PATH the_qt_path)
 cmake_path(GET the_qt_path PARENT_PATH the_qt_path)
 cmake_path(GET the_qt_path PARENT_PATH the_qt_path)
+
+install(DIRECTORY data/
+        DESTINATION $<TARGET_FILE_DIR:${PROJECT_NAME}>
+        )
 
 install(DIRECTORY ${the_qt_path}/plugins/platforms/
         DESTINATION $<TARGET_FILE_DIR:${PROJECT_NAME}>/plugins/platforms
