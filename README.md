@@ -20,13 +20,13 @@ into this project.
 
 ![Platec platec](readme/img/platec.png)
 
-#### How it works
+#### How It Works
 
 The simulation starts with an initial heightmap with some landmasses on it. This heightmap is
 created from the diamond square algorithm. Then tectonic plates are created randomly with the
 Voronoi random algorithm.
-The plates have random movements and will go to make collisions. The collisions are differentiated by continent on
-continent, ocean and others. This allows to simulate subductions and folds of continental collisions. A simple erosion
+The plates have random movements and will go to make collisions. The collisions are differentiated by “continent on
+continent”, “ocean and others”. This allows simulating subductions and folds of continental collisions. A simple erosion
 function is implemented to smooth the terrain. After a while the plates will become slow and few collisions will occur,
 so we change the cycle and restart the random plate generation.
 
@@ -38,14 +38,14 @@ For more details you can read the [thesis](/readme/Viitanen_Lauri_2012_03_30.pdf
 - **Size of image**
 - **Seed**
 - **Number of tectonic plates**
-- **Max number of iteration**
-- **Max number of Cycle**
+- **Max number of iterations**
+- **Max number of Cycles**
 - **Start map roughness** Allows to create more or less smooth coasts in the initial continents and more islands
 - **Percent of sea at the start** Raise the initial ocean level
 - **Period to erode the plates**Increase the interval to perform more erosion on the continents
-- **Ratio of folding of continental collision** Allows you to create higher mountains and peaks
-- **Value of plate superposition to merge** At what absolute value of overlap of two plates should the continents be
-  combined and collide? A value too small and the continental plates will hardly overlap and create only thin mountains
+- **The ratio of folding of continental collision** Allows you to create higher mountains and peaks
+- **Value of plate superposition to merge** Represents at what absolute value of overlap of two plates should the continents be
+  combined and collide? A value too small and the continental plates will hardly overlap and create only thin mountains.
 - **Percent of plate superposition to merge** Similar to the one above, but from the percentage of overlap
   of the smallest plate
 
@@ -53,17 +53,17 @@ For more details you can read the [thesis](/readme/Viitanen_Lauri_2012_03_30.pdf
 
 - Landmasses can sometimes pass through each other because of the values for the overlapping
   determined in the parameters.
-- The algorithm does not use multi-threading and has been built in such a way as to make it difficult to integrate
-  multi-threading.
+- The algorithm does not use multithreading and has been built in such a way as to make it difficult to integrate
+  multithreading.
 - At each iteration, we have to recalculate all the segments that allow us to determine the size of the continental zone
   in the collision.
-  If we can allow to modify the segments between iterations without having any problems, we could gain a lot in
+  If we can allow modifying the segments between iterations without having any problems, we could gain a lot in
   performance.
 - It would be very difficult to run the simulation on a sphere.
 
 ### [Noise Perlin](https://adrianb.io/2014/08/09/perlinnoise.html)
 
-Perlin noise is a pseudo-random generation that can create a more "real" noise by being smoother than a
+Perlin noise is a pseudo-random generation that can create a more “real” noise by being smoother than a
 100% random noise. Credit to Ken Perlin for developing this algorithm.
 
 ![Noise Perlin image](/readme/img/perlin_noise.png)
@@ -72,11 +72,11 @@ Perlin noise is a pseudo-random generation that can create a more "real" noise b
 
 - **Size of image**
 - **Seed**
-- **Size of bigger cell** pour indiquer la répartition en pixel des points dans l'image. L'agrandir permet
-  comme de zoomer sur l'image
-- **[Octaves](https://adrianb.io/2014/08/09/perlinnoise.html#working-with-octaves)** permet d'augmenter la netteté de l'
-  image en générant le nombre défini de bruits Perlin à différente fréquence et amplitude
-- **Persistence** permet de définir la persistance de l'amplitude de base dans les octaves
+- **Size of bigger cell** to indicate the pixel distribution of points in the image. Increasing it
+  to zoom in on the image.
+- **[Octaves](https://adrianb.io/2014/08/09/perlinnoise.html#working-with-octaves)** increase image sharpness by
+  generating the set number of Perlin noises at different frequencies and amplitudes
+- **Persistence** defines the lingering of the original amplitude in octaves
 
 ### Random Voronoi
 
@@ -95,7 +95,7 @@ generation iteration, the points choose an adjacent random point and add it to t
 ### [Diamond Square](https://en.wikipedia.org/wiki/Diamond-square_algorithm)
 
 The diamond square algorithm generates a random noise image from 4 values in the corners of the image. It creates the
-values in a special movement as on this image:
+values in a odd movement as in this image:
 
 ![Image of the diamond square process](https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Diamond_Square.svg/800px-Diamond_Square.svg.png)
 
